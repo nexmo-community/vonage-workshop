@@ -1,3 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://vonage-workshop.nexmodev.com/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Vonage Workshop"
+theme = "learn"
+[params]
+ themeVariant = "blue"

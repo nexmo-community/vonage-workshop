@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-cli/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-ndp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/ngrok/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/create-verify-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/send-sms/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/first-call/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/check-verify-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/sign-outbound/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/answer-call/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/receive-sms/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/workflows/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/user-input/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/advance-verify-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/validate-signature/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/build-ivr/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/record-a-call/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/voice/voice-proxy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/</loc>
+  </url>
+  
+</urlset>

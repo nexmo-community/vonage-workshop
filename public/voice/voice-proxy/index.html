@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Voice Proxying :: Vonage Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1576790066" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1576790066" rel="stylesheet">
+    <link href="/css/hybrid.css?1576790066" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1576790066" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1576790066" rel="stylesheet">
+    <link href="/css/auto-complete.css?1576790066" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1576790066" rel="stylesheet">
+    <link href="/css/theme.css?1576790066" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1576790066" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1576790066" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1576790066"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/voice/voice-proxy/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="/images/vonagelogo-secondary-black.png"></img>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1576790066"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1576790066"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1576790066"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/" title="Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/">
+          Introduction
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-dashboard/" title="Nexmo Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-dashboard/">
+          Nexmo Dashboard
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-cli/" title="Nexmo CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-cli/">
+          Nexmo CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-ndp/" title="Nexmo NDP" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-ndp/">
+          Nexmo NDP
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/ngrok/" title="ngrok" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/ngrok/">
+          ngrok
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/" title="SMS API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/">
+          SMS API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/send-sms/" title="Send an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/send-sms/">
+          Send an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/sign-outbound/" title="Sign Outbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/sign-outbound/">
+          Sign Outbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/receive-sms/">
+          Receive an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/validate-signature/" title="Validate Inbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/validate-signature/">
+          Validate Inbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/" title="Verify API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/">
+          Verify API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/create-verify-request/" title="Create Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/create-verify-request/">
+          Create Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/check-verify-request/" title="Check Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/check-verify-request/">
+          Check Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/advance-verify-request/" title="Advance to Next Event" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/advance-verify-request/">
+          Advance to Next Event
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/" title="Voice API" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/voice/">
+          Voice API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/first-call/" title="Make Your First Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/first-call/">
+          Make Your First Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/answer-call/" title="Call Your Application" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/answer-call/">
+          Call Your Application
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/user-input/">
+          Interact with your user
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/build-ivr/" title="Building an IVR" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/build-ivr/">
+          Building an IVR
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/record-a-call/" title="Record a Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/record-a-call/">
+          Record a Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/voice-proxy/" title="Voice Proxying" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/voice/voice-proxy/">
+          Voice Proxying
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Voice Proxying
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#create-nexmo-app">Create Nexmo App</a></li>
+    <li><a href="#build-the-app">Build the App</a>
+      <ul>
+        <li><a href="#setup-web-server">Setup web server</a></li>
+        <li><a href="#provisioning-numbers">Provisioning Numbers</a></li>
+        <li><a href="#create-the-voice-proxy-class">Create the voice proxy class</a></li>
+        <li><a href="#and-thats-it">And thats it!</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Voice Proxying
+            </h1>
+          
+
+        
+
+
+
+
+	<p>For marketplace scenarios such as food delivery or taxi and passenger communications, it is useful for users to be able to communicate with one another without exposing their phone numbers. By implementing voice proxying with Nexmo's Voice API you ensure that your users cannot bypass the required or preferred communication workflows and audits.</p>
+<h2 id="create-nexmo-app">Create Nexmo App</h2>
+<p>Let's start off by creating a new nexmo-app to manage the voice proxying. Using the CLI let's <code>nexmo app:create voice-proxy https://example.com/proxy-call</code> replace example.com with your base-url</p>
+<p>The parameters are:</p>
+<ul>
+<li>voice-proxy - the name you give to this application</li>
+<li><a href="https://example.com/proxy-call">https://example.com/proxy-call</a> - when you receive an inbound call to your virtual number, Nexmo makes a GET request and retrieves the NCCO that controls the call flow from this webhook endpoint</li>
+<li><a href="https://example.com/event">https://example.com/event</a> - as the call status changes, Nexmo sends status updates to this webhook endpoint</li>
+</ul>
+<h2 id="build-the-app">Build the App</h2>
+<h3 id="setup-web-server">Setup web server</h3>
+<p>Now let's create a webserver we'll host the app in. Create a new folder called voice-proxy. Cd into it and run <code>npm install bluebird nexmo express body-parser</code>.</p>
+<p>Create a file, server.js and add this code to it to create your webserver:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#e6db74">&#34;use strict&#34;</span>;
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>);
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;port&#39;</span>, (<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span>));
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">urlencoded</span>({ <span style="color:#a6e22e">extended</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> }));
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./config&#39;</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">config</span>)
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VoiceProxy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./VoiceProxy.js&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">voiceProxy</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VoiceProxy</span>(<span style="color:#a6e22e">config</span>);
+
+<span style="color:#a6e22e">voiceProxy</span>.<span style="color:#a6e22e">createConversation</span>(<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">USERA_NUMBER</span>, <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">USERB_NUMBER</span>,(<span style="color:#a6e22e">err</span>,<span style="color:#a6e22e">res</span>)=&gt;{
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">res</span>)
+})
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;port&#39;</span>), <span style="color:#66d9ef">function</span>() {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Voice Proxy App listening on port&#39;</span>, <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;port&#39;</span>));
+});
+</code></pre></div><h3 id="provisioning-numbers">Provisioning Numbers</h3>
+<p>If there are extra numbers needed simply go to the <a href="https://dashboard.nexmo.com/">dashboard</a> to get another number. Alternately they can be rented via the CLI.</p>
+<p>Let's add those numbers to our config as FIRST_NUMBER, and SECOND_NUMBER.</p>
+<h3 id="create-the-voice-proxy-class">Create the voice proxy class</h3>
+<p>Next let's create a VoiceProxy.js class and in that class create a constructor that simply takes a config parameter</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;nexmo&#39;</span>)
+<span style="color:#66d9ef">const</span> Promise <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;bluebird&#39;</span>)
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VoiceProxy</span>{
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Create a new VoiceProxy
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">config</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>;
+    
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+            <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">NEXMO_API_KEY</span>,
+            <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">NEXMO_API_SECRET</span>
+        },{
+            <span style="color:#a6e22e">debug</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">NEXMO_DEBUG</span>
+        });
+    
+    
+        <span style="color:#75715e">// Virtual Numbers to be assigned to UserA and UserB
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">provisionedNumbers</span> <span style="color:#f92672">=</span> [<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">FIRST_NUMBER</span>, <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">SECOND_NUMBER</span>];
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">provisionedNumbers</span>);
+    
+        <span style="color:#75715e">// In progress conversations
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">conversations</span> <span style="color:#f92672">=</span> [];
+    };
+</code></pre></div><h4 id="create-a-call">Create a Call</h4>
+<p>The next step is to actually create a call. This still will.</p>
+<ul>
+<li>Validate the Phone Numbers to be used in the call</li>
+<li>Maps the proxy numbers to the real phone numbers</li>
+<li>Send an SMS to each party of the call to tell them what number to call into</li>
+</ul>
+<p>this will inevitably culminate in this bit of code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Create a new tracked conversation so there is a real/virtual mapping of numbers.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#a6e22e">createConversation</span>(<span style="color:#a6e22e">userANumber</span>, <span style="color:#a6e22e">userBNumber</span>, <span style="color:#a6e22e">cb</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">checkNumbers</span>(<span style="color:#a6e22e">userANumber</span>, <span style="color:#a6e22e">userBNumber</span>)
+    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">saveConversation</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>))
+    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sendSMS</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>))
+    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">conversation</span>) {
+        <span style="color:#a6e22e">cb</span>(<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">conversation</span>);
+    })
+    .<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>) {
+        <span style="color:#a6e22e">cb</span>(<span style="color:#a6e22e">err</span>);
+    });
+};
+</code></pre></div><h4 id="number-validation">Number Validation</h4>
+<p>The first step of this process is actually validating that the numbers are of the correct country - this can be done with a basic NumberInsight call</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Ensure the given numbers are valid and which country they are associated with.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#a6e22e">checkNumbers</span>(<span style="color:#a6e22e">userANumber</span>, <span style="color:#a6e22e">userBNumber</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">niGetPromise</span> <span style="color:#f92672">=</span> Promise.<span style="color:#a6e22e">promisify</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">numberInsight</span>.<span style="color:#a6e22e">get</span>, {<span style="color:#a6e22e">context</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">numberInsight</span>});
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userAGet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">niGetPromise</span>({<span style="color:#a6e22e">level</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;basic&#39;</span>, <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userANumber</span>});
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userBGet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">niGetPromise</span>({<span style="color:#a6e22e">level</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;basic&#39;</span>, <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userBNumber</span>});
+
+    <span style="color:#66d9ef">return</span> Promise.<span style="color:#a6e22e">all</span>([<span style="color:#a6e22e">userAGet</span>, <span style="color:#a6e22e">userBGet</span>]);
+};
+</code></pre></div><h4 id="map-the-virtual-to-real-numbers">Map the Virtual to Real Numbers</h4>
+<p>With the knowledge that the numbers are indeed valid we can move onto mapping the virtual numbers onto the real numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Store the conversation information.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#a6e22e">saveConversation</span>(<span style="color:#a6e22e">results</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userAResult</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">results</span>[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userANumber</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">msisdn</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userAResult</span>.<span style="color:#a6e22e">international_format_number</span>,
+    <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userAResult</span>.<span style="color:#a6e22e">country_code</span>
+    };
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userBResult</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">results</span>[<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">userBNumber</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">msisdn</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userBResult</span>.<span style="color:#a6e22e">international_format_number</span>,
+    <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userBResult</span>.<span style="color:#a6e22e">country_code</span>
+    };
+
+    <span style="color:#75715e">// Create conversation object - for demo purposes:
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// - Use first indexed LVN for user A
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// - Use second indexed LVN for user B
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">conversation</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">userA</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">realNumber</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userANumber</span>,
+        <span style="color:#a6e22e">virtualNumber</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">provisionedNumbers</span>[<span style="color:#ae81ff">0</span>]
+    },
+    <span style="color:#a6e22e">userB</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">realNumber</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userBNumber</span>,
+        <span style="color:#a6e22e">virtualNumber</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">provisionedNumbers</span>[<span style="color:#ae81ff">1</span>]
+    }
+    };
+
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">conversations</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">conversation</span>);
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">conversation</span>;
+};
+</code></pre></div><h4 id="send-prompting-sms">Send Prompting SMS</h4>
+<p>With the virtual and real numbers mapped, the next step is to prompt the users in the call to actually call into the appropriate number, to this end we'll send a prompting SMS to each user with the appropriate Number for them to call into.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Send an SMS to each conversation participant so they know each other&#39;s
+</span><span style="color:#75715e"> * virtual number and can call either other via the proxy.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#a6e22e">sendSMS</span>(<span style="color:#a6e22e">conversation</span>) {
+    <span style="color:#75715e">// Send UserA conversation information
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// From the UserB virtual number
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// To the UserA real number
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span>.<span style="color:#a6e22e">virtualNumber</span>,
+                            <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span>.<span style="color:#a6e22e">realNumber</span>.<span style="color:#a6e22e">msisdn</span>,
+                            <span style="color:#e6db74">&#39;Call this number to talk to UserB&#39;</span>);
+
+    <span style="color:#75715e">// Send UserB conversation information
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// From the UserA virtual number
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// To the UserB real number
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span>.<span style="color:#a6e22e">virtualNumber</span>,
+                            <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span>.<span style="color:#a6e22e">realNumber</span>.<span style="color:#a6e22e">msisdn</span>,
+                            <span style="color:#e6db74">&#39;Call this number to talk to UserA&#39;</span>);
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">conversation</span>;
+};
+</code></pre></div><p>The Users won't be able to send SMS's to each other - rather they will need to dial into the number provided to be connected to the other party.</p>
+<h4 id="reverse-map-real-to-virtual-numbers">Reverse Map Real to Virtual Numbers</h4>
+<p>Now that we know which numbers are dialing in and which numbers to map them to we need to reverse map the inbound numbers to the appropriate virtual number and make the call</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fromUserAToUserB</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">conversation</span>) {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">from</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span>.<span style="color:#a6e22e">realNumber</span>.<span style="color:#a6e22e">msisdn</span> <span style="color:#f92672">&amp;&amp;</span>
+          <span style="color:#a6e22e">to</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span>.<span style="color:#a6e22e">virtualNumber</span>.<span style="color:#a6e22e">msisdn</span>);
+};
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fromUserBToUserA</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">conversation</span>) {
+  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">from</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span>.<span style="color:#a6e22e">realNumber</span>.<span style="color:#a6e22e">msisdn</span> <span style="color:#f92672">&amp;&amp;</span>
+          <span style="color:#a6e22e">to</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span>.<span style="color:#a6e22e">virtualNumber</span>.<span style="color:#a6e22e">msisdn</span>);
+};
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Work out real number to virtual number mapping between users.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#a6e22e">VoiceProxy</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">getProxyRoute</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>) {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">proxyRoute</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">conversation</span>;
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">conversations</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>; <span style="color:#f92672">++</span><span style="color:#a6e22e">i</span>) {
+    <span style="color:#a6e22e">conversation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">conversations</span>[<span style="color:#a6e22e">i</span>];
+
+    <span style="color:#75715e">// Use to and from to determine the conversation
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fromUserA</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fromUserAToUserB</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">conversation</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fromUserB</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fromUserBToUserA</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">conversation</span>);
+
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">fromUserA</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">fromUserB</span>) {
+      <span style="color:#a6e22e">proxyRoute</span> <span style="color:#f92672">=</span> {
+        <span style="color:#a6e22e">conversation</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">conversation</span>,
+        <span style="color:#a6e22e">to</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fromUserA</span><span style="color:#f92672">?</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span>,
+        <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fromUserA</span><span style="color:#f92672">?</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userA</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">conversation</span>.<span style="color:#a6e22e">userB</span>
+      };
+      <span style="color:#66d9ef">break</span>;
+    }
+  }
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">proxyRoute</span>;
+};
+</code></pre></div><h4 id="producing-an-ncco-for-the-inbound-call">Producing an NCCO For the inbound call</h4>
+<p>Next we'll have to produce an NCCO for our webhook to return when the answer url is hit this will produce a talk action indicating they are being connected to the other party, and a connect action to actually make the call to the other party:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">getProxyNCCO</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">route</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getProxyRoute</span>(<span style="color:#a6e22e">from</span>,<span style="color:#a6e22e">to</span>);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
+        {
+            <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;talk&#39;</span>,
+            <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;Connecting you with the other party&#39;</span>
+        },
+        {
+            <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;connect&#39;</span>,
+            <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span><span style="color:#a6e22e">route</span>.<span style="color:#a6e22e">from</span>.<span style="color:#a6e22e">virtualNumber</span>,
+            <span style="color:#a6e22e">timeout</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;30&#34;</span>,
+            <span style="color:#a6e22e">endpoint</span><span style="color:#f92672">:</span> [
+                {
+                    <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;phone&#39;</span>,
+                    <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span><span style="color:#a6e22e">route</span>.<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">realNumber</span>.<span style="color:#a6e22e">msisdn</span>
+
+                }
+            ]
+        }
+    ]
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ncco</span>;
+}
+</code></pre></div><h4 id="handling-the-inbound-call">Handling the inbound call</h4>
+<p>And at last, we get to the actual handling of the call, with everything setup in VoiceProxy.js, turn back to server.js and add the following code - this will manage the webhook</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/proxy-call&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">from</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">from</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">to</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">to</span>;
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">voiceProxy</span>.<span style="color:#a6e22e">getProxyNCCO</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>);
+  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
+});
+</code></pre></div><h4 id="configuration">configuration</h4>
+<p>we just use a simple config.json file to configure this, alongside server.js create config.json and populate it like so</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{
+    &#34;FIRST_NUMBER&#34;:&#34;FIRST_NUMBER&#34;,
+    &#34;SECOND_NUMBER&#34;:&#34;SECOND_NUMBER&#34;,
+    &#34;NEXMO_API_KEY&#34;:&#34;NEXMO_API_KEY&#34;,
+    &#34;NEXMO_API_SECRET&#34;:&#34;NEXMO_API_SECRET&#34;,
+    &#34;USERA_NUMBER&#34;:&#34;USERA_NUMBER&#34;,
+    &#34;USERB_NUMBER&#34;:&#34;USERB_NUMBER&#34;
+}
+</code></pre></div><h3 id="and-thats-it">And thats it!</h3>
+<p>With that your app should be all set. run <code>node server.js</code> to run and you'll be off to the races</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/voice/record-a-call/" title="Record a Call"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/voice/first-call/" title="Make Your First Call" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1576790066"></script>
+    <script src="/js/jquery.sticky.js?1576790066"></script>
+    <script src="/js/featherlight.min.js?1576790066"></script>
+    <script src="/js/highlight.pack.js?1576790066"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1576790066"></script>
+    <script src="/js/learn.js?1576790066"></script>
+    <script src="/js/hugo-learn.js?1576790066"></script>
+
+    <link href="/mermaid/mermaid.css?1576790066" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1576790066"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Create Verify Request :: Vonage Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1576790066" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1576790066" rel="stylesheet">
+    <link href="/css/hybrid.css?1576790066" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1576790066" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1576790066" rel="stylesheet">
+    <link href="/css/auto-complete.css?1576790066" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1576790066" rel="stylesheet">
+    <link href="/css/theme.css?1576790066" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1576790066" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1576790066" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1576790066"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/verify/create-verify-request/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="/images/vonagelogo-secondary-black.png"></img>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1576790066"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1576790066"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1576790066"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/" title="Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/">
+          Introduction
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-dashboard/" title="Nexmo Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-dashboard/">
+          Nexmo Dashboard
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-cli/" title="Nexmo CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-cli/">
+          Nexmo CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-ndp/" title="Nexmo NDP" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-ndp/">
+          Nexmo NDP
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/ngrok/" title="ngrok" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/ngrok/">
+          ngrok
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/" title="SMS API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/">
+          SMS API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/send-sms/" title="Send an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/send-sms/">
+          Send an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/sign-outbound/" title="Sign Outbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/sign-outbound/">
+          Sign Outbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/receive-sms/">
+          Receive an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/validate-signature/" title="Validate Inbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/validate-signature/">
+          Validate Inbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/" title="Verify API" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/verify/">
+          Verify API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/create-verify-request/" title="Create Verify Request" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/verify/create-verify-request/">
+          Create Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/check-verify-request/" title="Check Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/check-verify-request/">
+          Check Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/advance-verify-request/" title="Advance to Next Event" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/advance-verify-request/">
+          Advance to Next Event
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/" title="Voice API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/">
+          Voice API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/first-call/" title="Make Your First Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/first-call/">
+          Make Your First Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/answer-call/" title="Call Your Application" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/answer-call/">
+          Call Your Application
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/user-input/">
+          Interact with your user
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/build-ivr/" title="Building an IVR" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/build-ivr/">
+          Building an IVR
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/record-a-call/" title="Record a Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/record-a-call/">
+          Record a Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/voice-proxy/" title="Voice Proxying" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/voice-proxy/">
+          Voice Proxying
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/verify/'>Verify API</a> > Create Verify Request
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Create Verify Request
+            </h1>
+          
+
+        
+
+
+
+
+	<p>Creating a verify request will simply consist of firing off a request, and awaiting the user to input a response.</p>
+<ul>
+<li>
+<p>Run <code>npm install nexmo dotenv</code> to ensure all our dependcies are installed</p>
+</li>
+<li>
+<p>Let's create the Create Request code. Create a file called <code>create_verify_request.js</code> In here add the following code</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;nexmo&#34;</span>)
+<span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>();
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+    <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_KEY</span>,
+    <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_SECRET</span>
+  })
+
+<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">verify</span>.<span style="color:#a6e22e">request</span>({
+    <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TO_NUMBER</span>,
+    <span style="color:#a6e22e">brand</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_BRAND</span>
+}, (<span style="color:#a6e22e">err</span>,<span style="color:#a6e22e">result</span>)=&gt;{
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">err</span>);
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verifyRequestId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">request_id</span>;
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;request_id&#39;</span>, <span style="color:#a6e22e">verifyRequestId</span>);
+      }
+})
+</code></pre></div><p>Let's also create a <code>.env</code> file that will configure the app for us add the following fields - replacing with appropriate values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">NEXMO_API_KEY=NEXMO_API_KEY
+NEXMO_API_SECRET=NEXMO_API_SECRET
+TO_NUMBER=TO_NUMBER
+NEXMO_BRAND=Acme
+</code></pre></div><p>With this setup we can now create a verify request with <code>node create_verify_request.js</code> - this will start the verify request. The next step is going to be checking the verify request.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/verify/" title="Verify API"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/verify/check-verify-request/" title="Check Verify Request" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1576790066"></script>
+    <script src="/js/jquery.sticky.js?1576790066"></script>
+    <script src="/js/featherlight.min.js?1576790066"></script>
+    <script src="/js/highlight.pack.js?1576790066"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1576790066"></script>
+    <script src="/js/learn.js?1576790066"></script>
+    <script src="/js/hugo-learn.js?1576790066"></script>
+
+    <link href="/mermaid/mermaid.css?1576790066" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1576790066"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

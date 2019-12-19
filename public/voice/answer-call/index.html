@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Call Your Application :: Vonage Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1576790066" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1576790066" rel="stylesheet">
+    <link href="/css/hybrid.css?1576790066" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1576790066" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1576790066" rel="stylesheet">
+    <link href="/css/auto-complete.css?1576790066" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1576790066" rel="stylesheet">
+    <link href="/css/theme.css?1576790066" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1576790066" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1576790066" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1576790066"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/voice/answer-call/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="/images/vonagelogo-secondary-black.png"></img>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1576790066"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1576790066"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1576790066"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/" title="Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/">
+          Introduction
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-dashboard/" title="Nexmo Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-dashboard/">
+          Nexmo Dashboard
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-cli/" title="Nexmo CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-cli/">
+          Nexmo CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-ndp/" title="Nexmo NDP" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-ndp/">
+          Nexmo NDP
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/ngrok/" title="ngrok" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/ngrok/">
+          ngrok
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/" title="SMS API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/">
+          SMS API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/send-sms/" title="Send an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/send-sms/">
+          Send an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/sign-outbound/" title="Sign Outbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/sign-outbound/">
+          Sign Outbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/receive-sms/">
+          Receive an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/validate-signature/" title="Validate Inbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/validate-signature/">
+          Validate Inbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/" title="Verify API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/">
+          Verify API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/create-verify-request/" title="Create Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/create-verify-request/">
+          Create Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/check-verify-request/" title="Check Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/check-verify-request/">
+          Check Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/advance-verify-request/" title="Advance to Next Event" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/advance-verify-request/">
+          Advance to Next Event
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/" title="Voice API" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/voice/">
+          Voice API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/first-call/" title="Make Your First Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/first-call/">
+          Make Your First Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/answer-call/" title="Call Your Application" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/voice/answer-call/">
+          Call Your Application
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/user-input/">
+          Interact with your user
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/build-ivr/" title="Building an IVR" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/build-ivr/">
+          Building an IVR
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/record-a-call/" title="Record a Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/record-a-call/">
+          Record a Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/voice-proxy/" title="Voice Proxying" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/voice-proxy/">
+          Voice Proxying
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Call Your Application
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#next-steps-a-more-interesting-greeting">Next Steps: A more interesting greeting</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Call Your Application
+            </h1>
+          
+
+        
+
+
+
+
+	<p><strong>Make a phone call, have your application answer it</strong></p>
+<p>To receive incoming calls, you need a publicly-available URL that will respond with a NCCO telling Nexmo what to do with the call. One thing that's different from the previous example is that it does not need an API keys - the Nexmo server will call your application this time rather than the other way around!</p>
+<ol>
+<li>
+<p>Start by adding a simple route to your application, the code samples here are to help you get started, or you can of course improvise.</p>
+<p><strong>JavaScript</strong></p>
+<p>Prepare your dependencies: <code>npm install nexmo express</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">from</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">from</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fromSplitIntoCharacters</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">from</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [{
+    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">Thank you for calling from </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fromSplitIntoCharacters</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+}]
+
+<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
+}
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
+</code></pre></div><p>Save the code sample to <code>index.js</code> and then run <code>node index.js</code>.</p>
+<p><strong>PHP</strong></p>
+<p>This example uses the Slim Framework (v3) microframework for some lightweight input/output handling and routing. To include this in your project, use Composer:</p>
+<p><code>composer require nexmo/client slim/slim:3.11</code></p>
+<p>With the dependencies in place, here's some code to give a <code>/webhooks/answer</code> endpoint that returns an NCCO:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ServerRequestInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Request</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ResponseInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Response</span>;
+
+<span style="color:#66d9ef">require</span> <span style="color:#e6db74">&#39;vendor/autoload.php&#39;</span>;
+
+$app <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Slim\App</span>;
+$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
+    $params <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getQueryParams</span>();
+    $fromSplitIntoCharacters <span style="color:#f92672">=</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#34; &#34;</span>, <span style="color:#a6e22e">str_split</span>($params[<span style="color:#e6db74">&#39;from&#39;</span>]));
+
+    $ncco <span style="color:#f92672">=</span> [
+        [
+            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Thank you for calling from &#39;</span><span style="color:#f92672">.</span>$fromSplitIntoCharacters
+        ]
+    ];
+
+    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
+});
+
+$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</span>();
+</code></pre></div><p>Save the code into <code>index.php</code>. Then try using the built-in PHP webserver to serve the code:</p>
+<p><code>php -S localhost:3000</code></p>
+<p>Again, there are <a href="https://developer.nexmo.com/voice/voice-api/code-snippets/receive-an-inbound-call">code examples in other languages</a> if you prefer.</p>
+</li>
+<li>
+<p><strong>Test your endpoint</strong> by requesting <a href="http://localhost:3000/webhook/answer">http://localhost:3000/webhook/answer</a> in your browser. You should see some JSON returned.</p>
+</li>
+<li>
+<p>Next, your local URL needs to be publicly available. One way to do this is to use <a href="https://ngrok.com">ngrok</a>:</p>
+<p><code>ngrok http 3000</code></p>
+<p>When ngrok starts the tunnel, it will show you your URL, something like <code>https://abc123.ngrok.io</code> - copy the URL from your ngrok console as we will need it shortly.</p>
+</li>
+<li>
+<p>Back in the dashboard, you can edit the Answer URL of your application, by pasting the ngrok URL and adding <code>/webhooks/answer</code> to the end of it, to make something like <code>https://abc123.ngrok.com/webhooks/answer</code>.</p>
+</li>
+<li>
+<p><strong>Call your application</strong> by making a call from your cellphone to the Nexmo number linked to your application. You should hear the spoken greeting giving the number you are calling from.</p>
+</li>
+</ol>
+<h3 id="next-steps-a-more-interesting-greeting">Next Steps: A more interesting greeting</h3>
+<p>We've shared our standard &ldquo;answer a call&rdquo; example but it isn't particularly interesting! What do you wish your application would do? How about:</p>
+<ul>
+<li>A talking clock</li>
+<li>A randomly chosen uplifting message</li>
+<li>Some music</li>
+</ul>
+<p>Use the <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference">NCCO reference documentation</a> to try some alternative content for your Answer URL.</p>
+<p>For more ideas, there's a set of <a href="https://github.com/nexmo-community/ncco-examples">NCCO Examples on GitHub</a> that might help you along the way.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/voice/first-call/" title="Make Your First Call"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/voice/user-input/" title="Interact with your user" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1576790066"></script>
+    <script src="/js/jquery.sticky.js?1576790066"></script>
+    <script src="/js/featherlight.min.js?1576790066"></script>
+    <script src="/js/highlight.pack.js?1576790066"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1576790066"></script>
+    <script src="/js/learn.js?1576790066"></script>
+    <script src="/js/hugo-learn.js?1576790066"></script>
+
+    <link href="/mermaid/mermaid.css?1576790066" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1576790066"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

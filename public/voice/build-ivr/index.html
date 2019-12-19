@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Building an IVR :: Vonage Workshop</title>
+
+    
+    <link href="/css/nucleus.css?1576790066" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1576790066" rel="stylesheet">
+    <link href="/css/hybrid.css?1576790066" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1576790066" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1576790066" rel="stylesheet">
+    <link href="/css/auto-complete.css?1576790066" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1576790066" rel="stylesheet">
+    <link href="/css/theme.css?1576790066" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1576790066" rel="stylesheet">
+    
+      <link href="/css/theme-blue.css?1576790066" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1576790066"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/voice/build-ivr/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="/images/vonagelogo-secondary-black.png"></img>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1576790066"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1576790066"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1576790066"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/" title="Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/">
+          Introduction
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-dashboard/" title="Nexmo Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-dashboard/">
+          Nexmo Dashboard
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-cli/" title="Nexmo CLI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-cli/">
+          Nexmo CLI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/nexmo-ndp/" title="Nexmo NDP" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/nexmo-ndp/">
+          Nexmo NDP
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/intro/ngrok/" title="ngrok" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/intro/ngrok/">
+          ngrok
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/" title="SMS API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/">
+          SMS API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/send-sms/" title="Send an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/send-sms/">
+          Send an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/sign-outbound/" title="Sign Outbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/sign-outbound/">
+          Sign Outbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/receive-sms/">
+          Receive an SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/sms/validate-signature/" title="Validate Inbound SMS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/sms/validate-signature/">
+          Validate Inbound SMS
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/" title="Verify API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/">
+          Verify API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/create-verify-request/" title="Create Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/create-verify-request/">
+          Create Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/check-verify-request/" title="Check Verify Request" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/check-verify-request/">
+          Check Verify Request
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/verify/advance-verify-request/" title="Advance to Next Event" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/verify/advance-verify-request/">
+          Advance to Next Event
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/" title="Voice API" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/voice/">
+          Voice API
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/first-call/" title="Make Your First Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/first-call/">
+          Make Your First Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/answer-call/" title="Call Your Application" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/answer-call/">
+          Call Your Application
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/user-input/">
+          Interact with your user
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/build-ivr/" title="Building an IVR" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/voice/build-ivr/">
+          Building an IVR
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/record-a-call/" title="Record a Call" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/record-a-call/">
+          Record a Call
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/voice/voice-proxy/" title="Voice Proxying" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/voice/voice-proxy/">
+          Voice Proxying
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Building an IVR
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#inital-call-handling">Inital Call Handling</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Building an IVR
+            </h1>
+          
+
+        
+
+
+
+
+	<p>An IVR or Interactive Voice Response is a menu of options presented to a caller, they then navigate that menu using the buttons on their keypad to send DTMF (Dual Tone Multi Frequency) signals. Each option on the IVR can direct the call to a different path, for example forwarding the call to a specific destination, playing a recorded piece of information or even triggering another service such as an SMS. IVRs are the fundamental navigation method of Voice Call applications. An IVR can have multiple levels to it, where selection of one option presents the user with more options, this can go on to an infinite depth! For this activity we will just create a single level IVR.</p>
+<h2 id="inital-call-handling">Inital Call Handling</h2>
+<p>Start by reusing the logic built in the previous section</p>
+<p>Prepare your dependencies: <code>npm install nexmo express body-parser</code></p>
+<p>Now the code we are going to use here is going to vary slightly from the previous section's</p>
+<p>Let's start by creating an index.js file and just get the basics out of the way.</p>
+<p>require app and body parser, setup our routes, and set the app up to listen on port 3000</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">origin_phone_number</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NEXMO_NUMBER&#34;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sales_office_number</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;15558675309&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">base_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.example.com&#34;</span>;
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>())
+<span style="color:#75715e">//When adding code, add after this line
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//When adding code, add before this line
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onEvent</span> <span style="color:#f92672">=</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt;{
+    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>();
+
+}
+<span style="color:#a6e22e">app</span>
+  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
+  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#a6e22e">onInput</span>)
+  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/events&#39;</span>, <span style="color:#a6e22e">onEvent</span>)
+  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/accountInput&#39;</span>, <span style="color:#a6e22e">onAccountInput</span>)
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
+</code></pre></div><p>Next we are going to want to give the user a set of options that they can choose from. Let's just have 3 options.</p>
+<ol>
+<li>Sales</li>
+<li>Customer Support</li>
+<li>Press Office</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
+      {
+        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+        <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Hello, welcome to Acme Systems Incorporated\&#39;s Interactive Voice Response System. To speak with Sales press 1. For Customer Support press 2. For the press office, press 3&#39;</span>,
+        <span style="color:#a6e22e">bargeIn</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+      },
+      {
+        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
+        <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">base_url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/dtmf</span><span style="color:#e6db74">`</span>],
+        <span style="color:#a6e22e">maxDigits</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+      }
+    ]
+  
+    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
+}
+</code></pre></div><p>Now we have constructed a talk action to explain the menu to the customer, and we have provided an input action for customers to send input in through.</p>
+<p>The next step is to actually manage all that user input. In the previous section we simply echoed the user's input back to them. Here we are just going to switch on the different possible inputs.</p>
+<ul>
+<li>For the sales department we will connect them immediately with a representative at the sales_office_number.</li>
+<li>For the Support department, we will collect a 5 digit account number from them.</li>
+<li>For the press office, unfortunatley no one can take the call, and we haven't set up our voice mail system - so we will have to drop it.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInput</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ncco</span>;
+
+    <span style="color:#66d9ef">switch</span>(<span style="color:#a6e22e">dtmf</span>){
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
+                {
+                <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">You have asked to speak with the Sales Department, Connecting you now.</span><span style="color:#e6db74">`</span>
+                },
+                {
+                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;connect&#39;</span>,
+                    <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">origin_phone_number</span>,
+                    <span style="color:#a6e22e">endpoint</span><span style="color:#f92672">:</span> 
+                    [
+                        {
+                          <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;phone&#34;</span>,
+                          <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">sales_office_number</span>
+                        }
+                    ]
+
+                }
+            ]
+            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> 
+            [
+                {
+                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;You have asked to speak with customer service, please input your 5 digit account number followed by the pound sign&#39;</span>
+                },
+                {
+                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
+                    <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">base_url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/accountInput</span><span style="color:#e6db74">`</span>],
+                    <span style="color:#a6e22e">timeOut</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>,
+                    <span style="color:#a6e22e">maxDigits</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">6</span>,
+                    <span style="color:#a6e22e">submitOnHash</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+                }
+            ]
+            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span>
+            [
+                {
+                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;You have asked to speak with the press office. Unfortunately no one from the press office is currently available and the recording service has yet to be implemented, please try back later&#39;</span>
+                }
+            ]
+            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
+                {
+                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;I\&#39;m sorry I didn\&#39;t understand what you entered please try again&#39;</span>
+                }
+            ];
+            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
+            <span style="color:#66d9ef">break</span>;
+    }
+}
+</code></pre></div><p>Finally if they contacted the support department we will need to echo the account input back to them and tell them they'll be contacted later. Add the following into our index.js file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onAccountInput</span> <span style="color:#f92672">=</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt;{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dtmf</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> 
+    [
+        {
+            <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
+            <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Your account number is: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; your case has been added and is being actively triaged, you will be contacted with an update to your case in 24 hours&#39;</span>
+        }
+    ];
+    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
+    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>();
+  }
+</code></pre></div><p>With this last piece of the puzzle we're ready to go.</p>
+<p>To fire this up do the following:</p>
+<ul>
+<li>run <code>http ngrok 3000</code> to point your ngrok tunnel at your server</li>
+</ul>
+<p><img src="/images/ngrok.png" alt="ngrok"></p>
+<ul>
+<li>take the forwarded address and set that as your base_url in the case of the above example this will be <a href="http://c1b4d1a1.ngrok.io">http://c1b4d1a1.ngrok.io</a></li>
+<li>replace the sales_office_number with a phone number you want it to call</li>
+<li>replace the origin_phone_number with your nexmo number</li>
+<li>run <code>node index.js</code></li>
+</ul>
+<p>And that's it! - now all you need to is call into your voice app with your phone and you'll be dialed into the IVR</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/voice/user-input/" title="Interact with your user"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/voice/record-a-call/" title="Record a Call" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.min.js?1576790066"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1576790066"></script>
+    <script src="/js/jquery.sticky.js?1576790066"></script>
+    <script src="/js/featherlight.min.js?1576790066"></script>
+    <script src="/js/highlight.pack.js?1576790066"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1576790066"></script>
+    <script src="/js/learn.js?1576790066"></script>
+    <script src="/js/hugo-learn.js?1576790066"></script>
+
+    <link href="/mermaid/mermaid.css?1576790066" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1576790066"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
