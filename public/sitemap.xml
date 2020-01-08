@@ -35,6 +35,10 @@
   </url>
   
   <url>
+    <loc>https://vonage-workshop.nexmodev.com/messages/</loc>
+  </url>
+  
+  <url>
     <loc>https://vonage-workshop.nexmodev.com/verify/create-verify-request/</loc>
   </url>
   
@@ -83,6 +87,10 @@
   </url>
   
   <url>
+    <loc>https://vonage-workshop.nexmodev.com/verify/cancel-verify/</loc>
+  </url>
+  
+  <url>
     <loc>https://vonage-workshop.nexmodev.com/voice/record-a-call/</loc>
   </url>
   
@@ -92,6 +100,10 @@
   
   <url>
     <loc>https://vonage-workshop.nexmodev.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-overview/</loc>
   </url>
   
   <url>

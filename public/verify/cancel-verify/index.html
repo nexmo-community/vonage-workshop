@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Vonage Workshop :: Vonage Workshop</title>
+    <title>Cancel Verify Request :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1578493713" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/verify/cancel-verify/">
     <nav id="sidebar" class="">
 
 
@@ -359,7 +359,7 @@
   
     
     <li data-nav-id="/verify/" title="Verify API" class="dd-item 
-        
+        parent
         
         
         ">
@@ -482,8 +482,8 @@
   
     
     <li data-nav-id="/verify/cancel-verify/" title="Cancel Verify Request" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/verify/cancel-verify/">
@@ -728,33 +728,104 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/verify/'>Verify API</a> > Cancel Verify Request
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Cancel Verify Request
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+
+	<p>Cancelling a Verify request is essentially the same as telling it to advance to the next stage, you will just send a control request with the command set to &lsquo;cancel&rsquo;</p>
+<p>Create a file called <code>cancel_verify_request.js</code> and add the following to it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;nexmo&#34;</span>)
+<span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>();
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+    <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_KEY</span>,
+    <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_SECRET</span>
+  })
+
+<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">verify</span>.<span style="color:#a6e22e">control</span>({
+    <span style="color:#a6e22e">request_id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">REQUEST_ID</span>,
+    <span style="color:#a6e22e">cmd</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cancel&#39;</span>
+  }, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">result</span>) =&gt; {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">err</span>);
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+    }
+  });
+</code></pre></div><p>run this with <code>REQUEST_ID=VERIFY_REQUEST_ID node cancel_verify_request.js</code></p>
+<blockquote>
+<p>NOTE: This must be run 30 seconds after the start of your verify request or it will be flagged as too early!</p>
+</blockquote>
+
+
+
+
+
+<footer class=" footline" >
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
-	
-  
+</footer>
+
         
         </div> 
         
@@ -969,6 +1040,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -983,6 +1055,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1048,6 +1123,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1066,6 +1142,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1201,8 +1280,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/verify/advance-verify-request/" title="Advance to Next Event"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/intro/" title="Introduction" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/voice/" title="Voice API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1232,4 +1313,3 @@
 
   </body>
 </html>
-
