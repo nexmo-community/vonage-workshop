@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Interact with your user :: Vonage Workshop</title>
+    <title>Advanced :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1578597367" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/voice/user-input/">
+  <body class="" data-url="/sms/advanced/">
     <nav id="sidebar" class="">
 
 
@@ -229,7 +229,7 @@
   
     
     <li data-nav-id="/sms/" title="SMS API" class="dd-item 
-        
+        parent
         
         
         ">
@@ -328,8 +328,8 @@
   
     
     <li data-nav-id="/sms/advanced/" title="Advanced" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/sms/advanced/">
@@ -597,7 +597,7 @@
   
     
     <li data-nav-id="/voice/" title="Voice API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -672,8 +672,8 @@
   
     
     <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/voice/user-input/">
@@ -839,7 +839,7 @@
             
           
           
-            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Interact with your user
+            <a href='/'>Vonage Workshop</a> > <a href='/sms/'>SMS API</a> > Advanced
           
          
           
@@ -868,7 +868,7 @@
           
             <h1>
               
-              Interact with your user
+              Advanced
             </h1>
           
 
@@ -877,99 +877,7 @@
 
 
 
-	<p>Making a call, or receiving one, is great but what next? In this final exercise we'll interact with our user. To keep things simple, we'll prompt them to input digits on their keypad, but the same approaches would work with spoken interactions on both sides.</p>
-<p>The outline of the process looks something like this:</p>
-<ol>
-<li>Create an NCCO to prompt the user to input some digits by using a <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#talk"><code>talk</code></a> action and then an <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#input"><code>input</code></a> action. The <code>input</code> action accepts a URL so use your ngrok URL with a suffix - our examples use <code>/webhooks/dtmf</code>.</li>
-<li>When the user sends some input, we'll receive a webhook containing some data to identify the call (see the <a href="https://developer.nexmo.com/voice/voice-api/webhook-reference#input">detail of the webhook</a> on the Developer Portal)</li>
-<li>Using the data that arrived in the webhook, we can return a new NCCO with custom content.</li>
-</ol>
-<p>Start a new application, we have some new code for you!</p>
-<p><strong>JavaScript</strong></p>
-<p>Prepare your dependencies: <code>npm install nexmo express body-parser</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>())
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-      <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-    },
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-      <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">protocol</span><span style="color:#e6db74">}</span><span style="color:#e6db74">://</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;host&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/dtmf</span><span style="color:#e6db74">`</span>]
-    }
-  ]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInput</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
-
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [{
-    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">You pressed </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dtmf</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
-  }]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-
-<span style="color:#a6e22e">app</span>
-  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#a6e22e">onInput</span>)
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
-</code></pre></div><p>Put this code into <code>index.js</code> and start the server with <code>node index.js</code>.</p>
-<p><strong>PHP</strong></p>
-<p>Again, there is a Slim Framework dependency so use <code>composer require slim/slim:3.11</code> to bring that into your project.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ServerRequestInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Request</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ResponseInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Response</span>;
-
-<span style="color:#66d9ef">require</span> <span style="color:#e6db74">&#39;vendor/autoload.php&#39;</span>;
-
-$app <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Slim\App</span>;
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $uri <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUri</span>();
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-        ],
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-            <span style="color:#e6db74">&#39;eventUrl&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                $uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getScheme</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;://&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getHost</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;:&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getPort</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>
-            ]
-        ]
-    ];
-
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
-});
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $params <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getParsedBody</span>();
-
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;You pressed &#39;</span><span style="color:#f92672">.</span>$params[<span style="color:#e6db74">&#39;dtmf&#39;</span>]
-        ]
-    ];
-
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
-});
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</span>();
-</code></pre></div><p>Place this code in <code>index.php</code>, then use the built-in webserver:</p>
-<p><code>php -S localhost:3000</code></p>
-<p><strong>Run your code</strong> - if your ngrok server is still running from the previous example then you should be able to simply call your Nexmo number from your cellphone again. Don't forget to bring up the dial pad ready to enter a digit!</p>
-
+	
 
 
 
@@ -1110,6 +1018,146 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                 
                 
 
@@ -1178,6 +1226,41 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
 
                     
                     
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -1231,185 +1314,10 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
         
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1482,10 +1390,10 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
 	 
 	 
 		
-			<a class="nav nav-prev" href="/voice/answer-call/" title="Call Your Application"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/sms/receive-dlr/" title="Receiving Delivery Receipts"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/voice/build-ivr/" title="Building an IVR" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/sms/advanced/sign-outbound/" title="Sign Outbound SMS" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

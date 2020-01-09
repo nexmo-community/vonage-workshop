@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Interact with your user :: Vonage Workshop</title>
+    <title>SMS Proxy :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1578597367" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/voice/user-input/">
+  <body class="" data-url="/sms/advanced/sms-proxy/">
     <nav id="sidebar" class="">
 
 
@@ -229,7 +229,7 @@
   
     
     <li data-nav-id="/sms/" title="SMS API" class="dd-item 
-        
+        parent
         
         
         ">
@@ -328,7 +328,7 @@
   
     
     <li data-nav-id="/sms/advanced/" title="Advanced" class="dd-item 
-        
+        parent
         
         
         ">
@@ -403,8 +403,8 @@
   
     
     <li data-nav-id="/sms/advanced/sms-proxy/" title="SMS Proxy" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/sms/advanced/sms-proxy/">
@@ -597,7 +597,7 @@
   
     
     <li data-nav-id="/voice/" title="Voice API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -672,8 +672,8 @@
   
     
     <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/voice/user-input/">
@@ -839,7 +839,13 @@
             
           
           
-            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Interact with your user
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/sms/'>SMS API</a> > <a href='/sms/advanced/'>Advanced</a> > SMS Proxy
+          
+         
           
          
           
@@ -852,7 +858,23 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#privatizing-sms-communication">Privatizing SMS communication</a></li>
+    <li><a href="#setup-the-server">Setup the server</a>
+      <ul>
+        <li><a href="#create-our-smsproxy-class">Create our SmsProxy class</a></li>
+        <li><a href="#create-a-chat">Create a Chat</a></li>
+        <li><a href="#map-the-numbers">Map the numbers</a></li>
+        <li><a href="#proxy-the-sms">Proxy the SMS</a></li>
+        <li><a href="#build-the-server">Build the server</a></li>
+        <li><a href="#configure-your-application">Configure your application</a></li>
+        <li><a href="#configure-your-webhooks-and-fire-up-ngrok">Configure your webhooks and fire up ngrok</a></li>
+        <li><a href="#start-your-app-and-create-a-chat">Start your App and Create a Chat</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -868,7 +890,7 @@
           
             <h1>
               
-              Interact with your user
+              SMS Proxy
             </h1>
           
 
@@ -877,98 +899,142 @@
 
 
 
-	<p>Making a call, or receiving one, is great but what next? In this final exercise we'll interact with our user. To keep things simple, we'll prompt them to input digits on their keypad, but the same approaches would work with spoken interactions on both sides.</p>
-<p>The outline of the process looks something like this:</p>
-<ol>
-<li>Create an NCCO to prompt the user to input some digits by using a <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#talk"><code>talk</code></a> action and then an <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#input"><code>input</code></a> action. The <code>input</code> action accepts a URL so use your ngrok URL with a suffix - our examples use <code>/webhooks/dtmf</code>.</li>
-<li>When the user sends some input, we'll receive a webhook containing some data to identify the call (see the <a href="https://developer.nexmo.com/voice/voice-api/webhook-reference#input">detail of the webhook</a> on the Developer Portal)</li>
-<li>Using the data that arrived in the webhook, we can return a new NCCO with custom content.</li>
-</ol>
-<p>Start a new application, we have some new code for you!</p>
-<p><strong>JavaScript</strong></p>
-<p>Prepare your dependencies: <code>npm install nexmo express body-parser</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
+	<h2 id="privatizing-sms-communication">Privatizing SMS communication</h2>
+<p>Proxying SMS messages provides us a means to allow two parties to SMS each other without needing to exchange contact information.</p>
+<h2 id="setup-the-server">Setup the server</h2>
+<p>Create a new folder <code>proxied_sms</code> and cd into that folder</p>
+<p>run <code>npm install nexmo express body-parsers</code></p>
+<p>Create a file called <code>SmsProxy.js</code> and another called <code>server.js</code></p>
+<h3 id="create-our-smsproxy-class">Create our SmsProxy class</h3>
+<p>In SmsProxy.js require Nexmo and create a class called SmsProxy. Add a constructor which will build a Nexmo client from the process's environment. And Export the class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SmsProxy</span> {
 
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>())
+    <span style="color:#a6e22e">constructor</span>() {
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-      <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-    },
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-      <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">protocol</span><span style="color:#e6db74">}</span><span style="color:#e6db74">://</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;host&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/dtmf</span><span style="color:#e6db74">`</span>]
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+            <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_KEY</span>,
+            <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_SECRET</span>
+        }, {
+                <span style="color:#a6e22e">debug</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+            });
     }
-  ]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
 }
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span><span style="color:#f92672">=</span><span style="color:#a6e22e">SmsProxy</span>;
+</code></pre></div><h3 id="create-a-chat">Create a Chat</h3>
+<p>In the SmsProxy class the next thing to do is to create a chat - this will assign the numbers for UserA and UserB. When this is done we'll send a message to each recipient to let them know whom they should message. Add the following code to your SmsProxy.js file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">createChat</span>(<span style="color:#a6e22e">userANumber</span>, <span style="color:#a6e22e">userBNumber</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span> <span style="color:#f92672">=</span> {
+            <span style="color:#a6e22e">userA</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userANumber</span>,
+            <span style="color:#a6e22e">userB</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userBNumber</span>
+        };
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">userANumber</span>);
+    
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sendSMS</span>();
+    }
+    <span style="color:#a6e22e">sendSMS</span>() {
+        <span style="color:#75715e">/*  
+</span><span style="color:#75715e">            Send a message from userA to the virtual number
+</span><span style="color:#75715e">        */</span>
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userA</span>);
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VIRTUAL_NUMBER</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userA</span>,
+                                    <span style="color:#e6db74">&#39;Reply to this SMS to talk to UserA&#39;</span>);
+    
+        <span style="color:#75715e">/*  
+</span><span style="color:#75715e">            Send a message from userB to the virtual number
+</span><span style="color:#75715e">        */</span>
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userA</span>);
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VIRTUAL_NUMBER</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userB</span>,
+                                    <span style="color:#e6db74">&#39;Reply to this SMS to talk to UserB&#39;</span>);
+    }
+</code></pre></div><h3 id="map-the-numbers">Map the numbers</h3>
+<p>Next, map the numbers based off of the inbound numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
+<span style="color:#a6e22e">getDestinationRealNumber</span>(<span style="color:#a6e22e">from</span>) {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">destinationRealNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+    
+        <span style="color:#75715e">// Use `from` numbers to work out who is sending to whom
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fromUserA</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">from</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userA</span>);
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fromUserB</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">from</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userB</span>);
+    
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fromUserA</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">fromUserB</span>) {
+            <span style="color:#a6e22e">destinationRealNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fromUserA</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userB</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">userA</span>;
+        }
+    
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">destinationRealNumber</span>;
+    }
+</code></pre></div><h3 id="proxy-the-sms">Proxy the SMS</h3>
+<p>Now when you receive an inbound SMS you will determine the correct number to send to - and proxy the sms appropriately</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">proxySms</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">text</span>) {
+        <span style="color:#75715e">// Determine which real number to send the SMS to
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">destinationRealNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getDestinationRealNumber</span>(<span style="color:#a6e22e">from</span>);
+    
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">destinationRealNumber</span>  <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;No chat found for this number&#39;</span>);
+            <span style="color:#66d9ef">return</span>;
+        }
+    
+        <span style="color:#75715e">// Send the SMS from the virtual number to the real number
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VIRTUAL_NUMBER</span>,
+                                    <span style="color:#a6e22e">destinationRealNumber</span>,
+                                    <span style="color:#a6e22e">text</span>);
+    }
+</code></pre></div><h3 id="build-the-server">Build the server</h3>
+<p>Now in Server.js we'll create the server, and add some routes we'll need to proxy SMSs. With the &lsquo;inbound-sms&rsquo; route we'll simply call the proxySms function, and with the &lsquo;chat&rsquo; route we will actually create the chat - when it's all said and done it will look like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>();
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SmsProxy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./SmsProxy.js&#39;</span>);
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInput</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;port&#39;</span>, (<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span>));
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">urlencoded</span>({ <span style="color:#a6e22e">extended</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> }));
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [{
-    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">You pressed </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dtmf</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
-  }]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-
-<span style="color:#a6e22e">app</span>
-  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#a6e22e">onInput</span>)
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
-</code></pre></div><p>Put this code into <code>index.js</code> and start the server with <code>node index.js</code>.</p>
-<p><strong>PHP</strong></p>
-<p>Again, there is a Slim Framework dependency so use <code>composer require slim/slim:3.11</code> to bring that into your project.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ServerRequestInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Request</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ResponseInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Response</span>;
-
-<span style="color:#66d9ef">require</span> <span style="color:#e6db74">&#39;vendor/autoload.php&#39;</span>;
-
-$app <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Slim\App</span>;
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $uri <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUri</span>();
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-        ],
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-            <span style="color:#e6db74">&#39;eventUrl&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                $uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getScheme</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;://&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getHost</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;:&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getPort</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>
-            ]
-        ]
-    ];
-
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;port&#39;</span>), <span style="color:#66d9ef">function</span> () {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;SMS Proxy App listening on port&#39;</span>, <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;port&#39;</span>));
 });
 
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $params <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getParsedBody</span>();
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">smsProxy</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SmsProxy</span>();
 
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;You pressed &#39;</span><span style="color:#f92672">.</span>$params[<span style="color:#e6db74">&#39;dtmf&#39;</span>]
-        ]
-    ];
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello world&#39;</span>);
+})
 
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/chat&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userANumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>[<span style="color:#e6db74">&#39;userANumber&#39;</span>];
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userBNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>[<span style="color:#e6db74">&#39;userBNumber&#39;</span>];
+
+    <span style="color:#a6e22e">smsProxy</span>.<span style="color:#a6e22e">createChat</span>(<span style="color:#a6e22e">userANumber</span>, <span style="color:#a6e22e">userBNumber</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">result</span>) =&gt; {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">500</span>).<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">err</span>);
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">result</span>);
+        }
+    });
+    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;OK&#39;</span>);
+
 });
 
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</span>();
-</code></pre></div><p>Place this code in <code>index.php</code>, then use the built-in webserver:</p>
-<p><code>php -S localhost:3000</code></p>
-<p><strong>Run your code</strong> - if your ngrok server is still running from the previous example then you should be able to simply call your Nexmo number from your cellphone again. Don't forget to bring up the dial pad ready to enter a digit!</p>
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/inbound-sms&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">from</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">msisdn</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">to</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">to</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">text</span>;
+
+    <span style="color:#75715e">// Route virtual number to real number
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">smsProxy</span>.<span style="color:#a6e22e">proxySms</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">text</span>);
+
+    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">sendStatus</span>(<span style="color:#ae81ff">204</span>);
+});
+</code></pre></div><h3 id="configure-your-application">Configure your application</h3>
+<p>Create a .env file along side your server and add the following to it with the appropriate values filled in:</p>
+<pre><code>NEXMO_API_KEY=NEXMO_API_KEY
+NEXMO_API_SECRET=NEXMO_API_SECRET
+VIRTUAL_NUMBER=VIRTUAL_NUMBER
+</code></pre><h3 id="configure-your-webhooks-and-fire-up-ngrok">Configure your webhooks and fire up ngrok</h3>
+<p>Next Configure your webhooks in the dashboard or via the CLI to point at the /webhooks/inbound-sms url. Then Start up ngrok <code>ngrok http 3000</code></p>
+<h3 id="start-your-app-and-create-a-chat">Start your App and Create a Chat</h3>
+<p>Start the app with <code>node server.js</code></p>
+<p>Create a chat with <code>curl -X POST   'http://localhost:3000/chat?userANumber=UserANumber&amp;userBNumber=UserBNumber'</code> - you can use postman if you do not have curl.</p>
 
 
 
@@ -1110,6 +1176,7 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
                 
                     
+                    
                 
                 
 
@@ -1124,6 +1191,9 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1164,173 +1234,6 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -1403,6 +1306,12 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
         
                     
+            
+        
+                    
+            
+        
+                    
                         
             
             
@@ -1410,6 +1319,167 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1482,10 +1552,10 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
 	 
 	 
 		
-			<a class="nav nav-prev" href="/voice/answer-call/" title="Call Your Application"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/sms/advanced/validate-signature/" title="Validate Inbound SMS"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/voice/build-ivr/" title="Building an IVR" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/verify/" title="Verify API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

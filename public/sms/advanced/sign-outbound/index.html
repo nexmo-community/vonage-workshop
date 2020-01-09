@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Interact with your user :: Vonage Workshop</title>
+    <title>Sign Outbound SMS :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1578597367" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/voice/user-input/">
+  <body class="" data-url="/sms/advanced/sign-outbound/">
     <nav id="sidebar" class="">
 
 
@@ -229,7 +229,7 @@
   
     
     <li data-nav-id="/sms/" title="SMS API" class="dd-item 
-        
+        parent
         
         
         ">
@@ -328,7 +328,7 @@
   
     
     <li data-nav-id="/sms/advanced/" title="Advanced" class="dd-item 
-        
+        parent
         
         
         ">
@@ -355,8 +355,8 @@
   
     
     <li data-nav-id="/sms/advanced/sign-outbound/" title="Sign Outbound SMS" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/sms/advanced/sign-outbound/">
@@ -597,7 +597,7 @@
   
     
     <li data-nav-id="/voice/" title="Voice API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -672,8 +672,8 @@
   
     
     <li data-nav-id="/voice/user-input/" title="Interact with your user" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/voice/user-input/">
@@ -839,7 +839,13 @@
             
           
           
-            <a href='/'>Vonage Workshop</a> > <a href='/voice/'>Voice API</a> > Interact with your user
+            
+            
+          
+          
+            <a href='/'>Vonage Workshop</a> > <a href='/sms/'>SMS API</a> > <a href='/sms/advanced/'>Advanced</a> > Sign Outbound SMS
+          
+         
           
          
           
@@ -852,7 +858,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#writing-your-code">Writing Your Code</a></li>
+        <li><a href="#running-the-code">Running the code</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -868,7 +883,7 @@
           
             <h1>
               
-              Interact with your user
+              Sign Outbound SMS
             </h1>
           
 
@@ -877,98 +892,35 @@
 
 
 
-	<p>Making a call, or receiving one, is great but what next? In this final exercise we'll interact with our user. To keep things simple, we'll prompt them to input digits on their keypad, but the same approaches would work with spoken interactions on both sides.</p>
-<p>The outline of the process looks something like this:</p>
-<ol>
-<li>Create an NCCO to prompt the user to input some digits by using a <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#talk"><code>talk</code></a> action and then an <a href="https://developer.nexmo.com/voice/voice-api/ncco-reference#input"><code>input</code></a> action. The <code>input</code> action accepts a URL so use your ngrok URL with a suffix - our examples use <code>/webhooks/dtmf</code>.</li>
-<li>When the user sends some input, we'll receive a webhook containing some data to identify the call (see the <a href="https://developer.nexmo.com/voice/voice-api/webhook-reference#input">detail of the webhook</a> on the Developer Portal)</li>
-<li>Using the data that arrived in the webhook, we can return a new NCCO with custom content.</li>
-</ol>
-<p>Start a new application, we have some new code for you!</p>
-<p><strong>JavaScript</strong></p>
-<p>Prepare your dependencies: <code>npm install nexmo express body-parser</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
+	<p>Sending a signed SMS is very similar programtically to sending a regular SMS - the only thing different you will need is the Signature Secret and the Signature Method for your account. This can be found in your Dashboard under account settings</p>
+<h3 id="writing-your-code">Writing Your Code</h3>
+<p>Equipped with these items you can now build the code - create a new file <code>send_signed_sms.js</code> and add the following - replace the bolded sections with the appropriate items.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;nexmo&#39;</span>)
+<span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>();
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+    <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_KEY</span>,
+    <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_SECRET</span>,
+    <span style="color:#a6e22e">signatureSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NEXMO_API_SIGNATURE_SECRET</span>,
+    <span style="color:#a6e22e">signatureMethod</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;md5hash&#34;</span>
+  })
 
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>())
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">from</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FROM_NUMBER</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">to</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TO_NUMBER</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A text message sent using the Nexmo SMS API&#39;</span>
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-      <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-    },
-    {
-      <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-      <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">protocol</span><span style="color:#e6db74">}</span><span style="color:#e6db74">://</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;host&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/dtmf</span><span style="color:#e6db74">`</span>]
+<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">sendSms</span>(<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">text</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">responseData</span>) =&gt; {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">responseData</span>.<span style="color:#a6e22e">messages</span>[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;status&#39;</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;0&#34;</span>) {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Message sent successfully.&#34;</span>);
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">Message failed with error: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">responseData</span>.<span style="color:#a6e22e">messages</span>[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;error-text&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+        }
     }
-  ]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInput</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
-
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [{
-    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">You pressed </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">dtmf</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
-  }]
-
-  <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-
-<span style="color:#a6e22e">app</span>
-  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#a6e22e">onInput</span>)
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
-</code></pre></div><p>Put this code into <code>index.js</code> and start the server with <code>node index.js</code>.</p>
-<p><strong>PHP</strong></p>
-<p>Again, there is a Slim Framework dependency so use <code>composer require slim/slim:3.11</code> to bring that into your project.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ServerRequestInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Request</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">\Psr\Http\Message\ResponseInterface</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Response</span>;
-
-<span style="color:#66d9ef">require</span> <span style="color:#e6db74">&#39;vendor/autoload.php&#39;</span>;
-
-$app <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Slim\App</span>;
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $uri <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUri</span>();
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Please enter a digit&#39;</span>
-        ],
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-            <span style="color:#e6db74">&#39;eventUrl&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                $uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getScheme</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;://&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getHost</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;:&#39;</span><span style="color:#f92672">.</span>$uri<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getPort</span>()<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>
-            ]
-        ]
-    ];
-
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
-});
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">Response</span> $response) {
-    $params <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getParsedBody</span>();
-
-    $ncco <span style="color:#f92672">=</span> [
-        [
-            <span style="color:#e6db74">&#39;action&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#e6db74">&#39;text&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;You pressed &#39;</span><span style="color:#f92672">.</span>$params[<span style="color:#e6db74">&#39;dtmf&#39;</span>]
-        ]
-    ];
-
-    <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">withJson</span>($ncco);
-});
-
-$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</span>();
-</code></pre></div><p>Place this code in <code>index.php</code>, then use the built-in webserver:</p>
-<p><code>php -S localhost:3000</code></p>
-<p><strong>Run your code</strong> - if your ngrok server is still running from the previous example then you should be able to simply call your Nexmo number from your cellphone again. Don't forget to bring up the dial pad ready to enter a digit!</p>
+})
+</code></pre></div><h3 id="running-the-code">Running the code</h3>
+<p>This can be run with <code>node send_signed_sms.js</code></p>
 
 
 
@@ -1110,6 +1062,147 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                 
                 
 
@@ -1178,6 +1271,41 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
 
                     
                     
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -1231,185 +1359,10 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
             
         
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1482,10 +1435,10 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">run</spa
 	 
 	 
 		
-			<a class="nav nav-prev" href="/voice/answer-call/" title="Call Your Application"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/sms/advanced/" title="Advanced"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/voice/build-ivr/" title="Building an IVR" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/sms/advanced/validate-signature/" title="Validate Inbound SMS" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
