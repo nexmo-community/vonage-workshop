@@ -15,7 +15,7 @@ Sending an SMS is really a fairly simple operation and in here we'll explroe how
 
 ### installing dependencies
 
-Open your terminal and run `npm install nexmo` to install the Nexmo js sdk.
+Open your terminal and run `npm install nexmo dotenv` to install the Nexmo js sdk.
 
 ### Writing the Code
 
@@ -23,15 +23,15 @@ create a new file `send_sms.js` and add the following vold - replace anything in
 
 ```js
 const Nexmo = require('nexmo')
-
+require('dotenv').config();
 const nexmo = new Nexmo({
-  apiKey: "NEXMO_API_KEY",
-  apiSecret: "NEXMO_API_SECRET"
+  apiKey: process.env.NEXMO_API_KEY,
+  apiSecret: process.env.NEXMO_API_SECRET
 })
 	
 let text = "👋Hello from Nexmo";
  
-nexmo.message.sendSms("NEXMO_NUMBER", "TO_NUMBER", text, {
+nexmo.message.sendSms(process.env.FROM_NUMBER, process.env.TO_NUMBER, text, {
   type: "unicode"
 }, (err, responseData) => {
   if (err) {

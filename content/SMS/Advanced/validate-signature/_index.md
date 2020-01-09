@@ -1,6 +1,6 @@
 ---
 title: "Validate Inbound SMS"
-weight : 40
+weight : 20
 ---
 
 ## Overview
@@ -52,5 +52,5 @@ Now whenever you send an SMS to your number - you will receive a message in your
 If you were to send something with a bad signature to this endpoint via curl or postman, you would see the 'Invalid Signature' message indicating that the signature was not validated.
 
 ## If You Needed to DIY
-To validate that the signature matches what the API should have sent you - you will take the the inbound message parameters - remove the sig from it, arrange it as you would for an outbound message (alphabetically, as a query string with an amperstand '&' at the head of the string) - and Sign the Parameters with your Signature Secret. 
+To validate that the signature matches what the API should have sent you - you will take the the inbound message parameters - remove the sig from it, arrange it as you would for an outbound message (alphabetically, as a query string with an ampersand '&' at the head of the string) - and Sign the Parameters with your Signature Secret. 
 
