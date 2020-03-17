@@ -5,11 +5,12 @@ weight : 3
 
 ## Verify API
 
-The Verify API enables us to preform two factor authentication over telephony services such as Phone Calls and SMS. 
+The Verify API enables you to perform two factor authentication (2FA) using SMS and text-to-speech phone calls (TTS). This gives you confidence that the number a person uses to register for your service actually belongs to them.
 
-The typical flow of a Verify API call will consist of 
+The typical process for using the Verify API is as follows:
 
-* Create Verify request with Nexmo - using one of several workflows
-* Nexmo reaches out to the identified party with a pin number, depending on the Workflow the user may be contacted several diffent ways depending on response time
-* User Gives back to application the pin number provided by Nexmo and submits a check request
-* If the pin number supplied matches the Verify request's pin - the request is accepted
+* You [create the Verify request](/verify/create-verify-request) - using your preferred workflow
+* Vonage's API platform sends a PIN to the user by either SMS, text-to-speech phone call or both, depending on the workflow
+* You provide a way for the user to enter the PIN that they received into your application and submit a [check request](/verify/check-verify-request) to determine if the number entered is the one that was sent. 
+
+You can also use the Verify API to [cancel a request](/verify/cancel-verify) or [advance to the next verification attempt](/verify/advance-verify-request) in the workflow.

@@ -3,11 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/</loc>
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-dashboard/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/nexmo-dashboard/</loc>
   </url>
   
   <url>
@@ -15,7 +19,7 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-cli/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/nexmo-cli/</loc>
   </url>
   
   <url>
@@ -23,15 +27,11 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-ndp/</loc>
-  </url>
-  
-  <url>
     <loc>https://vonage-workshop.nexmodev.com/voice/</loc>
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/ngrok/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/ngrok/</loc>
   </url>
   
   <url>
@@ -40,6 +40,10 @@
   
   <url>
     <loc>https://vonage-workshop.nexmodev.com/verify/create-verify-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/number-format/</loc>
   </url>
   
   <url>
@@ -59,6 +63,10 @@
   </url>
   
   <url>
+    <loc>https://vonage-workshop.nexmodev.com/sms/receive-sms/</loc>
+  </url>
+  
+  <url>
     <loc>https://vonage-workshop.nexmodev.com/sms/advanced/validate-signature/</loc>
   </url>
   
@@ -67,15 +75,11 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/sms/receive-sms/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/sms/receive-dlr/</loc>
   </url>
   
   <url>
     <loc>https://vonage-workshop.nexmodev.com/sms/advanced/sms-proxy/</loc>
-  </url>
-  
-  <url>
-    <loc>https://vonage-workshop.nexmodev.com/verify/workflows/</loc>
   </url>
   
   <url>
@@ -84,10 +88,6 @@
   
   <url>
     <loc>https://vonage-workshop.nexmodev.com/verify/advance-verify-request/</loc>
-  </url>
-  
-  <url>
-    <loc>https://vonage-workshop.nexmodev.com/sms/receive-dlr/</loc>
   </url>
   
   <url>
@@ -115,15 +115,7 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/intro/nexmo-overview/</loc>
-  </url>
-  
-  <url>
     <loc>https://vonage-workshop.nexmodev.com/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://vonage-workshop.nexmodev.com/</loc>
   </url>
   
 </urlset>

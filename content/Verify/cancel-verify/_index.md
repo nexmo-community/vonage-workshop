@@ -1,6 +1,7 @@
 ---
 title: "Cancel Verify Request"
 weight : 50
+hidden: true
 ---
 
 Cancelling a Verify request is essentially the same as telling it to advance to the next stage, you will just send a control request with the command set to 'cancel'
@@ -9,7 +10,7 @@ Create a file called `cancel_verify_request.js` and add the following to it:
 
 ```js
 const Nexmo = require("nexmo")
-require('dotenv').config();
+require('dotenv').config()
 
 const nexmo = new Nexmo({
     apiKey: process.env.NEXMO_API_KEY,
@@ -21,9 +22,9 @@ nexmo.verify.control({
     cmd: 'cancel'
   }, (err, result) => {
     if (err) {
-      console.error(err);
+      console.error(err)
     } else {
-      console.log(result);
+      console.log(result)
     }
   });
 ```

@@ -3,33 +3,49 @@ title: "Send an SMS"
 weight : 10
 ---
 
-Sending an SMS is really a fairly simple operation and in here we'll explroe how to do it.
+## Overview
 
-## what you'll need
+In this activity, you send a text message using the SMS API.
 
-1. A nexmo Number,
-2. Your Phone number
-3. Your Nexmo Number
-4. Your NEXMO_API_KEY
-5. Your NEXMO_API_SECRET
+### What you'll need
 
-### installing dependencies
+1. A Nexmo Number
+2. A mobile phone to receive the SMS
+3. Your `NEXMO_API_KEY`
+4. Your `NEXMO_API_SECRET`
 
-Open your terminal and run `npm install nexmo dotenv` to install the Nexmo js sdk.
+## Steps
 
-### Writing the Code
+### Create a Node.js application
 
-create a new file `send_sms.js` and add the following vold - replace anything in screaming caps with an appropriate value
+The following commands create a Node.js application in a directory called `send-sms`.
+
+```
+mkdir send-sms
+cd send-sms
+npm init -y
+```
+
+Run the following command to install the required dependencies: `dotenv` for loading environment variables and the `nexmo` SDK for JavaScript/Node.js:
+
+```
+npm install nexmo dotenv
+```
+
+
+### Write the code
+
+Create a new file called `send-sms.js` and add the following code:
 
 ```js
 const Nexmo = require('nexmo')
 require('dotenv').config();
 const nexmo = new Nexmo({
-  apiKey: process.env.NEXMO_API_KEY,
-  apiSecret: process.env.NEXMO_API_SECRET
+  apiKey: process.env.API_KEY,
+  apiSecret: process.env.API_SECRET
 })
 	
-let text = "👋Hello from Nexmo";
+let text = "👋 Hello from Vonage!";
  
 nexmo.message.sendSms(process.env.FROM_NUMBER, process.env.TO_NUMBER, text, {
   type: "unicode"
@@ -46,10 +62,34 @@ nexmo.message.sendSms(process.env.FROM_NUMBER, process.env.TO_NUMBER, text, {
 })
 ```
 
-### Running the Code
+### Configure your application
+
+Create a file called `.env` in the same directory as `send-sms.js` so that you can configure it with appropriate values for the constants (in capital letters) in your code.
+
+- `API_KEY`: Your API key from the Dashboard
+- `API_SECRET`: Your API secret
+- `FROM_NUMBER`: Your Nexmo Virtual Number
+- `TO_NUMBER`: Your mobile number
+
+Both numbers should be in [E.164 format](/basic-concepts/number-format/).
+
+For example:
+
+```text
+API_KEY=7s53a83b
+API_SECRET=Mg3UXXPqxhSBH77s1
+FROM_NUMBER=447700900000
+TO_NUMBER=447700900001
+```
+
+### Run it!
 
 In your terminal run `node send_sms.js`
 
-### And That's It!
+### Outcome
 
-It really is as simple as that - up next is receiving an SMS!
+If everything is working correctly, your terminal will display `Message sent successfully` and your mobile phone will receive a message from Vonage.
+
+## Alternative Languages
+
+See the [Send SMS example](https://developer.nexmo.com/messaging/sms/code-snippets/send-an-sms) on NDP. Click through to view the full source on GitHub.

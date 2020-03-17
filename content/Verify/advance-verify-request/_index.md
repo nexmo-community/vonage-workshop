@@ -1,6 +1,7 @@
 ---
 title: "Advance to Next Event"
 weight : 40
+hidden: true
 ---
 
 There are times when you send a verify request off with a given workflow where you will want to advance to the next stage of the verify request before the request would naturally move onto the next step.
@@ -13,8 +14,7 @@ Create `verify_trigger_next_event.js` and add the following code to it:
 
 ```js
 const Nexmo = require("nexmo")
-require('dotenv').config();
-console.log("API KEY: " + process.env.NEXMO_API_KEY);
+require('dotenv').config()
 
 const nexmo = new Nexmo({
     apiKey: process.env.NEXMO_API_KEY,
@@ -26,9 +26,9 @@ const nexmo = new Nexmo({
     cmd: 'trigger_next_event'
   }, (err, result) => {
     if (err) {
-      console.error(err);
+      console.error(err)
     } else {
-      console.log(result);
+      console.log(result)
     }
   });
 ```

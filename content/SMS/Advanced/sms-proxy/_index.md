@@ -1,6 +1,7 @@
 ---
 title: "SMS Proxy"
 weight : 30
+hidden: true
 ---
 
 ## Privatizing SMS communication

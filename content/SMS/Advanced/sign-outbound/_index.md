@@ -1,6 +1,7 @@
 ---
 title: "Sign Outbound SMS"
 weight : 10
+hidden: true
 ---
 
 Sending a signed SMS is very similar programtically to sending a regular SMS - the only thing different you will need is the Signature Secret and the Signature Method for your account. This can be found in your Dashboard under account settings
