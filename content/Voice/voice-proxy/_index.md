@@ -1,6 +1,7 @@
 ---
 title: "Voice Proxying"
 weight : 65
+hidden: true
 ---
 
 For marketplace scenarios such as food delivery or taxi and passenger communications, it is useful for users to be able to communicate with one another without exposing their phone numbers. By implementing voice proxying with Nexmo's Voice API you ensure that your users cannot bypass the required or preferred communication workflows and audits.

@@ -4,17 +4,17 @@ weight : 4
 ---
 
 
-In these pages you will find the supporting materials for the workshop "Getting Started with Voice API."
+In these pages you will find the supporting materials for the Voice API workshop
 
 ## Exercises
 
 These exercises do build on one another so they probably make most sense in the order they are listed here.
 
 * [Make your first call](/first-call)
-* [Call your application](/answer-call)
+* [Receive an inbound call](/answer-call)
 * [Interact with your user](/user-input)
-* [Build and IVR](/build-ivr)
-* [record a call](/record-a-call)
+* [Build an IVR](/build-ivr)
+* [Record a call](/record-a-call)
 
 ## Resources
 

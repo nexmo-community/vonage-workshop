@@ -92,4 +92,4 @@ If everything is working correctly, your terminal will display `Message sent suc
 
 ## Alternative Languages
 
-See the [Send SMS example](https://developer.nexmo.com/messaging/sms/code-snippets/send-an-sms) on NDP. Click through to view the full source on GitHub.
+See the [Send SMS example](https://developer.nexmo.com/messaging/sms/code-snippets/send-an-sms) in the docs. Click through to view the full source on GitHub.

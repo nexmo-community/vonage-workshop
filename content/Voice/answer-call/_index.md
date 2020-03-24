@@ -1,92 +1,88 @@
 ---
-title: "Call Your Application"
+title: "Receive an Inbound Call*"
 weight : 25
+hidden: true
 ---
 
-**Make a phone call, have your application answer it**
+## Overview
 
-To receive incoming calls, you need a publicly-available URL that will respond with a NCCO telling Nexmo what to do with the call. One thing that's different from the previous example is that it does not need an API keys - the Nexmo server will call your application this time rather than the other way around!
+To receive incoming calls, you need a publicly-available URL that will respond with a NCCO telling Vonage what to do with the call. One thing that's different from the previous example is that it does not need an API key - the Nexmo server will call your application this time rather than the other way around!
 
-1. Start by adding a simple route to your application, the code samples here are to help you get started, or you can of course improvise.
 
-    **JavaScript**
+## Steps
 
-    Prepare your dependencies: `npm install nexmo express`
+### Create a Node.js application
 
-    ```js
-    const app = require('express')()
+The following commands create a Node.js application in a directory called `inbound-call`.
 
-    const onInboundCall = (request, response) => {
-    const from = request.query.from
-    const fromSplitIntoCharacters = from.split('').join(' ')
+```
+mkdir inbound-call
+cd inbound-call
+npm init -y
+```
 
-    const ncco = [{
-        action: 'talk',
-        text: `Thank you for calling from ${fromSplitIntoCharacters}`
-    }]
+Run the following command to install the required dependencies: the web development framework `express` for defining a route for your webhook and `body-parser` to handle `POST` requests:
 
-    response.json(ncco)
-    }
+```
+npm install express body-parser
+```
 
-    app.get('/webhooks/answer', onInboundCall)
+### Write the code
 
-    app.listen(3000)
-    ```
+Create a file called `inbound-call.js` and add the following code to define a route called `/webhooks/answer`:
 
-    Save the code sample to `index.js` and then run `node index.js`.
+  ```js
+  const app = require('express')()
 
-    **PHP**
+  const onInboundCall = (request, response) => {
+  const from = request.query.from
+  const fromSplitIntoCharacters = from.split('').join(' ')
 
-    This example uses the Slim Framework (v3) microframework for some lightweight input/output handling and routing. To include this in your project, use Composer:
+  const ncco = [{
+      action: 'talk',
+      text: `Thank you for calling from ${fromSplitIntoCharacters}`
+  }]
 
-    `composer require nexmo/client slim/slim:3.11`
+  response.json(ncco)
+  }
 
-    With the dependencies in place, here's some code to give a `/webhooks/answer` endpoint that returns an NCCO:
+  app.get('/webhooks/answer', onInboundCall)
 
-    ```php
-    <?php
-    use \Psr\Http\Message\ServerRequestInterface as Request;
-    use \Psr\Http\Message\ResponseInterface as Response;
+  app.listen(3000)
+  ```
 
-    require 'vendor/autoload.php';
+Test this new route by requesting <http://localhost:3000/webhook/answer> in your browser. You should see some JSON returned.
 
-    $app = new \Slim\App;
-    $app->get('/webhooks/answer', function (Request $request, Response $response) {
-        $params = $request->getQueryParams();
-        $fromSplitIntoCharacters = implode(" ", str_split($params['from']));
+## Make your webhook endpoint visible
 
-        $ncco = [
-            [
-                'action' => 'talk',
-                'text' => 'Thank you for calling from '.$fromSplitIntoCharacters
-            ]
-        ];
+Your local URL needs to be publicly available so that the Vonage API platform can call it. One way to do this is to use [ngrok](https://ngrok.com):
 
-        return $response->withJson($ncco);
-    });
+Download and install `ngrok` using [our guide](/basic-concepts/ngrok).
 
-    $app->run();
-    ```
+Run ngrok by executing the following command in your terminal:
 
-    Save the code into `index.php`. Then try using the built-in PHP webserver to serve the code:
+`ngrok http 3000`
 
-    `php -S localhost:3000`
+When ngrok starts the tunnel, it will show you your URL, something like `https://abc123.ngrok.io` - copy the URL from the ngrok console as we will need it shortly.
 
-    Again, there are [code examples in other languages](https://developer.nexmo.com/voice/voice-api/code-snippets/receive-an-inbound-call) if you prefer.
+In the [Developer Dashboard](https://dashboard.vonage.com), edit the Answer URL for your application, by pasting the ngrok URL and adding `/webhooks/answer` to the end of it, to make something like `https://abc123.ngrok.com/webhooks/answer`.
 
-2. **Test your endpoint** by requesting <http://localhost:3000/webhook/answer> in your browser. You should see some JSON returned.
+Keep ngrok running, otherwise the URL will change and you will have to update the Answer URL in the Dashboard.
 
-3. Next, your local URL needs to be publicly available. One way to do this is to use [ngrok](https://ngrok.com):
+## Run It!
 
-    `ngrok http 3000`
+Run your Node application:
 
-    When ngrok starts the tunnel, it will show you your URL, something like `https://abc123.ngrok.io` - copy the URL from your ngrok console as we will need it shortly.
+`node inbound-call.js`
 
-4. Back in the dashboard, you can edit the Answer URL of your application, by pasting the ngrok URL and adding `/webhooks/answer` to the end of it, to make something like `https://abc123.ngrok.com/webhooks/answer`.
+Call your application by dialing your Vonage virtual number from your mobile phone.
 
-5. **Call your application** by making a call from your cellphone to the Nexmo number linked to your application. You should hear the spoken greeting giving the number you are calling from.
+## Outcome
+You should hear the spoken greeting which reads out the number you are calling from.
 
-### Next Steps: A more interesting greeting
+## Next Steps
+
+### A more interesting greeting
 
 We've shared our standard "answer a call" example but it isn't particularly interesting! What do you wish your application would do? How about:
 
@@ -97,4 +93,9 @@ We've shared our standard "answer a call" example but it isn't particularly inte
 Use the [NCCO reference documentation](https://developer.nexmo.com/voice/voice-api/ncco-reference) to try some alternative content for your Answer URL.
 
 For more ideas, there's a set of [NCCO Examples on GitHub](https://github.com/nexmo-community/ncco-examples) that might help you along the way.
+
+## Alternative Languages
+
+See the [Receive an Inbound Call example](https://developer.nexmo.com/voice/voice-api/code-snippets/receive-an-inbound-call) on VDP. Click through to view the full source on GitHub.
+
 

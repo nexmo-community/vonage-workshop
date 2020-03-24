@@ -121,4 +121,4 @@ The console displays the result of the check. If the `status` is `0`, the code y
 
 ## Alternative Languages
 
-See the [check verification code example](https://developer.nexmo.com/verify/code-snippets/check-verify-request) on NDP. Click through to view the full source on GitHub.
+See the [check verification code example](https://developer.nexmo.com/verify/code-snippets/check-verify-request) in the docs. Click through to view the full source on GitHub.

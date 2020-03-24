@@ -11,19 +11,15 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/nexmo-dashboard/</loc>
-  </url>
-  
-  <url>
     <loc>https://vonage-workshop.nexmodev.com/sms/</loc>
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/nexmo-cli/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/verify/</loc>
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/verify/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/basic-concepts/vonage-cli/</loc>
   </url>
   
   <url>

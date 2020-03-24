@@ -1,107 +1,124 @@
 ---
-title: "Make Your First Call"
+title: "Make Your First Call*"
 weight : 15
+hidden: true
 ---
 
-**Write some code that calls your cellphone**
 
-You will need:
+## Overview 
 
-* A Nexmo account if you don't have one already. Sign up here: <https://dashboard.nexmo.com/sign-up>
-* A Nexmo phone number to make calls with. You can [check your existing numbers](https://dashboard.nexmo.com/your-numbers) and [buy numbers](https://dashboard.nexmo.com/buy-numbers) on the dashboard.
-* An application - you need both the application UUID and the private key file copied somewhere safe. From the [dashboard](https://dashboard.nexmo.com), visit "Voice" and then "Create an application". Give your new application a name and choose "Generate public and private key"; your browser will download the private key. Set your application to have Voice capabilities (you can use `example.com` URLs for now, we will update these later) and save it. Once you have created the application, link the Nexmo number you will use.
-* A number you can phone (probably your cellphone).
-* Some sort of working tech stack. Our examples are NodeJS and PHP but you should feel free to use whatever technology you know how to make API calls with!
+In this activity, you write code to call your mobile phone programmatically.
+
+### What You'll Need
+
+* A Vonage account if you don't have one already. Sign up here: <https://dashboard.nexmo.com/sign-up>
+* A Vonage phone number to make calls with. You can [check your existing numbers](https://dashboard.nexmo.com/your-numbers) and [buy numbers](https://dashboard.nexmo.com/buy-numbers) using the Developer Dashboard.
+* A Vonage Application - you need both the application ID and the private key file copied somewhere safe. From the [dashboard](https://dashboard.nexmo.com), visit "Voice" and then "Create an application". Give your new application a name and choose "Generate public and private key"; your browser will download the private key. Set your application to have Voice capabilities (you can use `example.com` URLs for now, we will update these later) and save it. Once you have created the application, use the Dashboard to link it to the Vonage number you will use.
+* A number you can phone (probably your mobile phone).
+
 
 Optional, but recommended:
 
 * The [Nexmo CLI tool](https://developer.nexmo.com/tools) may be a nicer way to work with the number purchase, application creation, etc.
-* The [Server SDK](https://developer.nexmo.com/tools) for your tech stack - we have PHP, Python, Ruby, NodeJS, Java, .NET (and a semi-official [Go SDK](https://github.com/nexmo-community/nexmo-go))
 
-Here's the code to get you started, replace the placeholder values in your chosen code:
 
- * `NEXMO_APPLICATION_PRIVATE_KEY_PATH`: The path to the private key file you saved when creating the application
- * `NEXMO_APPLICATION_ID`: The UUID of your application
- * `NEXMO_NUMBER`: Your Nexmo number that the call will be made from. For example `447700900000`.
- * `TO_NUMBER`: The number you would like to call to in [E.164](https://en.wikipedia.org/wiki/E.164) format. For example `447700900001` (note that this _must_ include the dialling code, so if it's a US number, it should start with `1`).
+## Steps
 
-**Javascript**
+### Create a Node.js application
 
-Prepare your dependencies: `npm install nexmo`
+The following commands create a Node.js application in a directory called `outbound-call`.
+
+```
+mkdir outbound-call
+cd outbound-call
+npm init -y
+```
+
+Run the following command to install the required dependencies: `dotenv` for loading environment variables and the `nexmo` SDK for JavaScript/Node.js:
+
+```
+npm install nexmo dotenv
+```
+
+Copy the `private.key` file you downloaded from the Developer Dashboard into the root of `outbound-call`.
+
+### Write the code
+
+Create a new file called `outbound-call.js` and add the following code:
 
 ```js
+require('dotenv').config();
 const nexmo = new Nexmo({
-  apiKey: NEXMO_API_KEY,
-  apiSecret: NEXMO_API_SECRET,
-  applicationId: NEXMO_APPLICATION_ID,
-  privateKey: NEXMO_APPLICATION_PRIVATE_KEY_PATH
+  apiKey: process.env.API_KEY,
+  apiSecret: process.env.API_SECRET,
+  applicationId: process.env.APPLICATION_ID,
+  privateKey: process.env.PRIVATE_KEY_PATH
 })
 
 nexmo.calls.create({
   to: [{
     type: 'phone',
-    number: TO_NUMBER
+    number: process.env.TO_NUMBER
   }],
   from: {
     type: 'phone',
-    number: NEXMO_NUMBER
+    number: process.env.VIRTUAL_NUMBER
   },
   ncco: [{
     "action": "talk",
-    "text": "This is a text to speech call from Nexmo"
+    "text": "This is a text to speech call from Vonage"
   }]
 })
 ```
 
-**PHP**
+### Configure your application
 
-Prepare your dependencies: `composer require nexmo/client`
+Create a file called `.env` in the same directory as `outbound-call.js` so that you can configure it with appropriate values for the constants (in capital letters) in your code.
 
-```php
-<?php
-require 'vendor/autoload.php';
+- `API_KEY`: Your API key from the Dashboard
+- `API_SECRET`: Your API secret from the Dashboard
+- `APPLICATION_ID`: Your Voice API application ID
+- `PRIVATE_KEY_PATH`: The path to your downloaded `private.key` file
+- `VIRTUAL_NUMBER`: Your Vonage Virtual Number
+- `TO_NUMBER`: Your mobile number
 
-$keypair = new \Nexmo\Client\Credentials\Keypair(
-    file_get_contents(NEXMO_APPLICATION_PRIVATE_KEY_PATH),
-    NEXMO_APPLICATION_ID
-);
-$client = new \Nexmo\Client($keypair);
+Both numbers should be in [E.164 format](/basic-concepts/number-format/).
 
-$call = $client->calls()->create([
-    'to' => [[
-        'type' => 'phone',
-        'number' => TO_NUMBER
-    ]],
-    'from' => [
-        'type' => 'phone',
-        'number' => NEXMO_NUMBER
-    ],
-    'ncco' => [
-        [
-            'action' => 'talk',
-            'text' => 'This is a text to speech call from Nexmo'
-        ]
-    ]
-]);
+For example:
 
-print_r($call);
+```text
+API_KEY=7s53a83b
+API_SECRET=Mg3UXXPqxhSBH77s1
+VIRTUAL_NUMBER=447700900000
+TO_NUMBER=447700900001
+APPLICATION_ID=674aed11-3e19-467f-a74e-e2de4f9693b8
+PRIVATE_KEY_PATH=private.key
 ```
 
-Put this code into `index.php`, and run it with `php -f index.php`.
+### Run it!
 
-Check out the [code examples in these and other languages](https://developer.nexmo.com/voice/voice-api/code-snippets/make-an-outbound-call) on the Nexmo Developer Portal.
+In your terminal run `node outbound-call.js`
 
-**Run your code** and answer your phone!
+### Outcome
 
-### Next Steps: Customise your call
+If everything is working correctly, your mobile phone should receive a text-to-speech call from Vonage.
 
-What would you like to hear? Check out our [NCCO reference documentation](https://developer.nexmo.com/voice/voice-api/ncco-reference) to learn what else you can do, if you'd like your spoken greeting to have a bit more expression you can investigate [SSML (Speech Synthesis Markup Language)](https://developer.nexmo.com/voice/voice-api/guides/customizing-tts).
 
-### Next Steps: Track events (insight and debugging tactic)
+## Next Steps
+
+### Customise your call
+
+What would you like to hear? Check out the `talk` action in our [NCCO reference documentation](https://developer.nexmo.com/voice/voice-api/ncco-reference) to learn what else you can do, if you'd like your spoken greeting to have a bit more expression you can investigate [SSML (Speech Synthesis Markup Language)](https://developer.nexmo.com/voice/voice-api/guides/customizing-tts).
+
+### Track events (insight and debugging tactic)
 
 Go back to the dashboard and configure the application's `event_url` endpoint. You can either point this to:
 
-* your application (probably using [ngrok](https://ngrok.com)), we'll be doing another incoming webhook in the next exercise anyway
-* a tool such as the [Voice Event Logger](https://github.com/Nexmo/voice-event-logger)
-* a general webhook receiver like Requestbin (still available at <http://bin.on.dockerize.io/> and <http://requestbin.net>) or [Postbin](https://postb.in/)
+* An event webhook within your application (probably using [ngrok](https://ngrok.com)), we'll be doing another incoming webhook in the next exercise anyway
+* A tool such as the [Voice Event Logger](https://github.com/Nexmo/voice-event-logger)
+* A general webhook receiver like Requestbin (still available at <http://bin.on.dockerize.io/> and <http://requestbin.net>) or [Postbin](https://postb.in/)
+
+## Alternative Languages
+
+See the [Make an Outbound Call with NCCO example](https://developer.nexmo.com/voice/voice-api/code-snippets/make-an-outbound-call-with-ncco) on VDP. Click through to view the full source on GitHub.
 

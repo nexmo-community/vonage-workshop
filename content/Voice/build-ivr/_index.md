@@ -1,32 +1,35 @@
 ---
-title: "Building an IVR"
+title: "Build an IVR*"
 weight : 45
+hidden: true
 ---
+
+## Overview
 
 An IVR or Interactive Voice Response is a menu of options presented to a caller, they then navigate that menu using the buttons on their keypad to send DTMF (Dual Tone Multi Frequency) signals. Each option on the IVR can direct the call to a different path, for example forwarding the call to a specific destination, playing a recorded piece of information or even triggering another service such as an SMS. IVRs are the fundamental navigation method of Voice Call applications. An IVR can have multiple levels to it, where selection of one option presents the user with more options, this can go on to an infinite depth! For this activity we will just create a single level IVR.
 
-## Inital Call Handling
+## Steps
 
-Start by reusing the logic built in the previous section
+### Inital Call Handling
 
-Prepare your dependencies: `npm install nexmo express body-parser`
+Use the same project folder as you used in the previous [Interact with your user example](/voice/user-input/).
 
-Now the code we are going to use here is going to vary slightly from the previous section's
+Create a new file called `ivr.js`
 
-Let's start by creating an index.js file and just get the basics out of the way.
+The code we are going to use will vary slightly from the previous example.
 
-require app and body parser, setup our routes, and set the app up to listen on port 3000
+
 
 ```js
 const app = require('express')()
 const bodyParser = require('body-parser')
-const origin_phone_number = "NEXMO_NUMBER";
-const sales_office_number = '15558675309';
+const origin_phone_number = "VIRTUAL_NUMBER";
+const sales_office_number = 'PHONE_NUMBER';
 const base_url = "https://www.example.com";
 app.use(bodyParser.json())
-//When adding code, add after this line
 
-//When adding code, add before this line
+//Add extra code that you create in this exercise here
+
 const onEvent =(request, response) =>{
     response.status(200).send();
 
@@ -45,6 +48,8 @@ Next we are going to want to give the user a set of options that they can choose
 1. Sales
 2. Customer Support
 3. Press Office
+
+Add the following` code to `ivr.js` in the position indicated by the comment:
 
 ```js
 const onInboundCall = (request, response) => {
@@ -65,13 +70,17 @@ const onInboundCall = (request, response) => {
 }
 ```
 
-Now we have constructed a talk action to explain the menu to the customer, and we have provided an input action for customers to send input in through.
+### Process user input
 
-The next step is to actually manage all that user input. In the previous section we simply echoed the user's input back to them. Here we are just going to switch on the different possible inputs.
+Now we have constructed a `talk` action to explain the menu to the customer, and we have provided an `input` action for customers to enter digits from their keypad.
 
-* For the sales department we will connect them immediately with a representative at the sales_office_number.
+The next step is to actually manage all that user input. In the previous section we simply echoed the user's input back to them. Here we are going to direct their call based on the option they selected.
+
+* For the sales department we will connect them immediately with a representative using the number defined in the `sales_office_number` variable.
 * For the Support department, we will collect a 5 digit account number from them.
-* For the press office, unfortunatley no one can take the call, and we haven't set up our voice mail system - so we will have to drop it.
+* For the press office, unfortunately no one can take the call, and we haven't set up our voice mail system yet (we'll do that in the next exercise!) - so we will just have to hang up the call.
+
+Put the following code underneath the definition of `onInboundCall()`:
 
 ```js
 const onInput = (request, response) => {
@@ -140,7 +149,7 @@ const onInput = (request, response) => {
 }
 ```
 
-Finally if they contacted the support department we will need to echo the account input back to them and tell them they'll be contacted later. Add the following into our index.js file
+If they contacted the support department we will need to echo the account input back to them and tell them they'll be contacted later. Add the following below the definition of `onInput()`:
 
 ```js
 const onAccountInput =(request, response) =>{
@@ -158,7 +167,9 @@ const onAccountInput =(request, response) =>{
   }
 ```
 
-With this last piece of the puzzle we're ready to go.
+Now we're ready to test our application!
+
+## Run It!
 
 To fire this up do the following:
 
@@ -166,9 +177,12 @@ To fire this up do the following:
 
 ![ngrok](/images/ngrok.png)
 
-* take the forwarded address and set that as your base_url in the case of the above example this will be http://c1b4d1a1.ngrok.io
-* replace the sales_office_number with a phone number you want it to call
-* replace the origin_phone_number with your nexmo number
-* run `node index.js`
+* Take the URL that `ngrok` gives you and set that as your `base_url`. In the case of the above example this will be http://c1b4d1a1.ngrok.io
+* Replace the `sales_office_number` with a phone number that you own (but obviously, not the one you plan to call your application from!)
+* Replace the `origin_phone_number` with your Vonage virtual number
 
-And that's it! - now all you need to is call into your voice app with your phone and you'll be dialed into the IVR
+Then, run `node ivr.js` and dial your Vonage virtual number.
+
+## Outcome
+
+If everything is working correctly, you should be presented with the IVR options and be able to choose one have your call dealt with accordingly.

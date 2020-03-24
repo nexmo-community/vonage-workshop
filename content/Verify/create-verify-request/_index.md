@@ -125,4 +125,4 @@ Once you have the PIN, you need to provide the user with a way to submit it to y
 
 ## Alternative Languages
 
-See the [send verification code example](https://developer.nexmo.com/verify/code-snippets/send-verify-request) on NDP. Click through to view the full source on GitHub.
+See the [send verification code example](https://developer.nexmo.com/verify/code-snippets/send-verify-request) in the docs. Click through to view the full source on GitHub.

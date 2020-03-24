@@ -1,5 +1,5 @@
 ---
-title: "Nexmo CLI"
+title: "Vonage CLI"
 weight : 3
 ---
 

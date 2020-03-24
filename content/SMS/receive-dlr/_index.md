@@ -111,3 +111,7 @@ If everything is working correctly, your mobile phone will receive an SMS and th
   'message-timestamp': '2020-02-10 11:03:54'
 }
 ```
+
+## Alternative Languages
+
+See the [Delivery receipt example](https://developer.nexmo.com/messaging/sms/code-snippets/delivery-receipts) in the docs. Click through to view the full source on Github.

@@ -1,22 +1,45 @@
 ---
-title: "Interact with your user"
+title: "Interact with your user*"
 weight : 35
+hidden: true
 ---
 
+## Overview
 
-Making a call, or receiving one, is great but what next? In this final exercise we'll interact with our user. To keep things simple, we'll prompt them to input digits on their keypad, but the same approaches would work with spoken interactions on both sides.
+Making a call, or receiving one, is great but what next? In this exercise we'll interact with our user. To keep things simple, we'll prompt them to input digits on their keypad, but the same approaches would work with spoken interactions on both sides.
+
+Over subsequent exercises, we will build on this to create an IVR (Interactive Voice Response) menu.
 
 The outline of the process looks something like this:
 
-1. Create an NCCO to prompt the user to input some digits by using a [`talk`](https://developer.nexmo.com/voice/voice-api/ncco-reference#talk) action and then an [`input`](https://developer.nexmo.com/voice/voice-api/ncco-reference#input) action. The `input` action accepts a URL so use your ngrok URL with a suffix - our examples use `/webhooks/dtmf`.
-2. When the user sends some input, we'll receive a webhook containing some data to identify the call (see the [detail of the webhook](https://developer.nexmo.com/voice/voice-api/webhook-reference#input) on the Developer Portal)
-3. Using the data that arrived in the webhook, we can return a new NCCO with custom content.
+1. Create an NCCO to prompt the user with a [`talk`](https://developer.nexmo.com/voice/voice-api/ncco-reference#talk) action to enter some digits which you will collect with an [`input`](https://developer.nexmo.com/voice/voice-api/ncco-reference#input) action. The `input` action accepts a URL so use your ngrok URL with a suffix - our examples use `/webhooks/dtmf`.
+2. When the user sends some input, Vonage will alert your application using [an input webhook](https://developer.nexmo.com/voice/voice-api/webhook-reference#input).
+3. Using the data that arrives in the webhook, we can return a new NCCO with custom content.
 
-Start a new application, we have some new code for you!
+## Steps
 
-**JavaScript**
+### Create a Node.js application
 
-Prepare your dependencies: `npm install nexmo express body-parser`
+The following commands create a Node.js application in a directory called `get-input`.
+
+```
+mkdir get-input
+cd get-input
+npm init -y
+```
+
+Run the following command to install the required dependencies: the web development framework `express` for defining a route for your webhook and `body-parser` to handle `POST` requests:
+
+```
+npm install express body-parser
+```
+
+### Write the code
+
+Create a file called `get-input.js` and add the following code to define the following routes:
+
+- `/webhooks/answer`: to receive the inbound call
+- `/webhooks/dtmf`: to collect the digits pressed by the user
 
 ```js
 const app = require('express')()
@@ -57,57 +80,19 @@ app
 app.listen(3000)
 ```
 
-Put this code into `index.js` and start the server with `node index.js`.
+## Run It!
 
-**PHP**
+Ensure that ngrok is running. If you left it running from the previous exercise, you won't need to update your Answer URL in the Developer Dashboard.
 
-Again, there is a Slim Framework dependency so use `composer require slim/slim:3.11` to bring that into your project.
+Run your code using `node get-input.js`.
 
-```php
-<?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+Dial your Vonage Virtual number from your mobile phone.
 
-require 'vendor/autoload.php';
+## Outcome
 
-$app = new \Slim\App;
+If everything is working correctly, you should hear the greeting and then be prompted to enter a digit using your phone's keypad. This digit will then be read back to you.
 
-$app->get('/webhooks/answer', function (Request $request, Response $response) {
-    $uri = $request->getUri();
-    $ncco = [
-        [
-            'action' => 'talk',
-            'text' => 'Please enter a digit'
-        ],
-        [
-            'action' => 'input',
-            'eventUrl' => [
-                $uri->getScheme().'://'.$uri->getHost().':'.$uri->getPort().'/webhooks/dtmf'
-            ]
-        ]
-    ];
+## Alternative Languages
 
-    return $response->withJson($ncco);
-});
+See the [Handle User Input with DTMF example](https://developer.nexmo.com/voice/voice-api/code-snippets/handle-user-input-with-dtmf) on VDP. Click through to view the full source on GitHub.
 
-$app->post('/webhooks/dtmf', function (Request $request, Response $response) {
-    $params = $request->getParsedBody();
-
-    $ncco = [
-        [
-            'action' => 'talk',
-            'text' => 'You pressed '.$params['dtmf']
-        ]
-    ];
-
-    return $response->withJson($ncco);
-});
-
-$app->run();
-```
-
-Place this code in `index.php`, then use the built-in webserver:
-
-`php -S localhost:3000`
-
-**Run your code** - if your ngrok server is still running from the previous example then you should be able to simply call your Nexmo number from your cellphone again. Don't forget to bring up the dial pad ready to enter a digit!

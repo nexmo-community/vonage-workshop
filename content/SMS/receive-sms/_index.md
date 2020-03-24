@@ -116,4 +116,4 @@ If everything is working correctly, the details of the incoming message will app
 
 ## Alternative Languages
 
-See the [Receive SMS example](https://developer.nexmo.com/messaging/sms/code-snippets/receive-an-sms) on NDP. Click through to view the full source on GitHub.
+See the [Receive SMS example](https://developer.nexmo.com/messaging/sms/code-snippets/receive-an-sms) in the docs. Click through to view the full source on GitHub.
