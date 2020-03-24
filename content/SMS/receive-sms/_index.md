@@ -82,7 +82,7 @@ nexmo link:sms YOUR_VIRTUAL_NUMBER YOUR_WEBHOOK_URL
 
 If you want to do this in the Developer Dashboard, just navigate to Numbers > My Numbers > Manage a Number and then set the Inbound Webhook URL for SMS:
 
-![set inbound webhook gif](/gifs/dashboard-set-sms-webhook.gif)
+![set inbound webhook gif](/images/dashboard-set-sms-webhook.png)
 
 
 ## Run it!

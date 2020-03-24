@@ -31,4 +31,4 @@ The following resources will help you:
 * [SMS API documentation](https://developer.nexmo.com/messaging/sms/overview)
 * [Verify API documentation](https://developer.nexmo.com/verify/overview)
 
-> **Good luck!**: Feel free to reach out to me at `mark.lewin@vonage.com` with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!
+> **Good luck!**: Feel free to reach out to us at `apiglobaltraining@vonage.com` with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!
