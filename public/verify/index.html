@@ -12,20 +12,20 @@
     <title>Verify API :: Vonage Workshop</title>
 
     
-    <link href="/css/nucleus.css?1585051767" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1585051767" rel="stylesheet">
-    <link href="/css/hybrid.css?1585051767" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1585051767" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1585051767" rel="stylesheet">
-    <link href="/css/auto-complete.css?1585051767" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1585051767" rel="stylesheet">
-    <link href="/css/theme.css?1585051767" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1585051767" rel="stylesheet">
+    <link href="/css/nucleus.css?1585056458" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1585056458" rel="stylesheet">
+    <link href="/css/hybrid.css?1585056458" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1585056458" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1585056458" rel="stylesheet">
+    <link href="/css/auto-complete.css?1585056458" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1585056458" rel="stylesheet">
+    <link href="/css/theme.css?1585056458" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1585056458" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1585051767" rel="stylesheet">
+      <link href="/css/theme-blue.css?1585056458" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1585051767"></script>
+    <script src="/js/jquery-3.3.1.min.js?1585056458"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1585051767"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1585051767"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1585056458"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1585056458"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1585051767"></script>
+<script type="text/javascript" src="/js/search.js?1585056458"></script>
 
     
   </div>
@@ -275,25 +275,6 @@
              
             
           
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/sms/certification/certification-project/" title="Certification Project" class="dd-item ">
-        <a href="/sms/certification/certification-project/">
-        Certification Project
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
         
         </ul>
               
@@ -382,6 +363,25 @@
              
             
           
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item ">
+        <a href="/verify/certification/certification-project/">
+        Certification Project
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
         
         </ul>
               
@@ -464,6 +464,50 @@
  
 
           
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/video/" title="Video" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/video/">
+          Video
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/conversation/" title="Conversation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/conversation/">
+          Conversation
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -522,7 +566,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#verify-api">Verify API</a></li>
+    <li><a href="#verify-api-overview">Verify API Overview</a></li>
   </ul>
 </nav>
     </div>
@@ -549,7 +593,7 @@
 
 
 
-	<h2 id="verify-api">Verify API</h2>
+	<h2 id="verify-api-overview">Verify API Overview</h2>
 <p>The Verify API enables you to perform two factor authentication (2FA) using SMS and text-to-speech phone calls (TTS). This gives you confidence that the number a person uses to register for your service actually belongs to them.</p>
 <p>The typical process for using the Verify API is as follows:</p>
 <ul>
@@ -557,7 +601,7 @@
 <li>Vonage&rsquo;s API platform sends a PIN to the user by either SMS, text-to-speech phone call or both, depending on the workflow</li>
 <li>You provide a way for the user to enter the PIN that they received into your application and submit a <a href="/verify/check-verify-request">check request</a> to determine if the number entered is the one that was sent.</li>
 </ul>
-<p>You can also use the Verify API to <a href="/verify/cancel-verify">cancel a request</a> or <a href="/verify/advance-verify-request">advance to the next verification attempt</a> in the workflow.</p>
+<p>You can also use the Verify API to <a href="https://developer.nexmo.com/verify/code-snippets/cancel-verify-request">cancel a request</a> or <a href="https://developer.nexmo.com/verify/code-snippets/trigger-next-verification-process">advance to the next verification attempt</a> in the workflow.</p>
 
 
 
@@ -730,22 +774,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -810,6 +838,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -857,6 +901,38 @@
             
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -886,7 +962,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/sms/certification/certification-project/" title="Certification Project"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/sms/receive-dlr/" title="Get a Delivery Receipt"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/verify/create-verify-request/" title="Create Verify Request" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -899,19 +975,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1585051767"></script>
-    <script src="/js/perfect-scrollbar.min.js?1585051767"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1585051767"></script>
-    <script src="/js/jquery.sticky.js?1585051767"></script>
-    <script src="/js/featherlight.min.js?1585051767"></script>
-    <script src="/js/highlight.pack.js?1585051767"></script>
+    <script src="/js/clipboard.min.js?1585056458"></script>
+    <script src="/js/perfect-scrollbar.min.js?1585056458"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1585056458"></script>
+    <script src="/js/jquery.sticky.js?1585056458"></script>
+    <script src="/js/featherlight.min.js?1585056458"></script>
+    <script src="/js/highlight.pack.js?1585056458"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1585051767"></script>
-    <script src="/js/learn.js?1585051767"></script>
-    <script src="/js/hugo-learn.js?1585051767"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1585056458"></script>
+    <script src="/js/learn.js?1585056458"></script>
+    <script src="/js/hugo-learn.js?1585056458"></script>
 
-    <link href="/mermaid/mermaid.css?1585051767" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1585051767"></script>
+    <link href="/mermaid/mermaid.css?1585056458" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1585056458"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

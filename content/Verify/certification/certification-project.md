@@ -4,7 +4,9 @@ weight : 999
 hidden: false
 ---
 
-## Use case
+## SMS and Verify API Certification
+
+### Use case
 
 You're building a ride sharing service. You want your users to register with the service with their mobile phone number and you will use the Verify API to ensure that they own the number that they are registering with.
 
@@ -14,13 +16,15 @@ Use [any supported SDK](https://developer.nexmo.com/tools) to achieve this.
 
 If you feel you need to create a simple user interface to collect users' details, go ahead. Alternatively, you might want to create endpoints in your application to collect things like their number, verification codes, etc and call those using a utility like `curl`.
 
-## Delivery
+### Delivery
 
 Please send your completed project to `mark.lewin@vonage.com` - a link to a repo on Github is preferable. Please also provide a brief `README` to describe how to run your project.
 
 > **Note**: There is no deadline for this, but please be aware that your coupon credit will expire on 30th April.
 
-## Resources
+### Resources
+
+The following resources will help you:
 
 * [Passwordless authentication use case](https://developer.nexmo.com/use-cases/passwordless-authentication)
 * [Private SMS communication](https://developer.nexmo.com/use-cases/private-sms-communication)

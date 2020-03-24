@@ -35,6 +35,14 @@
   </url>
   
   <url>
+    <loc>https://vonage-workshop.nexmodev.com/video/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/conversation/</loc>
+  </url>
+  
+  <url>
     <loc>https://vonage-workshop.nexmodev.com/verify/create-verify-request/</loc>
   </url>
   
@@ -107,7 +115,7 @@
   </url>
   
   <url>
-    <loc>https://vonage-workshop.nexmodev.com/sms/certification/certification-project/</loc>
+    <loc>https://vonage-workshop.nexmodev.com/verify/certification/certification-project/</loc>
   </url>
   
   <url>

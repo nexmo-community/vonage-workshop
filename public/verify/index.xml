@@ -10,5 +10,15 @@
 	<atom:link href="https://vonage-workshop.nexmodev.com/verify/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Certification Project</title>
+      <link>https://vonage-workshop.nexmodev.com/verify/certification/certification-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/verify/certification/certification-project/</guid>
+      <description>SMS and Verify API Certification Use case You&amp;rsquo;re building a ride sharing service. You want your users to register with the service with their mobile phone number and you will use the Verify API to ensure that they own the number that they are registering with.
+Once they are registered, you want your users to send SMS to each other using the SMS API, without revealing their private mobile numbers, so you will use a virtual number to mask those numbers.</description>
+    </item>
+    
   </channel>
 </rss>

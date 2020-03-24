@@ -12,20 +12,20 @@
     <title>Messages and Dispatch :: Vonage Workshop</title>
 
     
-    <link href="/css/nucleus.css?1585051767" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1585051767" rel="stylesheet">
-    <link href="/css/hybrid.css?1585051767" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1585051767" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1585051767" rel="stylesheet">
-    <link href="/css/auto-complete.css?1585051767" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1585051767" rel="stylesheet">
-    <link href="/css/theme.css?1585051767" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1585051767" rel="stylesheet">
+    <link href="/css/nucleus.css?1585056458" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1585056458" rel="stylesheet">
+    <link href="/css/hybrid.css?1585056458" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1585056458" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1585056458" rel="stylesheet">
+    <link href="/css/auto-complete.css?1585056458" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1585056458" rel="stylesheet">
+    <link href="/css/theme.css?1585056458" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1585056458" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1585051767" rel="stylesheet">
+      <link href="/css/theme-blue.css?1585056458" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1585051767"></script>
+    <script src="/js/jquery-3.3.1.min.js?1585056458"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1585051767"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1585051767"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1585056458"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1585056458"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1585051767"></script>
+<script type="text/javascript" src="/js/search.js?1585056458"></script>
 
     
   </div>
@@ -275,25 +275,6 @@
              
             
           
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/sms/certification/certification-project/" title="Certification Project" class="dd-item ">
-        <a href="/sms/certification/certification-project/">
-        Certification Project
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
         
         </ul>
               
@@ -382,6 +363,25 @@
              
             
           
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item ">
+        <a href="/verify/certification/certification-project/">
+        Certification Project
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
         
         </ul>
               
@@ -464,6 +464,50 @@
  
 
           
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/video/" title="Video" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/video/">
+          Video
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/conversation/" title="Conversation" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/conversation/">
+          Conversation
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -520,7 +564,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#messages-and-dispatch">Messages and Dispatch</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -545,7 +594,26 @@
 
 
 
-	
+	<h2 id="messages-and-dispatch">Messages and Dispatch</h2>
+<p>The <strong>Messages API</strong> allows you to send and in some cases receive messages over the following communications channels:</p>
+<ul>
+<li>SMS/MMS</li>
+<li>Facebook Messenger</li>
+<li>Viber</li>
+<li>WhatsApp</li>
+</ul>
+<p>More channels may be supported in the future.</p>
+<p>The <strong>Dispatch API</strong> enables the developer to send messages to users using a multiple channel strategy.</p>
+<p>For example, you could code your app to send a message via Facebook Messenger, and if that message is not read then the user can be sent a message via Viber. If that message is also not read, a user could then be sent a message via SMS.</p>
+<p>The Dispatch API provides the mechanism by which to order messages and specify their success conditions. The Dispatch API uses the Messages API to actually send the messages.</p>
+<blockquote>
+<p><strong>Note</strong>: The Messages and Dispatch APIs are currently in Beta.</p>
+</blockquote>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.vonage.com/resources/articles/simplifying-messaging-introducing-nexmo-messages-api-dispatch-api-beta/">Interview with Hugh Hopkins, PM</a></li>
+</ul>
+
 
 
 
@@ -717,22 +785,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -793,6 +845,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -849,6 +917,41 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -873,7 +976,7 @@
 			<a class="nav nav-prev" href="/voice/" title="Voice API"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/basic-concepts/" title="Basic Concepts" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/video/" title="Video" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -883,19 +986,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1585051767"></script>
-    <script src="/js/perfect-scrollbar.min.js?1585051767"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1585051767"></script>
-    <script src="/js/jquery.sticky.js?1585051767"></script>
-    <script src="/js/featherlight.min.js?1585051767"></script>
-    <script src="/js/highlight.pack.js?1585051767"></script>
+    <script src="/js/clipboard.min.js?1585056458"></script>
+    <script src="/js/perfect-scrollbar.min.js?1585056458"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1585056458"></script>
+    <script src="/js/jquery.sticky.js?1585056458"></script>
+    <script src="/js/featherlight.min.js?1585056458"></script>
+    <script src="/js/highlight.pack.js?1585056458"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1585051767"></script>
-    <script src="/js/learn.js?1585051767"></script>
-    <script src="/js/hugo-learn.js?1585051767"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1585056458"></script>
+    <script src="/js/learn.js?1585056458"></script>
+    <script src="/js/hugo-learn.js?1585056458"></script>
 
-    <link href="/mermaid/mermaid.css?1585051767" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1585051767"></script>
+    <link href="/mermaid/mermaid.css?1585056458" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1585056458"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

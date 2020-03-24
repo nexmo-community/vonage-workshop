@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Receive an SMS :: Vonage Workshop</title>
+    <title>Video :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1585056458" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/sms/receive-sms/">
+  <body class="" data-url="/video/">
     <nav id="sidebar" class="">
 
 
@@ -181,7 +181,7 @@
   
     
     <li data-nav-id="/sms/" title="SMS API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -232,8 +232,8 @@
   
     
     <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/sms/receive-sms/">
@@ -471,8 +471,8 @@
   
     
     <li data-nav-id="/video/" title="Video" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/video/">
@@ -553,13 +553,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'>Welcome</a> > <a href='/sms/'>SMS API</a> > Receive an SMS
-          
-         
+            <a href='/'>Welcome</a> > Video
           
          
           
@@ -572,22 +566,7 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-youll-need">What you&rsquo;ll need</a></li>
-    <li><a href="#steps">Steps</a>
-      <ul>
-        <li><a href="#create-a-nodejs-application">Create a Node.js application</a></li>
-      </ul>
-    </li>
-    <li><a href="#configure-your-virtual-number">Configure your virtual number</a>
-      <ul>
-        <li><a href="#run-ngrok">Run ngrok</a></li>
-        <li><a href="#associate-your-number-with-your-webhook">Associate your number with your webhook</a></li>
-        <li><a href="#using-the-developer-dashboard">Using the Developer Dashboard</a></li>
-      </ul>
-    </li>
-    <li><a href="#run-it">Run it!</a></li>
-    <li><a href="#outcome">Outcome</a></li>
-    <li><a href="#alternative-languages">Alternative Languages</a></li>
+    <li><a href="#video-api-overview">Video API Overview</a></li>
   </ul>
 </nav>
     </div>
@@ -605,7 +584,7 @@
           
             <h1>
               
-              Receive an SMS
+              Video
             </h1>
           
 
@@ -614,80 +593,8 @@
 
 
 
-	<p>In this activity, you receive a text message sent to your virtual number, using the SMS API.</p>
-<h2 id="what-youll-need">What you&rsquo;ll need</h2>
-<ol>
-<li>A Nexmo Number - you should alreaady have this, if you have completed the &ldquo;send an SMS&rdquo; activity</li>
-<li>A mobile phone to send the SMS</li>
-<li>The Nexmo CLI - see <a href="/basic-concepts/nexmo-cli">here</a></li>
-<li><code>ngrok</code> installed - see <a href="/basic-concepts/ngrok">here</a></li>
-</ol>
-<h2 id="steps">Steps</h2>
-<h3 id="create-a-nodejs-application">Create a Node.js application</h3>
-<p>The following commands create a Node.js application in a directory called <code>receive-sms</code> and install the required dependencies: the <code>express</code> web framework and <code>body-parser</code> for dealing with <code>POST</code> request bodies.</p>
-<pre><code>mkdir receive-sms
-cd receive-sms
-npm init -y
-npm install express body-parser
-</code></pre><p>Create a file called <code>receive-sms.js</code> in your new directory and populate it with the following code to create a webhook for inbound SMS:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
- 
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>());
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">urlencoded</span>({ <span style="color:#a6e22e">extended</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }));
- 
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span>);
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/inbound-sms&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>);
-    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">end</span>();
-  });
-</code></pre></div><h2 id="configure-your-virtual-number">Configure your virtual number</h2>
-<p>So that Vonage knows to make a request to your webhook when you receive an SMS, you need to link your virtual number to it. First, though, you need to ensure that your webhook is visible to Vonage&rsquo;s APIs.</p>
-<h3 id="run-ngrok">Run ngrok</h3>
-<p>For the webhook that you&rsquo;re going to develop as part of this activity to be available to Vonage&rsquo;s APIs, it needs to be accessible over the public Internet. You can achieve this by creating a secure tunnel using <code>ngrok</code>, which you installed earlier.</p>
-<p>Run <code>ngrok</code> on port 3000 or any other port of your choice, using the following command:</p>
-<pre><code>./ngrok http 3000
-</code></pre><p>The URL that <code>ngrok</code> provides will form the domain part of your webhook. Append <code>/webhooks/inbound-sms</code> to it, and this is the full URL of your webhook.</p>
-<h3 id="associate-your-number-with-your-webhook">Associate your number with your webhook</h3>
-<p>You need to associate your virtual number with your webhook URL so that Vonage knows to make a request to your webhook when you receive an SMS at that number.</p>
-<p>For example: <code>https://a992f76d.ngrok.io/webhooks/inbound-sms</code>.</p>
-<p>Execute the following CLI command to perform the link, replacing <code>YOUR_VIRTUAL_NUMBER</code> and <code>YOUR_WEBHOOK_URL</code>.</p>
-<blockquote>
-<p><strong>Note</strong>: Ensure that your number is in <a href="/basic-concepts/number-format/">E.164 format</a>.</p>
-</blockquote>
-<pre><code>nexmo link:sms YOUR_VIRTUAL_NUMBER YOUR_WEBHOOK_URL
-</code></pre><blockquote>
-<p><strong>Note</strong>: If you restart <code>ngrok</code> for any reason, the URLs will change and you will have to repeat this step.</p>
-</blockquote>
-<h3 id="using-the-developer-dashboard">Using the Developer Dashboard</h3>
-<p>If you want to do this in the Developer Dashboard, just navigate to Numbers &gt; My Numbers &gt; Manage a Number and then set the Inbound Webhook URL for SMS:</p>
-<p><img src="/gifs/dashboard-set-sms-webhook.gif" alt="set inbound webhook gif"></p>
-<h2 id="run-it">Run it!</h2>
-<ol>
-<li>
-<p>Ensure that <code>ngrok</code> is still running and that your webhook URLs are up to date.</p>
-</li>
-<li>
-<p>Start your server:</p>
-</li>
-</ol>
-<pre><code>node receive-sms.js
-</code></pre><ol start="3">
-<li>Send a test SMS to your virtual number.</li>
-</ol>
-<h2 id="outcome">Outcome</h2>
-<p>If everything is working correctly, the details of the incoming message will appear in the console:</p>
-<pre><code>{ msisdn: '442079460000',
-  to: '442079460001',
-  messageId: '170000026809868F',
-  text: 'This is a test message',
-  type: 'text',
-  keyword: 'THIS',
-  'api-key': '7c47b66b',
-  'message-timestamp': '2020-02-06 10:55:16' }
-</code></pre><h2 id="alternative-languages">Alternative Languages</h2>
-<p>See the <a href="https://developer.nexmo.com/messaging/sms/code-snippets/receive-an-sms">Receive SMS example</a> in the docs. Click through to view the full source on GitHub.</p>
+	<h2 id="video-api-overview">Video API Overview</h2>
+<p>The OpenTok platform, developed by TokBox and now wholly owned by Vonage, makes it easy to embed high-quality interactive video, voice, messaging, and screen sharing into web and mobile applications.</p>
 
 
 
@@ -797,7 +704,6 @@ npm install express body-parser
             
                 
                     
-                    
                 
                 
 
@@ -812,9 +718,6 @@ npm install express body-parser
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -832,7 +735,6 @@ npm install express body-parser
             
                 
                     
-                    
                 
                 
 
@@ -848,9 +750,6 @@ npm install express body-parser
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1016,6 +915,7 @@ npm install express body-parser
             
                 
                     
+                    
                 
                 
 
@@ -1031,6 +931,9 @@ npm install express body-parser
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1052,10 +955,10 @@ npm install express body-parser
 	 
 	 
 		
-			<a class="nav nav-prev" href="/sms/send-sms/" title="Send an SMS"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/messages/" title="Messages and Dispatch"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/sms/receive-dlr/" title="Get a Delivery Receipt" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/conversation/" title="Conversation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
