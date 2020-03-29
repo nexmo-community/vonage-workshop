@@ -7,7 +7,15 @@
   </url>
   
   <url>
+    <loc>https://vonage-workshop.nexmodev.com/messages/send-sms/</loc>
+  </url>
+  
+  <url>
     <loc>https://vonage-workshop.nexmodev.com/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/messages/send-fb/</loc>
   </url>
   
   <url>
@@ -116,6 +124,10 @@
   
   <url>
     <loc>https://vonage-workshop.nexmodev.com/verify/certification/certification-project/</loc>
+  </url>
+  
+  <url>
+    <loc>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</loc>
   </url>
   
   <url>

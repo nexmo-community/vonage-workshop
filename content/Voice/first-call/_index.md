@@ -1,7 +1,7 @@
 ---
-title: "Make Your First Call*"
+title: "Make Your First Call"
 weight : 15
-hidden: true
+hidden: false
 ---
 
 

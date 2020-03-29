@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Certification Project :: Vonage Workshop</title>
+    <title>Certification Project* :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1585479398" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/verify/certification/certification-project/">
+  <body class="" data-url="/messages/certification/certification-project/">
     <nav id="sidebar" class="">
 
 
@@ -290,7 +290,7 @@
   
     
     <li data-nav-id="/verify/" title="Verify API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -370,7 +370,7 @@
  
   
     
-      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item active">
+      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item ">
         <a href="/verify/certification/certification-project/">
         Certification Project
         
@@ -554,7 +554,7 @@
   
     
     <li data-nav-id="/messages/" title="Messages and Dispatch" class="dd-item 
-        
+        parent
         
         
         ">
@@ -683,7 +683,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/verify/'>Verify API</a> > Certification Project
+            <a href='/'>Welcome</a> > <a href='/messages/'>Messages and Dispatch</a> > Certification Project*
           
          
           
@@ -698,9 +698,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#sms-and-verify-api-certification">SMS and Verify API Certification</a>
+    <li><a href="#messages-and-dispatch-apis-certification">Messages and Dispatch APIs Certification</a>
       <ul>
-        <li><a href="#use-case">Use case</a></li>
+        <li><a href="#objective">Objective</a></li>
         <li><a href="#delivery">Delivery</a></li>
         <li><a href="#resources">Resources</a></li>
       </ul>
@@ -722,7 +722,7 @@
           
             <h1>
               
-              Certification Project
+              Certification Project*
             </h1>
           
 
@@ -730,12 +730,13 @@
 
 
 
-<h2 id="sms-and-verify-api-certification">SMS and Verify API Certification</h2>
-<h3 id="use-case">Use case</h3>
-<p>You&rsquo;re building a ride sharing service. You want your users to register with the service with their mobile phone number and you will use the Verify API to ensure that they own the number that they are registering with.</p>
-<p>Once they are registered, you want your users to send SMS to each other using the SMS API, without revealing their private mobile numbers, so you will use a virtual number to mask those numbers.</p>
-<p>Use <a href="https://developer.nexmo.com/tools">any supported SDK</a> to achieve this.</p>
-<p>If you feel you need to create a simple user interface to collect users&rsquo; details, go ahead. Alternatively, you might want to create endpoints in your application to collect things like their number, verification codes, etc and call those using a utility like <code>curl</code>.</p>
+<h2 id="messages-and-dispatch-apis-certification">Messages and Dispatch APIs Certification</h2>
+<h3 id="objective">Objective</h3>
+<p>You have learned how to send messages with the Messages API, but now you need to include the <a href="https://developer.nexmo.com/dispatch/overview">Dispatch API</a> so that you can fail over from one channel to another!</p>
+<p>Your job is to create an application that notifies your customer that their package will be delivered tomorrow.</p>
+<p>Initially, you will attempt to contact them using a plain SMS message.</p>
+<p>If that fails to elicit a response (and, for the purposes of this exercise let&rsquo;s assume that you&rsquo;ll wait 180 seconds), you should failover to either an MMS message (choose or create a suitable image) or a Facebook Messenger message containing an image.</p>
+<p>You don&rsquo;t need to worry about inbound messages - let&rsquo;s just assume that your user is unresponsive.</p>
 <h3 id="delivery">Delivery</h3>
 <p>Please send your completed project to <code>mark.lewin@vonage.com</code> - a link to a repo on Github is preferable. Please also provide a brief <code>README</code> to describe how to run your project.</p>
 <blockquote>
@@ -744,10 +745,10 @@
 <h3 id="resources">Resources</h3>
 <p>The following resources will help you:</p>
 <ul>
-<li><a href="https://developer.nexmo.com/use-cases/passwordless-authentication">Passwordless authentication use case</a></li>
-<li><a href="https://developer.nexmo.com/use-cases/private-sms-communication">Private SMS communication</a></li>
-<li><a href="https://developer.nexmo.com/messaging/sms/overview">SMS API documentation</a></li>
-<li><a href="https://developer.nexmo.com/verify/overview">Verify API documentation</a></li>
+<li><a href="https://developer.nexmo.com/dispatch/overview">Dispatch API</a></li>
+<li><a href="https://developer.nexmo.com/messages/code-snippets/messenger/send-image">Send an Image Message using FB Messenger</a></li>
+<li><a href="https://developer.nexmo.com/messages/code-snippets/sms/send-sms">Send an SMS</a></li>
+<li><a href="https://developer.nexmo.com/messages/code-snippets/mms/send-mms">Send an MMS</a></li>
 </ul>
 <blockquote>
 <p><strong>Good luck!</strong>: Feel free to reach out to us at <code>apiglobaltraining@vonage.com</code> with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!</p>
@@ -930,7 +931,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -945,9 +945,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -991,7 +988,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1010,9 +1006,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1158,10 +1151,8 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/verify/check-verify-request/" title="Check Verify Request"> <i class="fa fa-chevron-left"></i></a>
 		
-		
-			<a class="nav nav-next" href="/voice/" title="Voice API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/basic-concepts/" title="Basic Concepts" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

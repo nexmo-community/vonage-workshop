@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Certification Project :: Vonage Workshop</title>
+    <title>Send SMS and MMS :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1585479398" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/verify/certification/certification-project/">
+  <body class="" data-url="/messages/send-sms/">
     <nav id="sidebar" class="">
 
 
@@ -290,7 +290,7 @@
   
     
     <li data-nav-id="/verify/" title="Verify API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -370,7 +370,7 @@
  
   
     
-      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item active">
+      <li data-nav-id="/verify/certification/certification-project/" title="Certification Project" class="dd-item ">
         <a href="/verify/certification/certification-project/">
         Certification Project
         
@@ -554,7 +554,7 @@
   
     
     <li data-nav-id="/messages/" title="Messages and Dispatch" class="dd-item 
-        
+        parent
         
         
         ">
@@ -683,7 +683,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/verify/'>Verify API</a> > Certification Project
+            <a href='/'>Welcome</a> > <a href='/messages/'>Messages and Dispatch</a> > Send SMS and MMS
           
          
           
@@ -698,13 +698,19 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#sms-and-verify-api-certification">SMS and Verify API Certification</a>
+    <li><a href="#the-steps">The steps</a>
       <ul>
-        <li><a href="#use-case">Use case</a></li>
-        <li><a href="#delivery">Delivery</a></li>
-        <li><a href="#resources">Resources</a></li>
+        <li><a href="#create-your-project">Create your project</a></li>
+        <li><a href="#install-dependencies">Install dependencies</a></li>
+        <li><a href="#write-the-code">Write the code</a></li>
+        <li><a href="#create-a-nexmo-application">Create a Nexmo Application</a></li>
+        <li><a href="#configure-your-app">Configure your app</a></li>
       </ul>
     </li>
+    <li><a href="#run-it">Run it!</a></li>
+    <li><a href="#outcome">Outcome</a></li>
+    <li><a href="#next-step">Next step</a></li>
+    <li><a href="#further-reading">Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -722,7 +728,7 @@
           
             <h1>
               
-              Certification Project
+              Send SMS and MMS
             </h1>
           
 
@@ -730,28 +736,72 @@
 
 
 
-<h2 id="sms-and-verify-api-certification">SMS and Verify API Certification</h2>
-<h3 id="use-case">Use case</h3>
-<p>You&rsquo;re building a ride sharing service. You want your users to register with the service with their mobile phone number and you will use the Verify API to ensure that they own the number that they are registering with.</p>
-<p>Once they are registered, you want your users to send SMS to each other using the SMS API, without revealing their private mobile numbers, so you will use a virtual number to mask those numbers.</p>
-<p>Use <a href="https://developer.nexmo.com/tools">any supported SDK</a> to achieve this.</p>
-<p>If you feel you need to create a simple user interface to collect users&rsquo; details, go ahead. Alternatively, you might want to create endpoints in your application to collect things like their number, verification codes, etc and call those using a utility like <code>curl</code>.</p>
-<h3 id="delivery">Delivery</h3>
-<p>Please send your completed project to <code>mark.lewin@vonage.com</code> - a link to a repo on Github is preferable. Please also provide a brief <code>README</code> to describe how to run your project.</p>
-<blockquote>
-<p><strong>Note</strong>: There is no deadline for this, but please be aware that your coupon credit will expire on 30th April.</p>
+<p>In this tutorial you will send an SMS using the Messages API and then adapt your solution to send an MMS</p>
+<p>The same steps taken here can be easily modified to send a message across other channels, including Viber, Facebook Messenger and WhatsApp.</p>
+<h2 id="the-steps">The steps</h2>
+<h3 id="create-your-project">Create your project</h3>
+<p>Create a node.js project for this by running <code>npm init</code> and accepting all the defaults:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir messages-sms
+cd messages-sms
+npm init
+touch index.js
+</code></pre></div><h3 id="install-dependencies">Install dependencies</h3>
+<p>You need the beta version of the Nexmo Node SDK for this, and also <code>dotenv</code> for configuration:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install nexmo@beta dotenv
+</code></pre></div><blockquote>
+<p><strong>NOTE:</strong> The benefit of using the SDK is that it handles all the JWT generation for you. If you are testing using <code>curl</code> or another language you will need to generate the JWT yourself. See <a href="https://developer.nexmo.com/concepts/guides/authentication#using-the-nexmo-cli-to-generate-jwts">Creating a JWT</a>.</p>
 </blockquote>
-<h3 id="resources">Resources</h3>
-<p>The following resources will help you:</p>
+<h3 id="write-the-code">Write the code</h3>
+<p>Open the <code>index.js</code> file in your editor, and add the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>()
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;nexmo&#39;</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+  <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_KEY</span>,
+  <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_SECRET</span>,
+  <span style="color:#a6e22e">applicationId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">APPLICATION_ID</span>,
+  <span style="color:#a6e22e">privateKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PRIVATE_KEY</span>
+})
+
+<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">send</span>(
+  { <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sms&#34;</span>, <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TO_NUMBER</span> },
+  { <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sms&#34;</span>, <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FROM_NUMBER</span> },
+  {
+    <span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;text&#34;</span>,
+      <span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;This is an SMS sent from the Messages API&#34;</span>
+    }
+  },
+  (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">data</span>) =&gt; { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message_uuid</span>); }
+)
+</code></pre></div><p>This code simply instantiates the <code>nexmo</code> client and sends an SMS with the Messages API. The SDK takes care of the generation of the JWT for you, so that you don&rsquo;t have to worry about it.</p>
+<h3 id="create-a-nexmo-application">Create a Nexmo Application</h3>
+<p>We&rsquo;re going to use the CLI for this, but you could also use the Developer Dashboard. You&rsquo;ll need the <strong>beta</strong> version of the CLI to create applications with the <code>messages</code> capability. Install it using <code>npm</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install nexmo-cli@beta -g
+</code></pre></div><p>Then create the application using the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">nexmo app:create <span style="color:#e6db74">&#34;My Messages App&#34;</span> --capabilities<span style="color:#f92672">=</span>messages --messages-inbound-url<span style="color:#f92672">=</span>https://example.com/webhooks/inbound-message --messages-status-url<span style="color:#f92672">=</span>https://example.com/webhooks/message-status --keyfile<span style="color:#f92672">=</span>private.key
+</code></pre></div><p>This creates a Vonage application with the messages capability, with the webhook URLs configured as specified (just leave them as <code>example.com</code> for now), and generates a private key file <code>private.key</code> which it will download to your project directory, along with a <code>.nexmo-app</code> file that contains your application ID and private key details.</p>
+<h3 id="configure-your-app">Configure your app</h3>
+<p>Create a file called <code>.env</code> in your project directory and configure it using your own information:</p>
+<pre><code>API_KEY=&lt;your_API_key&gt;
+API_SECRET=&lt;your_API_secret&gt;
+APPLICATION_ID=&lt;your_application_id&gt;
+PRIVATE_KEY=private.key
+TO_NUMBER=&lt;your_mobile_number&gt;
+FROM_NUMBER=&lt;your_virtual_number&gt;
+</code></pre><h2 id="run-it">Run it!</h2>
+<p>Run your app:</p>
+<pre><code>node index.js
+</code></pre><h2 id="outcome">Outcome</h2>
+<p>This should send an SMS message to the destination number you specified in <code>.env</code> and display the <code>message_uuid</code>, for example:</p>
+<pre><code>eabe7131-66f0-4b41-a428-1f42bca82561
+</code></pre><h2 id="next-step">Next step</h2>
+<p>Now that you know how to send a plain old SMS using the Messages API, adapt your code to send an MMS.</p>
+<p>Use <a href="https://developer.nexmo.com/messages/code-snippets/mms/send-mms">this code snippet</a> to help you.</p>
+<h2 id="further-reading">Further reading</h2>
 <ul>
-<li><a href="https://developer.nexmo.com/use-cases/passwordless-authentication">Passwordless authentication use case</a></li>
-<li><a href="https://developer.nexmo.com/use-cases/private-sms-communication">Private SMS communication</a></li>
-<li><a href="https://developer.nexmo.com/messaging/sms/overview">SMS API documentation</a></li>
-<li><a href="https://developer.nexmo.com/verify/overview">Verify API documentation</a></li>
+<li><a href="https://developer.nexmo.com/concepts/overview">Messages documentation</a></li>
 </ul>
-<blockquote>
-<p><strong>Good luck!</strong>: Feel free to reach out to us at <code>apiglobaltraining@vonage.com</code> with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!</p>
-</blockquote>
 
 
 <footer class=" footline" >
@@ -930,7 +980,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -945,9 +994,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -991,7 +1037,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1010,9 +1055,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1158,10 +1200,8 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/verify/check-verify-request/" title="Check Verify Request"> <i class="fa fa-chevron-left"></i></a>
 		
-		
-			<a class="nav nav-next" href="/voice/" title="Voice API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/basic-concepts/" title="Basic Concepts" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

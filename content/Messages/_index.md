@@ -1,6 +1,7 @@
 ---
 title: "Messages and Dispatch"
 weight : 6
+hidden: true
 ---
 
 ## Messages and Dispatch

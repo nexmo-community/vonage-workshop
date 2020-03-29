@@ -1,7 +1,7 @@
 ---
-title: "Record a Call*"
+title: "Record a Call"
 weight : 55
-hidden: true
+hidden: false
 ---
 
 ## Overview

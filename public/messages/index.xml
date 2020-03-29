@@ -10,5 +10,29 @@
 	<atom:link href="https://vonage-workshop.nexmodev.com/messages/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Send SMS and MMS</title>
+      <link>https://vonage-workshop.nexmodev.com/messages/send-sms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/messages/send-sms/</guid>
+      <description>In this tutorial you will send an SMS using the Messages API and then adapt your solution to send an MMS
+The same steps taken here can be easily modified to send a message across other channels, including Viber, Facebook Messenger and WhatsApp.
+The steps Create your project Create a node.js project for this by running npm init and accepting all the defaults:
+mkdir messages-sms cd messages-sms npm init touch index.</description>
+    </item>
+    
+    <item>
+      <title>Certification Project*</title>
+      <link>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</guid>
+      <description>Messages and Dispatch APIs Certification Objective You have learned how to send messages with the Messages API, but now you need to include the Dispatch API so that you can fail over from one channel to another!
+Your job is to create an application that notifies your customer that their package will be delivered tomorrow.
+Initially, you will attempt to contact them using a plain SMS message.
+If that fails to elicit a response (and, for the purposes of this exercise let&amp;rsquo;s assume that you&amp;rsquo;ll wait 180 seconds), you should failover to either an MMS message (choose or create a suitable image) or a Facebook Messenger message containing an image.</description>
+    </item>
+    
   </channel>
 </rss>

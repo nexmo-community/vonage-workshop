@@ -1,7 +1,7 @@
 ---
-title: "Interact with your user*"
+title: "Interact with your user"
 weight : 35
-hidden: true
+hidden: false
 ---
 
 ## Overview

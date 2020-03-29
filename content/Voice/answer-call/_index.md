@@ -1,7 +1,7 @@
 ---
-title: "Receive an Inbound Call*"
+title: "Receive an Inbound Call"
 weight : 25
-hidden: true
+hidden: false
 ---
 
 ## Overview

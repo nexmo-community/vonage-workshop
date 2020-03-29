@@ -1,7 +1,7 @@
 ---
-title: "Build an IVR*"
+title: "Build an IVR"
 weight : 45
-hidden: true
+hidden: false
 ---
 
 ## Overview
