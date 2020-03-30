@@ -19,6 +19,8 @@ The Nexmo Voice API is the easiest way to build high-quality voice applications 
 
 Here are some resources you may find useful:
 
+### Documentation and Tools
+
 * [Vonage Dashboard](https://dashboard.nexmo.com)
 * [Voice API Reference](https://developer.nexmo.com/api/voice)
 * [NCCO Reference](https://developer.nexmo.com/voice/voice-api/ncco-reference) and [NCCO examples to inspire you](https://nexmo-community.github.io/ncco-examples/)
@@ -28,3 +30,16 @@ Here are some resources you may find useful:
 * [Ngrok](https://ngrok.com) and [our blog post about using it](https://www.nexmo.com/blog/2017/07/04/local-development-nexmo-ngrok-tunnel-dr
 )
 * [Voice Event Logger](https://github.com/Nexmo/voice-event-logger)
+
+
+### Call transcription demos
+
+* [Azure](https://www.nexmo.com/blog/2019/12/30/building-a-real-time-net-transcription-service-dr)
+* [Amazon Transcribe](https://www.nexmo.com/blog/2019/08/26/transcribe-a-conference-call-using-amazon-transcribe-dr)
+* [IBM Watson](https://www.nexmo.com/blog/2018/04/17/dual-channel-transcription-split-recording-dr)
+
+### Chat bot examples
+
+* [AWS](https://github.com/Nexmo/lex-connector)
+* [DialogFlow](https://github.com/nexmo-community/voice-google-speechtotext)
+

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Build an IVR :: Vonage Workshop</title>
+    <title>Certification Project :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1585574583" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/voice/build-ivr/">
+  <body class="" data-url="/voice/certification/certification-project/">
     <nav id="sidebar" class="">
 
 
@@ -496,8 +496,8 @@
   
     
     <li data-nav-id="/voice/build-ivr/" title="Build an IVR" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/voice/build-ivr/">
@@ -546,7 +546,7 @@
  
   
     
-      <li data-nav-id="/voice/certification/certification-project/" title="Certification Project" class="dd-item ">
+      <li data-nav-id="/voice/certification/certification-project/" title="Certification Project" class="dd-item active">
         <a href="/voice/certification/certification-project/">
         Certification Project
         
@@ -702,7 +702,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/voice/'>Voice API</a> > Build an IVR
+            <a href='/'>Welcome</a> > <a href='/voice/'>Voice API</a> > Certification Project
           
          
           
@@ -717,15 +717,13 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#steps">Steps</a>
+    <li><a href="#voice-api-certification">Voice API Certification</a>
       <ul>
-        <li><a href="#inital-call-handling">Inital Call Handling</a></li>
-        <li><a href="#process-user-input">Process user input</a></li>
+        <li><a href="#use-case">Use case</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#resources">Resources</a></li>
       </ul>
     </li>
-    <li><a href="#run-it">Run It!</a></li>
-    <li><a href="#outcome">Outcome</a></li>
   </ul>
 </nav>
     </div>
@@ -743,7 +741,7 @@
           
             <h1>
               
-              Build an IVR
+              Certification Project
             </h1>
           
 
@@ -751,167 +749,38 @@
 
 
 
-
-	<h2 id="overview">Overview</h2>
-<p>An IVR or Interactive Voice Response is a menu of options presented to a caller, they then navigate that menu using the buttons on their keypad to send DTMF (Dual Tone Multi Frequency) signals. Each option on the IVR can direct the call to a different path, for example forwarding the call to a specific destination, playing a recorded piece of information or even triggering another service such as an SMS. IVRs are the fundamental navigation method of Voice Call applications. An IVR can have multiple levels to it, where selection of one option presents the user with more options, this can go on to an infinite depth! For this activity we will just create a single level IVR.</p>
-<h2 id="steps">Steps</h2>
-<h3 id="inital-call-handling">Inital Call Handling</h3>
-<p>Use the same project folder as you used in the previous <a href="/voice/user-input/">Interact with your user example</a>.</p>
-<p>Create a new file called <code>ivr.js</code></p>
-<p>The code we are going to use will vary slightly from the previous example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">origin_phone_number</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;VIRTUAL_NUMBER&#34;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sales_office_number</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PHONE_NUMBER&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">base_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.example.com&#34;</span>;
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>())
-
-<span style="color:#75715e">//Add extra code that you create in this exercise here
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onEvent</span> <span style="color:#f92672">=</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt;{
-    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>();
-
-}
-<span style="color:#a6e22e">app</span>
-  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, <span style="color:#a6e22e">onInboundCall</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/dtmf&#39;</span>, <span style="color:#a6e22e">onInput</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/events&#39;</span>, <span style="color:#a6e22e">onEvent</span>)
-  .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/accountInput&#39;</span>, <span style="color:#a6e22e">onAccountInput</span>)
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>)
-</code></pre></div><p>Next we are going to want to give the user a set of options that they can choose from. Let&rsquo;s just have 3 options.</p>
-<ol>
-<li>Sales</li>
-<li>Customer Support</li>
-<li>Press Office</li>
-</ol>
-<p>Add the following<code>code to</code>ivr.js` in the position indicated by the comment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInboundCall</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-      {
-        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-        <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Hello, welcome to Acme Systems Incorporated\&#39;s Interactive Voice Response System. To speak with Sales press 1. For Customer Support press 2. For the press office, press 3&#39;</span>,
-        <span style="color:#a6e22e">bargeIn</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
-      },
-      {
-        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-        <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">base_url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/dtmf</span><span style="color:#e6db74">`</span>],
-        <span style="color:#a6e22e">maxDigits</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
-      }
-    ]
-  
-    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-}
-</code></pre></div><h3 id="process-user-input">Process user input</h3>
-<p>Now we have constructed a <code>talk</code> action to explain the menu to the customer, and we have provided an <code>input</code> action for customers to enter digits from their keypad.</p>
-<p>The next step is to actually manage all that user input. In the previous section we simply echoed the user&rsquo;s input back to them. Here we are going to direct their call based on the option they selected.</p>
+<h2 id="voice-api-certification">Voice API Certification</h2>
+<h3 id="use-case">Use case</h3>
+<p>Build a Voice API call menu that presents your users with a list of options. These should include:</p>
 <ul>
-<li>For the sales department we will connect them immediately with a representative using the number defined in the <code>sales_office_number</code> variable.</li>
-<li>For the Support department, we will collect a 5 digit account number from them.</li>
-<li>For the press office, unfortunately no one can take the call, and we haven&rsquo;t set up our voice mail system yet (we&rsquo;ll do that in the next exercise!) - so we will just have to hang up the call.</li>
+<li>Listening to an audio file of your choice</li>
+<li>Hearing the current time and date</li>
+<li>Being transferred to another number that you own with a &ldquo;we are now connecting you to an agent who will be able to help you&rdquo; message</li>
 </ul>
-<p>Put the following code underneath the definition of <code>onInboundCall()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onInput</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt; {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ncco</span>;
-
-    <span style="color:#66d9ef">switch</span>(<span style="color:#a6e22e">dtmf</span>){
-        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">:</span>
-            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-                {
-                <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-                <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">You have asked to speak with the Sales Department, Connecting you now.</span><span style="color:#e6db74">`</span>
-                },
-                {
-                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;connect&#39;</span>,
-                    <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">origin_phone_number</span>,
-                    <span style="color:#a6e22e">endpoint</span><span style="color:#f92672">:</span> 
-                    [
-                        {
-                          <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;phone&#34;</span>,
-                          <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">sales_office_number</span>
-                        }
-                    ]
-
-                }
-            ]
-            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-            <span style="color:#66d9ef">break</span>;
-        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">:</span>
-            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> 
-            [
-                {
-                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;You have asked to speak with customer service, please input your 5 digit account number followed by the pound sign&#39;</span>
-                },
-                {
-                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;input&#39;</span>,
-                    <span style="color:#a6e22e">eventUrl</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">base_url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/webhooks/accountInput</span><span style="color:#e6db74">`</span>],
-                    <span style="color:#a6e22e">timeOut</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>,
-                    <span style="color:#a6e22e">maxDigits</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">6</span>,
-                    <span style="color:#a6e22e">submitOnHash</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
-                }
-            ]
-            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-            <span style="color:#66d9ef">break</span>;
-        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">:</span>
-            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span>
-            [
-                {
-                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;You have asked to speak with the press office. Unfortunately no one from the press office is currently available and the recording service has yet to be implemented, please try back later&#39;</span>
-                }
-            ]
-            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>)
-            <span style="color:#66d9ef">break</span>;
-        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
-            <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> [
-                {
-                    <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-                    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;I\&#39;m sorry I didn\&#39;t understand what you entered please try again&#39;</span>
-                }
-            ];
-            <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
-            <span style="color:#66d9ef">break</span>;
-    }
-}
-</code></pre></div><p>If they contacted the support department we will need to echo the account input back to them and tell them they&rsquo;ll be contacted later. Add the following below the definition of <code>onInput()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onAccountInput</span> <span style="color:#f92672">=</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>) =&gt;{
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dtmf</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">dtmf</span>
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dtmf</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>);
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> 
-    [
-        {
-            <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;talk&#39;</span>,
-            <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Your account number is: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; your case has been added and is being actively triaged, you will be contacted with an update to your case in 24 hours&#39;</span>
-        }
-    ];
-    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
-    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>();
-  }
-</code></pre></div><p>Now we&rsquo;re ready to test our application!</p>
-<h2 id="run-it">Run It!</h2>
-<p>To fire this up do the following:</p>
+<p>Use <a href="https://developer.nexmo.com/tools">any supported SDK</a> to achieve this.</p>
+<h3 id="delivery">Delivery</h3>
+<p>Please send your completed project to <code>mark.lewin@vonage.com</code> - a link to a repo on Github is preferable. Please also provide a brief <code>README</code> to describe how to run your project.</p>
+<blockquote>
+<p><strong>Note</strong>: There is no deadline for this, but please be aware that your coupon credit will expire on 30th April.</p>
+</blockquote>
+<h3 id="resources">Resources</h3>
+<p>The following resources will help you:</p>
 <ul>
-<li>run <code>http ngrok 3000</code> to point your ngrok tunnel at your server</li>
+<li><a href="https://developer.nexmo.com/voice/voice-api/overview">Voice API documentation</a></li>
+<li><a href="https://developer.nexmo.com/api/voice">Voice API reference</a></li>
+<li><a href="https://www.nexmo.com/blog/2019/04/08/build-interactive-voice-response-node-express-javascript-dr">Build an IVR menu with Node and Express</a></li>
+<li><a href="https://developer.nexmo.com/voice/voice-api/webhook-reference">Webhook reference</a></li>
+<li><a href="https://developer.nexmo.com/voice/voice-api/ncco-reference">NCCO reference</a></li>
 </ul>
-<p><img src="/images/ngrok.png" alt="ngrok"></p>
-<ul>
-<li>Take the URL that <code>ngrok</code> gives you and set that as your <code>base_url</code>. In the case of the above example this will be <a href="http://c1b4d1a1.ngrok.io">http://c1b4d1a1.ngrok.io</a></li>
-<li>Replace the <code>sales_office_number</code> with a phone number that you own (but obviously, not the one you plan to call your application from!)</li>
-<li>Replace the <code>origin_phone_number</code> with your Vonage virtual number</li>
-</ul>
-<p>Then, run <code>node ivr.js</code> and dial your Vonage virtual number.</p>
-<h2 id="outcome">Outcome</h2>
-<p>If everything is working correctly, you should be presented with the IVR options and be able to choose one have your call dealt with accordingly.</p>
-
-
-
+<blockquote>
+<p><strong>Good luck!</strong>: Feel free to reach out to me at <code>mark.lewin@vonage.com</code> with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!</p>
+</blockquote>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1227,7 +1096,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1236,30 +1104,6 @@
                     
 
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
             
         
                     
@@ -1279,6 +1123,28 @@
             
         
                     
+                        
+            
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1291,6 +1157,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1328,10 +1197,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/voice/user-input/" title="Interact with your user"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/voice/record-a-call/" title="Record a Call"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/voice/record-a-call/" title="Record a Call" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/video/" title="Video" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1361,3 +1230,4 @@
 
   </body>
 </html>
+

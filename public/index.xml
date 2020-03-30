@@ -33,6 +33,16 @@ Once they are registered, you want your users to send SMS to each other using th
     </item>
     
     <item>
+      <title>Certification Project</title>
+      <link>https://vonage-workshop.nexmodev.com/voice/certification/certification-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/voice/certification/certification-project/</guid>
+      <description>Voice API Certification Use case Build a Voice API call menu that presents your users with a list of options. These should include:
+ Listening to an audio file of your choice Hearing the current time and date Being transferred to another number that you own with a &amp;ldquo;we are now connecting you to an agent who will be able to help you&amp;rdquo; message  Use any supported SDK to achieve this.</description>
+    </item>
+    
+    <item>
       <title>Certification Project*</title>
       <link>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
