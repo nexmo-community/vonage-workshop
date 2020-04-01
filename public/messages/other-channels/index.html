@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Send SMS and MMS :: Vonage Workshop</title>
+    <title>WhatsApp and Viber :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1585756360" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/messages/send-sms/">
+  <body class="" data-url="/messages/other-channels/">
     <nav id="sidebar" class="">
 
 
@@ -599,7 +599,7 @@
  
   
     
-      <li data-nav-id="/messages/send-sms/" title="Send SMS and MMS" class="dd-item active">
+      <li data-nav-id="/messages/send-sms/" title="Send SMS and MMS" class="dd-item ">
         <a href="/messages/send-sms/">
         Send SMS and MMS
         
@@ -642,7 +642,7 @@
  
   
     
-      <li data-nav-id="/messages/other-channels/" title="WhatsApp and Viber" class="dd-item ">
+      <li data-nav-id="/messages/other-channels/" title="WhatsApp and Viber" class="dd-item active">
         <a href="/messages/other-channels/">
         WhatsApp and Viber
         
@@ -774,7 +774,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/messages/'>Messages and Dispatch</a> > Send SMS and MMS
+            <a href='/'>Welcome</a> > <a href='/messages/'>Messages and Dispatch</a> > WhatsApp and Viber
           
          
           
@@ -787,23 +787,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#the-steps">The steps</a>
-      <ul>
-        <li><a href="#create-your-project">Create your project</a></li>
-        <li><a href="#install-dependencies">Install dependencies</a></li>
-        <li><a href="#write-the-code">Write the code</a></li>
-        <li><a href="#create-a-nexmo-application">Create a Nexmo Application</a></li>
-        <li><a href="#configure-your-app">Configure your app</a></li>
-      </ul>
-    </li>
-    <li><a href="#run-it">Run it!</a></li>
-    <li><a href="#outcome">Outcome</a></li>
-    <li><a href="#next-step">Next step</a></li>
-    <li><a href="#further-reading">Further reading</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -819,7 +803,7 @@
           
             <h1>
               
-              Send SMS and MMS
+              WhatsApp and Viber
             </h1>
           
 
@@ -827,72 +811,8 @@
 
 
 
-<p>In this tutorial you will send an SMS using the Messages API and then adapt your solution to send an MMS</p>
-<p>The same steps taken here can be easily modified to send a message across other channels, including Viber, Facebook Messenger and WhatsApp.</p>
-<h2 id="the-steps">The steps</h2>
-<h3 id="create-your-project">Create your project</h3>
-<p>Create a node.js project for this by running <code>npm init</code> and accepting all the defaults:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir messages-sms
-cd messages-sms
-npm init
-touch index.js
-</code></pre></div><h3 id="install-dependencies">Install dependencies</h3>
-<p>You need the beta version of the Nexmo Node SDK for this, and also <code>dotenv</code> for configuration:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install nexmo@beta dotenv
-</code></pre></div><blockquote>
-<p><strong>NOTE:</strong> The benefit of using the SDK is that it handles all the JWT generation for you. If you are testing using <code>curl</code> or another language you will need to generate the JWT yourself. See <a href="https://developer.nexmo.com/concepts/guides/authentication#using-the-nexmo-cli-to-generate-jwts">Creating a JWT</a>.</p>
-</blockquote>
-<h3 id="write-the-code">Write the code</h3>
-<p>Open the <code>index.js</code> file in your editor, and add the following code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;dotenv&#39;</span>).<span style="color:#a6e22e">config</span>()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Nexmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;nexmo&#39;</span>)
-
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
-  <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_KEY</span>,
-  <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_SECRET</span>,
-  <span style="color:#a6e22e">applicationId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">APPLICATION_ID</span>,
-  <span style="color:#a6e22e">privateKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PRIVATE_KEY</span>
-})
-
-<span style="color:#a6e22e">nexmo</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">send</span>(
-  { <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sms&#34;</span>, <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TO_NUMBER</span> },
-  { <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sms&#34;</span>, <span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FROM_NUMBER</span> },
-  {
-    <span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span> {
-      <span style="color:#e6db74">&#34;type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;text&#34;</span>,
-      <span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;This is an SMS sent from the Messages API&#34;</span>
-    }
-  },
-  (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">data</span>) =&gt; { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message_uuid</span>); }
-)
-</code></pre></div><p>This code simply instantiates the <code>nexmo</code> client and sends an SMS with the Messages API. The SDK takes care of the generation of the JWT for you, so that you don&rsquo;t have to worry about it.</p>
-<h3 id="create-a-nexmo-application">Create a Nexmo Application</h3>
-<p>We&rsquo;re going to use the CLI for this, but you could also use the Developer Dashboard. You&rsquo;ll need the <strong>beta</strong> version of the CLI to create applications with the <code>messages</code> capability. Install it using <code>npm</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install nexmo-cli@beta -g
-</code></pre></div><p>Then create the application using the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">nexmo app:create <span style="color:#e6db74">&#34;My Messages App&#34;</span> --capabilities<span style="color:#f92672">=</span>messages --messages-inbound-url<span style="color:#f92672">=</span>https://example.com/webhooks/inbound-message --messages-status-url<span style="color:#f92672">=</span>https://example.com/webhooks/message-status --keyfile<span style="color:#f92672">=</span>private.key
-</code></pre></div><p>This creates a Vonage application with the messages capability, with the webhook URLs configured as specified (just leave them as <code>example.com</code> for now), and generates a private key file <code>private.key</code> which it will download to your project directory, along with a <code>.nexmo-app</code> file that contains your application ID and private key details.</p>
-<h3 id="configure-your-app">Configure your app</h3>
-<p>Create a file called <code>.env</code> in your project directory and configure it using your own information:</p>
-<pre><code>API_KEY=&lt;your_API_key&gt;
-API_SECRET=&lt;your_API_secret&gt;
-APPLICATION_ID=&lt;your_application_id&gt;
-PRIVATE_KEY=private.key
-TO_NUMBER=&lt;your_mobile_number&gt;
-FROM_NUMBER=&lt;your_virtual_number&gt;
-</code></pre><h2 id="run-it">Run it!</h2>
-<p>Run your app:</p>
-<pre><code>node index.js
-</code></pre><h2 id="outcome">Outcome</h2>
-<p>This should send an SMS message to the destination number you specified in <code>.env</code> and display the <code>message_uuid</code>, for example:</p>
-<pre><code>eabe7131-66f0-4b41-a428-1f42bca82561
-</code></pre><h2 id="next-step">Next step</h2>
-<p>Now that you know how to send a plain old SMS using the Messages API, adapt your code to send an MMS.</p>
-<p>Use <a href="https://developer.nexmo.com/messages/code-snippets/mms/send-mms">this code snippet</a> to help you.</p>
-<h2 id="further-reading">Further reading</h2>
-<ul>
-<li><a href="https://developer.nexmo.com/concepts/overview">Messages documentation</a></li>
-</ul>
+<p>The WhatsApp and Viber channels require some configuration before they are used. However, you can play around with them in the <a href="https://dashboard.nexmo.com/messages/sandbox">sandbox</a>.</p>
+<p>Visit that page and follow the instructions to send yourself a message using either WhatsApp, Viber, or both!</p>
 
 
 <footer class=" footline" >
@@ -1282,23 +1202,6 @@ FROM_NUMBER=&lt;your_virtual_number&gt;
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -1333,6 +1236,26 @@ FROM_NUMBER=&lt;your_virtual_number&gt;
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1389,10 +1312,10 @@ FROM_NUMBER=&lt;your_virtual_number&gt;
 	 
 	 
 		
-			<a class="nav nav-prev" href="/messages/" title="Messages and Dispatch"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/messages/send-fb/" title="Send/Receive Facebook Messages"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/messages/send-fb/" title="Send/Receive Facebook Messages" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/messages/certification/certification-project/" title="Certification Project" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -23,6 +23,28 @@ mkdir messages-sms cd messages-sms npm init touch index.</description>
     </item>
     
     <item>
+      <title>WhatsApp and Viber</title>
+      <link>https://vonage-workshop.nexmodev.com/messages/other-channels/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/messages/other-channels/</guid>
+      <description>The WhatsApp and Viber channels require some configuration before they are used. However, you can play around with them in the sandbox.
+Visit that page and follow the instructions to send yourself a message using either WhatsApp, Viber, or both!</description>
+    </item>
+    
+    <item>
+      <title>Certification Project</title>
+      <link>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</guid>
+      <description>Messages and Dispatch APIs Certification Objective You have learned how to send messages with the Messages API, but now you need to include the Dispatch API so that you can fail over from one channel to another!
+Your job is to create an application that notifies your customer that their package will be delivered tomorrow.
+Initially, you will attempt to contact them using a plain SMS message.
+If that fails to elicit a response (and, for the purposes of this exercise let&amp;rsquo;s assume that you&amp;rsquo;ll wait 180 seconds), you should failover to either an MMS message (choose or create a suitable image) or a Facebook Messenger message containing an image.</description>
+    </item>
+    
+    <item>
       <title>Certification Project</title>
       <link>https://vonage-workshop.nexmodev.com/verify/certification/certification-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -40,18 +62,6 @@ Once they are registered, you want your users to send SMS to each other using th
       <guid>https://vonage-workshop.nexmodev.com/voice/certification/certification-project/</guid>
       <description>Voice API Certification Use case Build a Voice API call menu that presents your users with a list of options. These should include:
  Listening to an audio file of your choice Hearing the current time and date Being transferred to another number that you own with a &amp;ldquo;we are now connecting you to an agent who will be able to help you&amp;rdquo; message  Use any supported SDK to achieve this.</description>
-    </item>
-    
-    <item>
-      <title>Certification Project*</title>
-      <link>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://vonage-workshop.nexmodev.com/messages/certification/certification-project/</guid>
-      <description>Messages and Dispatch APIs Certification Objective You have learned how to send messages with the Messages API, but now you need to include the Dispatch API so that you can fail over from one channel to another!
-Your job is to create an application that notifies your customer that their package will be delivered tomorrow.
-Initially, you will attempt to contact them using a plain SMS message.
-If that fails to elicit a response (and, for the purposes of this exercise let&amp;rsquo;s assume that you&amp;rsquo;ll wait 180 seconds), you should failover to either an MMS message (choose or create a suitable image) or a Facebook Messenger message containing an image.</description>
     </item>
     
   </channel>
