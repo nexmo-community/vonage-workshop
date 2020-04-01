@@ -26,4 +26,6 @@ The Dispatch API provides the mechanism by which to order messages and specify t
 
 ## Resources
 
+* [Messages API documentation](https://developer.nexmo.com/messages/overview)
+* [Dispatch API documentation](https://developer.nexmo.com/dispatch/overview)
 * [Interview with Hugh Hopkins, PM](https://www.vonage.com/resources/articles/simplifying-messaging-introducing-nexmo-messages-api-dispatch-api-beta/)
