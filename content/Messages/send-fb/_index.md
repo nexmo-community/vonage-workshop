@@ -1,7 +1,7 @@
 ---
 title: "Send/Receive Facebook Messages*"
 weight : 2
-hidden: true
+hidden: false
 ---
 
 In this exercise, you will send messages by using Facebook Messenger. The process is very similar to sending an SMS/MMS, except there is some setup involved to create a Facebook page and link it to your virtual number.

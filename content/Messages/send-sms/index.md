@@ -1,7 +1,7 @@
 ---
 title: Send SMS and MMS
 weight : 1
-hidden : true
+hidden : false
 ---
 
 In this tutorial you will send an SMS using the Messages API and then adapt your solution to send an MMS

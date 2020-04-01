@@ -1,7 +1,7 @@
 ---
 title: "Certification Project*"
 weight : 999
-hidden: true
+hidden: false
 ---
 
 ## Messages and Dispatch APIs Certification
