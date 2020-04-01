@@ -1,5 +1,5 @@
 ---
-title: "Send/Receive Facebook Messages*"
+title: "Send/Receive Facebook Messages"
 weight : 2
 hidden: false
 ---

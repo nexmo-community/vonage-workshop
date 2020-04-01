@@ -1,5 +1,5 @@
 ---
-title: "Certification Project*"
+title: "Certification Project"
 weight : 999
 hidden: false
 ---
