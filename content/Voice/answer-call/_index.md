@@ -51,7 +51,7 @@ Create a file called `inbound-call.js` and add the following code to define a ro
   app.listen(3000)
   ```
 
-Test this new route by requesting <http://localhost:3000/webhook/answer> in your browser. You should see some JSON returned.
+Test this new route by requesting <http://localhost:3000/webhooks/answer> in your browser. You should see some JSON returned.
 
 ## Make your webhook endpoint visible
 
