@@ -10,5 +10,16 @@
 	<atom:link href="https://vonage-workshop.nexmodev.com/conversation/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Create a Click-to-call web app</title>
+      <link>https://vonage-workshop.nexmodev.com/conversation/click-to-call/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/conversation/click-to-call/</guid>
+      <description>In this tutorial, you will learn how to create a Client SDK application and then write the code to make a phone call from your Web App to a PSTN phone.
+To achieve this, you will need:
+ A web application that will make the voice call using the Client SDK A webhook server that can process an inbound webhook and return an NCCO to forward the inbound voice call to the destination phone  Steps 1.</description>
+    </item>
+    
   </channel>
 </rss>

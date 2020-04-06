@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Receive an SMS :: Vonage Workshop</title>
+    <title>Create a Click-to-call web app :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1586173817" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/sms/receive-sms/">
+  <body class="" data-url="/conversation/click-to-call/">
     <nav id="sidebar" class="">
 
 
@@ -181,7 +181,7 @@
   
     
     <li data-nav-id="/sms/" title="SMS API" class="dd-item 
-        parent
+        
         
         
         ">
@@ -232,8 +232,8 @@
   
     
     <li data-nav-id="/sms/receive-sms/" title="Receive an SMS" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/sms/receive-sms/">
@@ -710,7 +710,7 @@
   
     
     <li data-nav-id="/conversation/" title="Conversation" class="dd-item 
-        
+        parent
         
         
         ">
@@ -734,7 +734,7 @@
  
   
     
-      <li data-nav-id="/conversation/click-to-call/" title="Create a Click-to-call web app" class="dd-item ">
+      <li data-nav-id="/conversation/click-to-call/" title="Create a Click-to-call web app" class="dd-item active">
         <a href="/conversation/click-to-call/">
         Create a Click-to-call web app
         
@@ -803,7 +803,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/sms/'>SMS API</a> > Receive an SMS
+            <a href='/'>Welcome</a> > <a href='/conversation/'>Conversation</a> > Create a Click-to-call web app
           
          
           
@@ -818,22 +818,20 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-youll-need">What you&rsquo;ll need</a></li>
     <li><a href="#steps">Steps</a>
       <ul>
-        <li><a href="#create-a-nodejs-application">Create a Node.js application</a></li>
+        <li><a href="#1-clone-the-github-repository">1. Clone the GitHub repository</a></li>
+        <li><a href="#2-create-a-nexmo-application">2. Create a Nexmo Application</a></li>
+        <li><a href="#3-create-a-user">3: Create a User</a></li>
+        <li><a href="#4-generate-a-jwt-for-authentication">4: Generate a JWT for authentication</a></li>
+        <li><a href="#5-run-ngrok">5. Run ngrok</a></li>
+        <li><a href="#6-implement-the-server">6. Implement the server</a></li>
+        <li><a href="#7-review-the-client-code">7. Review the client code</a></li>
+        <li><a href="#run-it">Run it!</a></li>
       </ul>
     </li>
-    <li><a href="#configure-your-virtual-number">Configure your virtual number</a>
-      <ul>
-        <li><a href="#run-ngrok">Run ngrok</a></li>
-        <li><a href="#associate-your-number-with-your-webhook">Associate your number with your webhook</a></li>
-        <li><a href="#using-the-developer-dashboard">Using the Developer Dashboard</a></li>
-      </ul>
-    </li>
-    <li><a href="#run-it">Run it!</a></li>
-    <li><a href="#outcome">Outcome</a></li>
-    <li><a href="#alternative-languages">Alternative Languages</a></li>
+    <li><a href="#taking-it-further">Taking it further</a></li>
+    <li><a href="#resources">Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -851,7 +849,7 @@
           
             <h1>
               
-              Receive an SMS
+              Create a Click-to-call web app
             </h1>
           
 
@@ -859,89 +857,172 @@
 
 
 
-
-	<p>In this activity, you receive a text message sent to your virtual number, using the SMS API.</p>
-<h2 id="what-youll-need">What you&rsquo;ll need</h2>
-<ol>
-<li>A Nexmo Number - you should alreaady have this, if you have completed the &ldquo;send an SMS&rdquo; activity</li>
-<li>A mobile phone to send the SMS</li>
-<li>The Nexmo CLI - see <a href="/basic-concepts/nexmo-cli">here</a></li>
-<li><code>ngrok</code> installed - see <a href="/basic-concepts/ngrok">here</a></li>
-</ol>
+<p>In this tutorial, you will learn how to create a Client SDK application and then write the code to make a phone call from your Web App to a PSTN phone.</p>
+<p>To achieve this, you will need:</p>
+<ul>
+<li>A web application that will make the voice call using the Client SDK</li>
+<li>A webhook server that can process an inbound webhook and return an NCCO to forward the inbound voice call to the destination phone</li>
+</ul>
 <h2 id="steps">Steps</h2>
-<h3 id="create-a-nodejs-application">Create a Node.js application</h3>
-<p>The following commands create a Node.js application in a directory called <code>receive-sms</code> and install the required dependencies: the <code>express</code> web framework and <code>body-parser</code> for dealing with <code>POST</code> request bodies.</p>
-<pre><code>mkdir receive-sms
-cd receive-sms
-npm init -y
-npm install express body-parser
-</code></pre><p>Create a file called <code>receive-sms.js</code> in your new directory and populate it with the following code to create a webhook for inbound SMS:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)()
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>)
- 
+<h3 id="1-clone-the-github-repository">1. Clone the GitHub repository</h3>
+<p>We have created an incomplete project for you. This is available in a <a href="https://github.com/nexmo-se/cst-training-emea/tree/master/voice">GitHub repository</a>.</p>
+<p>Clone the GitHub repository as follows:</p>
+<ul>
+<li>
+<p>Using SSH:</p>
+<pre><code>git clone git@github.com:nexmo-se/cst-training-emea.git
+</code></pre></li>
+<li>
+<p>Using HTTPS:</p>
+<pre><code>https://github.com/nexmo-se/cst-training-emea.git
+</code></pre></li>
+</ul>
+<p>Or, if you are unable to use <code>git</code> for this, click the green &ldquo;Clone or download&rdquo; button to download the source code as a zip file and extract it on your local machine.</p>
+<p>Note that this GitHub repository contains sample code for both the Conversation and Video workshops. Navigate to the <code>cst-training-emea/voice</code> directory of the repository before continuing.</p>
+<h3 id="2-create-a-nexmo-application">2. Create a Nexmo Application</h3>
+<p>First, ensure that you have the <strong>beta</strong> version of the Nexmo CLI Installed. If you attended the Messages and Dispatch APIs workshop, then you installed this as part of that activity. If not, install it using <code>npm</code> as follows:</p>
+<pre><code>npm install nexmo-cli@beta -g
+</code></pre><p>The Nexmo CLI should read your API key and secret from previous installations of the CLI. This information is stored in <code>~/.nexmorc</code>. If this file is not present, then you need to set up the Nexmo CLI manually, by using the following command:</p>
+<pre><code>nexmo setup YOUR_API_KEY YOUR_API_SECRET
+</code></pre><p>Then, create a Nexmo application interactively. The following command enters interactive mode:</p>
+<pre><code>nexmo app:create
+</code></pre><p>Complete each prompt using the following information:</p>
+<ul>
+<li>Application Name: <code>click-to-call</code></li>
+<li>Capabilities: Select both <code>voice</code> and <code>rtc</code></li>
+<li>Use default HTTP methods? <code>Y</code></li>
+<li>Voice Answer URL: Press return - you will configure this later</li>
+<li>Voice Fallback URL: Press return</li>
+<li>Voice Event URL: Press return</li>
+<li>RTC Event URL: Press return</li>
+<li>Public key path: Delete placeholder text and press return</li>
+</ul>
+<p>The application is then created.</p>
+<p>The file <code>.nexmo-app</code> is created in your project directory. This file contains the Nexmo Application ID and the private key. Please take the time to review the content of this file.</p>
+<p>Note the private key and copy it, in its entirety, to a file called <code>private.key</code> in the same directory, including the <code>---BEGIN PRIVATE KEY---</code> and <code>---END PRIVATE KEY---</code> lines.</p>
+<p>You can obtain information about your application, including the Application ID, in the Nexmo Dashboard (<a href="https://dashboard.nexmo.com/voice/your-applications)">https://dashboard.nexmo.com/voice/your-applications)</a>.</p>
+<p>Visit the Dashboard now and verify that your application has been created. Then, click on your new application and link your virtual number to it from the list of numbers at the bottom of the page.</p>
+<h3 id="3-create-a-user">3: Create a User</h3>
+<p><a href="https://developer.nexmo.com/conversation/concepts/user">Users</a> are a key concept when working with the Nexmo Client SDKs. When a user authenticates with the Client SDK, the credentials provided identify them as a specific user. Each authenticated user will typically correspond to a single user in your users database.</p>
+<pre><code>nexmo user:create name=&quot;MY_USER_NAME&quot;
+</code></pre><p>Use any suitable name for <code>MY_USER_NAME</code>.</p>
+<p>Make a note of the User ID that is returned as a result of executing this command.</p>
+<h3 id="4-generate-a-jwt-for-authentication">4: Generate a JWT for authentication</h3>
+<p>The Client SDK uses JWTs for authentication. The JWT identifies the user name, the associated application ID and the permissions granted to the user. It is signed using your private key to prove that it is a valid token.</p>
+<p><strong>Note</strong>: Remember to replace the <code>MY_APP_ID</code> and <code>MY_USER_NAME</code> variables with your own values in the sections below.</p>
+<pre><code>
+nexmo jwt:generate ./private.key sub=MY_USER_NAME exp=$(($(date +%s)+21600)) acl='{&quot;paths&quot;:{&quot;/*/users/**&quot;:{},&quot;/*/conversations/**&quot;:{},&quot;/*/sessions/**&quot;:{},&quot;/*/devices/**&quot;:{},&quot;/*/image/**&quot;:{},&quot;/*/media/**&quot;:{},&quot;/*/applications/**&quot;:{},&quot;/*/push/**&quot;:{},&quot;/*/knocking/**&quot;:{}}}' application_id=MY_APP_ID
+
+</code></pre><p>Make a note of the JWT that is returned by this command.</p>
+<p>Well done. Now it&rsquo;s time to implement webhooks :)</p>
+<h3 id="5-run-ngrok">5. Run ngrok</h3>
+<p>For the webhooks that you&rsquo;re going to develop as part of this activity to be available to Vonage&rsquo;s APIs, they need to be accessible over the public Internet. You can achieve this by creating a secure tunnel using <code>ngrok</code>, which you installed earlier.</p>
+<p>Run <code>ngrok</code> on port 3000 using the following command:</p>
+<pre><code>./ngrok http 3000
+</code></pre><p>The URL that <code>ngrok</code> provides will form the domain part of your webhooks, which you will configure in the Developer Dashboard in a later step. Keep <code>ngrok</code> running for the duration of this exercise. If you restart <code>ngrok</code>, the domains will change. For more information on <code>ngrok</code>, see <a href="/basic-concepts/ngrok">our guide</a>.</p>
+<h3 id="6-implement-the-server">6. Implement the server</h3>
+<p>The repository includes a file called <code>server.js</code> that contains the initial code. The comments provide instructions for you to complete the remaining code. Please complete these steps in the order given and refer to the placeholder comments for each of the steps. For example, the initial Step 1 comment tells you that you need to implement webhooks. Look for other Step 1 comments further down the file to see where in the code you need to put these.</p>
+<p>When instructed to edit the client code, make your changes to <code>index.html</code> instead.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bodyParser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;body-parser&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>;
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#66d9ef">static</span>(<span style="color:#e6db74">&#39;node_modules/nexmo-client/dist&#39;</span>));
 <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">json</span>());
 <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">bodyParser</span>.<span style="color:#a6e22e">urlencoded</span>({ <span style="color:#a6e22e">extended</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }));
- 
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span>);
-
-<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/webhooks/inbound-sms&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>);
-    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">end</span>();
-  });
-</code></pre></div><h2 id="configure-your-virtual-number">Configure your virtual number</h2>
-<p>So that Vonage knows to make a request to your webhook when you receive an SMS, you need to link your virtual number to it. First, though, you need to ensure that your webhook is visible to Vonage&rsquo;s APIs.</p>
-<h3 id="run-ngrok">Run ngrok</h3>
-<p>For the webhook that you&rsquo;re going to develop as part of this activity to be available to Vonage&rsquo;s APIs, it needs to be accessible over the public Internet. You can achieve this by creating a secure tunnel using <code>ngrok</code>, which you installed earlier.</p>
-<p>Run <code>ngrok</code> on port 3000 or any other port of your choice, using the following command:</p>
-<pre><code>./ngrok http 3000
-</code></pre><p>The URL that <code>ngrok</code> provides will form the domain part of your webhook. Append <code>/webhooks/inbound-sms</code> to it, and this is the full URL of your webhook.</p>
-<h3 id="associate-your-number-with-your-webhook">Associate your number with your webhook</h3>
-<p>You need to associate your virtual number with your webhook URL so that Vonage knows to make a request to your webhook when you receive an SMS at that number.</p>
-<p>For example: <code>https://a992f76d.ngrok.io/webhooks/inbound-sms</code>.</p>
-<p>Execute the following CLI command to perform the link, replacing <code>YOUR_VIRTUAL_NUMBER</code> and <code>YOUR_WEBHOOK_URL</code>.</p>
-<blockquote>
-<p><strong>Note</strong>: Ensure that your number is in <a href="/basic-concepts/number-format/">E.164 format</a>.</p>
-</blockquote>
-<pre><code>nexmo link:sms YOUR_VIRTUAL_NUMBER YOUR_WEBHOOK_URL
-</code></pre><blockquote>
-<p><strong>Note</strong>: If you restart <code>ngrok</code> for any reason, the URLs will change and you will have to repeat this step.</p>
-</blockquote>
-<h3 id="using-the-developer-dashboard">Using the Developer Dashboard</h3>
-<p>If you want to do this in the Developer Dashboard, just navigate to Numbers &gt; My Numbers &gt; Manage a Number and then set the Inbound Webhook URL for SMS:</p>
-<p><img src="/images/dashboard-set-sms-webhook.png" alt="set inbound webhook gif"></p>
-<h2 id="run-it">Run it!</h2>
-<ol>
-<li>
-<p>Ensure that <code>ngrok</code> is still running and that your webhook URLs are up to date.</p>
-</li>
-<li>
-<p>Start your server:</p>
-</li>
-</ol>
-<pre><code>node receive-sms.js
-</code></pre><ol start="3">
-<li>Send a test SMS to your virtual number.</li>
-</ol>
-<h2 id="outcome">Outcome</h2>
-<p>If everything is working correctly, the details of the incoming message will appear in the console:</p>
-<pre><code>{ msisdn: '442079460000',
-  to: '442079460001',
-  messageId: '170000026809868F',
-  text: 'This is a test message',
-  type: 'text',
-  keyword: 'THIS',
-  'api-key': '7c47b66b',
-  'message-timestamp': '2020-02-06 10:55:16' }
-</code></pre><h2 id="alternative-languages">Alternative Languages</h2>
-<p>See the <a href="https://developer.nexmo.com/messaging/sms/code-snippets/receive-an-sms">Receive SMS example</a> in the docs. Click through to view the full source on GitHub.</p>
 
 
+<span style="color:#75715e">/* STEP 1
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Nexmo will make an HTTP request to your answer_url when an inbound call is received.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">You need to create a webhook server that is capable of receiving this request 
+</span><span style="color:#75715e">and returning an NCCO containing an action (https://developer.nexmo.com/voice/voice-api/ncco-reference).
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">As a first step, create an ncco with a talk action. Call the LVN number and check if it&#39;s working.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">NOTE: Please remember to set up application webhook in the Nexmo Dashboard (https://dashboard.nexmo.com/applications)
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">*/</span>
 
+
+<span style="color:#75715e">/* STEP 2
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Implement VAPI Event Webhook &amp; RTC Event Webhook. Log the request body using console.log and return 200 OK
+</span><span style="color:#75715e">Make sure to configure webhooks in your dashboard.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Doc: https://developer.nexmo.com/voice/voice-api/webhook-reference#event-webhook
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">*/</span>
+
+<span style="color:#75715e">/* STEP 3
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Go to the client side and complete the task before.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Once you&#39;ve completed client side, you need to edit the NCCO to forward the call to a PSTN number.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Please check the Answer Webhook body, you will have to extract the PSTN Number to connect to.
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Implement a logic to allow calls only to allowed numbers (for example, only to your personal number).
+</span><span style="color:#75715e">If the number is in the allowed numbers, the call is forwarded to it.
+</span><span style="color:#75715e">Otherwise, implement a TTS action with an alert to the user (for example: Sorry, that number is not permitted).
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">Doc: https://developer.nexmo.com/voice/voice-api/ncco-reference
+</span><span style="color:#75715e">
+</span><span style="color:#75715e">*/</span>
+
+
+<span style="color:#75715e">// STEP 1 - VAPI ANSWER WEBHOOK
+</span><span style="color:#75715e"></span><span style="color:#75715e">// Type the code below this point please
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/webhooks/answer&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Answer:&#34;</span>);
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>);
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">destNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// How do you get the number from req.query? 
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ncco</span> <span style="color:#f92672">=</span> []
+	<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">ncco</span>);
+});
+
+<span style="color:#75715e">// STEP 1 - VAPI EVENT WEBHOOK - INIT
+</span><span style="color:#75715e"></span><span style="color:#75715e">// Type the code below this point please
+</span><span style="color:#75715e"></span>
+
+
+<span style="color:#75715e">// STEP 1 - RTC EVENT WEBHOOK - INIT
+</span><span style="color:#75715e"></span><span style="color:#75715e">// Type the code below this point please
+</span><span style="color:#75715e"></span>
+
+
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+	<span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">sendFile</span>(<span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/index.html&#39;</span>));
+});
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">Server listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!</span><span style="color:#e6db74">`</span>));
+
+</code></pre></div><h3 id="7-review-the-client-code">7. Review the client code</h3>
+<p>The client uses the Nexmo SDK to call the PSTN number. The method used is <a href="https://developer.nexmo.com/sdk/stitch/javascript/Application.html#callServer__anchor">Call Server</a>.</p>
+<p>Review the client code in <code>index.html</code> and ensure that you understand how it works.</p>
+<h3 id="run-it">Run it!</h3>
+<p>Firstly, make sure you have installed the required node modules by running <code>npm install</code> inside the <code>voice</code> folder.</p>
+<p>Then, to run the server in development mode, run:</p>
+<pre><code>npm run dev
+</code></pre><p>The script uses <code>livereload</code>, so you don&rsquo;t need to reload the script everytime you make changes to the file.</p>
+<p>Launch the <code>index.html</code> file to see your application in action!</p>
+<h2 id="taking-it-further">Taking it further</h2>
+<p>For bonus points, implement the <a href="https://developer.nexmo.com/sdk/stitch/javascript/NXMCall.html#hangUp__anchor">Hang Up Method</a>.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://developer.nexmo.com/sdk/stitch/javascript/index.html">Client SDK documentation</a></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1043,7 +1124,6 @@ npm install express body-parser
             
                 
                     
-                    
                 
                 
 
@@ -1058,9 +1138,6 @@ npm install express body-parser
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1078,7 +1155,6 @@ npm install express body-parser
             
                 
                     
-                    
                 
                 
 
@@ -1094,9 +1170,6 @@ npm install express body-parser
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1415,6 +1488,7 @@ npm install express body-parser
             
                 
                     
+                    
                 
                 
 
@@ -1427,6 +1501,7 @@ npm install express body-parser
             
             
                 
+                    
                     
                 
                 
@@ -1451,10 +1526,10 @@ npm install express body-parser
 	 
 	 
 		
-			<a class="nav nav-prev" href="/sms/send-sms/" title="Send an SMS"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/conversation/" title="Conversation"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/sms/receive-dlr/" title="Get a Delivery Receipt" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/basic-concepts/" title="Basic Concepts" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1484,3 +1559,4 @@ npm install express body-parser
 
   </body>
 </html>
+
