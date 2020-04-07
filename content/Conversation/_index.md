@@ -18,3 +18,9 @@ Text, voice and video communications can currently flow through various Channels
 Phone, SIP and Websocket Channels are enabled through the Voice API and they all flow into Conversations.
 
 > **Note**: The Conversation API is currently in Beta.
+
+## Resources
+
+* [Conversation Docs](https://developer.nexmo.com/conversation/overview)
+* [Event Flow Example](https://developer.nexmo.com/conversation/guides/event-flow)
+* [Voice Events](https://developer.nexmo.com/voice/voice-api/webhook-reference)
