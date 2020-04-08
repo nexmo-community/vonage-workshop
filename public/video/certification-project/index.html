@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Conversation :: Vonage Workshop</title>
+    <title>Certification Project :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1586353545" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/conversation/">
+  <body class="" data-url="/video/certification-project/">
     <nav id="sidebar" class="">
 
 
@@ -688,7 +688,7 @@
   
     
     <li data-nav-id="/video/" title="Video" class="dd-item 
-        
+        parent
         
         
         ">
@@ -712,7 +712,7 @@
  
   
     
-      <li data-nav-id="/video/certification-project/" title="Certification Project" class="dd-item ">
+      <li data-nav-id="/video/certification-project/" title="Certification Project" class="dd-item active">
         <a href="/video/certification-project/">
         Certification Project
         
@@ -739,8 +739,8 @@
   
     
     <li data-nav-id="/conversation/" title="Conversation" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/conversation/">
@@ -828,7 +828,13 @@
             
           
           
-            <a href='/'>Welcome</a> > Conversation
+            
+            
+          
+          
+            <a href='/'>Welcome</a> > <a href='/video/'>Video</a> > Certification Project
+          
+         
           
          
           
@@ -841,8 +847,9 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#conversation-api-overview">Conversation API Overview</a></li>
-    <li><a href="#resources">Resources</a></li>
+    <li><a href="#get-started">Get started</a></li>
+    <li><a href="#the-server">The Server</a></li>
+    <li><a href="#the-client">The Client</a></li>
   </ul>
 </nav>
     </div>
@@ -860,7 +867,7 @@
           
             <h1>
               
-              Conversation
+              Certification Project
             </h1>
           
 
@@ -868,31 +875,61 @@
 
 
 
-
-	<h2 id="conversation-api-overview">Conversation API Overview</h2>
-<p>The Conversation API enables developers and enterprises to create customized, real-time conversations that maintain context across multiple channels, including messaging and voice.</p>
-<p>The Conversation API is a low-level API that allows you to create various objects such as Users, Members, and Conversations.</p>
-<p>Conversations are the fundamental concept the API revolves around. Conversations are containers of communications exchanged between two or more Users which could be a single interaction or the history of all interactions between them.</p>
-<p>The API also allows you to create Events and Legs to enable text, voice and video communications between two Users and store them in Conversations.</p>
-<p>Text, voice and video communications can currently flow through various Channels like App, Phone, SIP, and Websocket. To enable the App channel (for in-app messaging, voice and video), you would need to also utilize our <a href="https://developer.nexmo.com/client-sdk/overview">Client SDK</a>.</p>
-<p>Phone, SIP and Websocket Channels are enabled through the Voice API and they all flow into Conversations.</p>
-<blockquote>
-<p><strong>Note</strong>: The Conversation API is currently in Beta.</p>
-</blockquote>
-<h2 id="resources">Resources</h2>
+<p>This is a guided activity that provides you with some initial starting code and relies on you to complete it. The solution is in two parts - the server (written in Node.js using the Express framework) and the client, which uses vanilla JavaScript.</p>
+<p>After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.</p>
+<h2 id="get-started">Get started</h2>
+<p>We have created an incomplete project for you. This is available in a <a href="https://github.com/nexmo-se/cst-training-emea/tree/master/video">GitHub repository</a>.</p>
+<p>If you completed the activity for the Conversation API, you already have the files you need and they are located in the <code>cst-training-emea/video/</code> directory.</p>
+<p>If not, then clone the GitHub repository as follows:</p>
 <ul>
-<li><a href="https://developer.nexmo.com/conversation/overview">Conversation Docs</a></li>
-<li><a href="https://developer.nexmo.com/conversation/guides/event-flow">Event Flow Example</a></li>
-<li><a href="https://developer.nexmo.com/voice/voice-api/webhook-reference">Voice Events</a></li>
+<li>
+<p>Using SSH:</p>
+<pre><code>git clone git@github.com:nexmo-se/cst-training-emea.git
+</code></pre></li>
+<li>
+<p>Using HTTPS:</p>
+<pre><code>https://github.com/nexmo-se/cst-training-emea.git
+</code></pre></li>
 </ul>
-
-
-
+<p>Or, if you are unable to use <code>git</code> for this, click the green &ldquo;Clone or download&rdquo; button to download the source code as a zip file and extract it on your local machine.</p>
+<h2 id="the-server">The Server</h2>
+<p>You&rsquo;ll need to complete 4 steps to build the server. Once completed, your server will be able to:</p>
+<ol>
+<li>Generate a session</li>
+<li>Generate tokens for the session</li>
+<li>Receive the session events</li>
+<li>Whatever else you decide to enable it to do!</li>
+</ol>
+<p>The server skeleton is located in <code>./application_server</code> and the steps you need to complete are described in the comments of the <code>routes/tkbx.js</code> and <code>routes/events.js</code> files</p>
+<p>To begin, install the server:</p>
+<pre><code>npm install
+</code></pre><p>To run the server, execute:</p>
+<pre><code>npm run start
+</code></pre><p>By default the server uses port 3000.</p>
+<blockquote>
+<p>NOTE: The server will only create one session per run, which means that all clients that fetch the session will be connected to the same one. This will enable you see yourself from two different clients.</p>
+</blockquote>
+<p>You can test your server using Postman or cURL.</p>
+<p>To expose your server to the outside world, we recommend using <a href="basic-concepts/ngrok">ngrok</a>.</p>
+<h2 id="the-client">The Client</h2>
+<p>The skeleton for the tutorial is in the <code>web_client</code> directory.</p>
+<p>Please follow <a href="https://tokbox.com/developer/tutorials/web/basic-video-chat/">this tutorial</a> to flesh out the skeleton, but with the following changes:</p>
+<p>Your <code>API_KEY</code> should be hardcoded. You can retrieve this from the <a href="https://dashboard.nexmo.com">Developer Dashboard</a>.</p>
+<p>You should generate the session and token using the server you&rsquo;ve just built. Use <a href="https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/#jquery-methods">this article</a> for a quick explantation on how to perform HTTP requests. The project already contains Ajax support.</p>
+<p>The flow should be as follows:</p>
+<ol>
+<li>Create the session</li>
+<li>Create the token</li>
+<li>Initialize the session locally</li>
+</ol>
+<p>Complete the rest of the tutorial as described in the code comments.</p>
+<p>Good Luck!</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1342,6 +1379,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1354,6 +1392,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1374,6 +1413,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -1387,9 +1428,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1414,10 +1452,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/video/certification-project/" title="Certification Project"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/video/" title="Video"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/conversation/click-to-call/" title="Create a Click-to-call web app" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/conversation/" title="Conversation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1447,3 +1485,4 @@
 
   </body>
 </html>
+

@@ -10,5 +10,15 @@
 	<atom:link href="https://vonage-workshop.nexmodev.com/video/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Certification Project</title>
+      <link>https://vonage-workshop.nexmodev.com/video/certification-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vonage-workshop.nexmodev.com/video/certification-project/</guid>
+      <description>This is a guided activity that provides you with some initial starting code and relies on you to complete it. The solution is in two parts - the server (written in Node.js using the Express framework) and the client, which uses vanilla JavaScript.
+After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.</description>
+    </item>
+    
   </channel>
 </rss>
