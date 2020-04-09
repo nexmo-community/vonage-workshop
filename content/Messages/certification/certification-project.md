@@ -14,7 +14,7 @@ Your job is to create an application that notifies your customer that their pack
 
 Initially, you will attempt to contact them using a plain SMS message.
 
-If that fails to elicit a response (and, for the purposes of this exercise let's assume that you'll wait 180 seconds), you should failover to either an MMS message (choose or create a suitable image) or a Facebook Messenger message containing an image.
+If that fails to elicit a response (and, for the purposes of this exercise let's assume that you'll wait 180 seconds), you should failover to either a second (but different) SMS message or a Facebook Messenger message containing an image.
 
 You don't need to worry about inbound messages - let's just assume that your user is unresponsive.
 
@@ -31,7 +31,7 @@ The following resources will help you:
 * [Dispatch API](https://developer.nexmo.com/dispatch/overview)
 * [Send an Image Message using FB Messenger](https://developer.nexmo.com/messages/code-snippets/messenger/send-image)
 * [Send an SMS](https://developer.nexmo.com/messages/code-snippets/sms/send-sms)
-* [Send an MMS](https://developer.nexmo.com/messages/code-snippets/mms/send-mms)
+
 
 
 > **Good luck!**: Feel free to reach out to me at `mark.lewin@vonage.com` with any questions and I will do my best to help. Also consider helping each other out on the Slack channel - the best way to learn is to teach!
