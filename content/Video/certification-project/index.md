@@ -7,6 +7,8 @@ This is a guided activity that provides you with some initial starting code and 
 
 After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.
 
+If you haven't already, create an account at [Tokbox](https://tokbox.com) and receive your $10 free credit.
+
 
 ## Get started
 We have created an incomplete project for you. This is available in a [GitHub repository](https://github.com/nexmo-se/cst-training-emea/tree/master/video).
