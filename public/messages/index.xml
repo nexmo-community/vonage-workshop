@@ -28,8 +28,9 @@ mkdir messages-sms cd messages-sms npm init touch index.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://vonage-workshop.nexmodev.com/messages/other-channels/</guid>
-      <description>The WhatsApp and Viber channels require some configuration before they are used. However, you can play around with them in the sandbox.
-Visit that page and follow the instructions to send yourself a message using either WhatsApp, Viber, or both!</description>
+      <description>The WhatsApp and Viber channels require some configuration before they are used. However, you can use our sandbox environment if you want to play around with them.
+Visit that page and follow the instructions for the channels that you are interested in to get yourself set up. If you want to use those channels in an app, however, you need to use different API endpoints!
+Usually, you make Message API POST requests to:</description>
     </item>
     
     <item>

@@ -12,20 +12,20 @@
     <title>WhatsApp and Viber :: Vonage Workshop</title>
 
     
-    <link href="/css/nucleus.css?1586431731" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1586431731" rel="stylesheet">
-    <link href="/css/hybrid.css?1586431731" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1586431731" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1586431731" rel="stylesheet">
-    <link href="/css/auto-complete.css?1586431731" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1586431731" rel="stylesheet">
-    <link href="/css/theme.css?1586431731" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1586431731" rel="stylesheet">
+    <link href="/css/nucleus.css?1587024866" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1587024866" rel="stylesheet">
+    <link href="/css/hybrid.css?1587024866" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1587024866" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1587024866" rel="stylesheet">
+    <link href="/css/auto-complete.css?1587024866" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1587024866" rel="stylesheet">
+    <link href="/css/theme.css?1587024866" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1587024866" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1586431731" rel="stylesheet">
+      <link href="/css/theme-blue.css?1587024866" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1586431731"></script>
+    <script src="/js/jquery-3.3.1.min.js?1587024866"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1586431731"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1586431731"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1587024866"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1587024866"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1586431731"></script>
+<script type="text/javascript" src="/js/search.js?1587024866"></script>
 
     
   </div>
@@ -869,9 +869,24 @@
 
 
 
-<p>The WhatsApp and Viber channels require some configuration before they are used. However, you can play around with them in the <a href="https://dashboard.nexmo.com/messages/sandbox">sandbox</a>.</p>
-<p>Visit that page and follow the instructions to send yourself a message using either WhatsApp, Viber, or both!</p>
-
+<p>The WhatsApp and Viber channels require some configuration before they are used. However, you can use our <a href="https://dashboard.nexmo.com/messages/sandbox">sandbox</a> environment if you want to play around with them.</p>
+<p>Visit that page and follow the instructions for the channels that you are interested in to get yourself set up. If you want to use those channels in an app, however, you need to use different API endpoints!</p>
+<p>Usually, you make Message API <code>POST</code> requests to:</p>
+<p><code>https://api.nexmo.com/v0.1/messages/</code></p>
+<p>However, if you want to send yourself messages using our sandbox accounts then you will need to use the following endpoint:</p>
+<p><code>https://messages-sandbox.nexmo.com/v0.1/messages/</code></p>
+<p>In order to do that, you will need to configure the <code>nexmo</code> client in your Node.js app at the point of instantiation, by specifying the <code>apiHost</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nexmo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Nexmo</span>({
+  <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_KEY</span>,
+  <span style="color:#a6e22e">apiSecret</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">API_SECRET</span>,
+  <span style="color:#a6e22e">applicationId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">APPLICATION_ID</span>,
+  <span style="color:#a6e22e">privateKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PRIVATE_KEY_FILE</span>
+}, {
+  <span style="color:#a6e22e">debug</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#75715e">// use Sandbox endpoint
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">apiHost</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;messages-sandbox.nexmo.com&#39;</span>
+});
+</code></pre></div>
 
 <footer class=" footline" >
 	
@@ -1415,19 +1430,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1586431731"></script>
-    <script src="/js/perfect-scrollbar.min.js?1586431731"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1586431731"></script>
-    <script src="/js/jquery.sticky.js?1586431731"></script>
-    <script src="/js/featherlight.min.js?1586431731"></script>
-    <script src="/js/highlight.pack.js?1586431731"></script>
+    <script src="/js/clipboard.min.js?1587024866"></script>
+    <script src="/js/perfect-scrollbar.min.js?1587024866"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1587024866"></script>
+    <script src="/js/jquery.sticky.js?1587024866"></script>
+    <script src="/js/featherlight.min.js?1587024866"></script>
+    <script src="/js/highlight.pack.js?1587024866"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1586431731"></script>
-    <script src="/js/learn.js?1586431731"></script>
-    <script src="/js/hugo-learn.js?1586431731"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1587024866"></script>
+    <script src="/js/learn.js?1587024866"></script>
+    <script src="/js/hugo-learn.js?1587024866"></script>
 
-    <link href="/mermaid/mermaid.css?1586431731" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1586431731"></script>
+    <link href="/mermaid/mermaid.css?1587024866" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1587024866"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
