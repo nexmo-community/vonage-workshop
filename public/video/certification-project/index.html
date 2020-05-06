@@ -12,20 +12,20 @@
     <title>Certification Project :: Vonage Workshop</title>
 
     
-    <link href="/css/nucleus.css?1587024865" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1587024865" rel="stylesheet">
-    <link href="/css/hybrid.css?1587024865" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1587024865" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1587024865" rel="stylesheet">
-    <link href="/css/auto-complete.css?1587024865" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1587024865" rel="stylesheet">
-    <link href="/css/theme.css?1587024865" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1587024865" rel="stylesheet">
+    <link href="/css/nucleus.css?1588763730" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588763730" rel="stylesheet">
+    <link href="/css/hybrid.css?1588763730" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588763730" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588763730" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588763730" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588763730" rel="stylesheet">
+    <link href="/css/theme.css?1588763730" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588763730" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1587024865" rel="stylesheet">
+      <link href="/css/theme-blue.css?1588763730" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1587024865"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588763730"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1587024865"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1587024865"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588763730"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588763730"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/vonage-workshop.nexmodev.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1587024865"></script>
+<script type="text/javascript" src="/js/search.js?1588763730"></script>
 
     
   </div>
@@ -847,9 +847,15 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#get-started">Get started</a></li>
-    <li><a href="#the-server">The Server</a></li>
-    <li><a href="#the-client">The Client</a></li>
+    <li><a href="#video-api-certification">Video API Certification</a>
+      <ul>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#get-started">Get started</a></li>
+        <li><a href="#the-server">The Server</a></li>
+        <li><a href="#the-client">The Client</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -875,10 +881,14 @@
 
 
 
+<h2 id="video-api-certification">Video API Certification</h2>
+<h3 id="objective">Objective</h3>
 <p>This is a guided activity that provides you with some initial starting code and relies on you to complete it. The solution is in two parts - the server (written in Node.js using the Express framework) and the client, which uses vanilla JavaScript.</p>
 <p>After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.</p>
+<blockquote>
 <p>If you haven&rsquo;t already, create an account at <a href="https://tokbox.com">Tokbox</a> and receive your $10 free credit.</p>
-<h2 id="get-started">Get started</h2>
+</blockquote>
+<h3 id="get-started">Get started</h3>
 <p>We have created an incomplete project for you. This is available in a <a href="https://github.com/nexmo-se/cst-training-emea/tree/master/video">GitHub repository</a>.</p>
 <p>If you completed the activity for the Conversation API, you already have the files you need and they are located in the <code>cst-training-emea/video/</code> directory.</p>
 <p>If not, then clone the GitHub repository as follows:</p>
@@ -893,7 +903,7 @@
 </code></pre></li>
 </ul>
 <p>Or, if you are unable to use <code>git</code> for this, click the green &ldquo;Clone or download&rdquo; button to download the source code as a zip file and extract it on your local machine.</p>
-<h2 id="the-server">The Server</h2>
+<h3 id="the-server">The Server</h3>
 <p>You&rsquo;ll need to complete 4 steps to build the server. Once completed, your server will be able to:</p>
 <ol>
 <li>Generate a session</li>
@@ -912,7 +922,7 @@
 </blockquote>
 <p>You can test your server using Postman or cURL.</p>
 <p>To expose your server to the outside world, we recommend using <a href="basic-concepts/ngrok">ngrok</a>.</p>
-<h2 id="the-client">The Client</h2>
+<h3 id="the-client">The Client</h3>
 <p>The skeleton for the tutorial is in the <code>web_client</code> directory.</p>
 <p>Please follow <a href="https://tokbox.com/developer/tutorials/web/basic-video-chat/">this tutorial</a> to flesh out the skeleton, but with the following changes:</p>
 <p>Your <code>API_KEY</code> should be hardcoded. You can retrieve this from the <a href="https://dashboard.nexmo.com">Developer Dashboard</a>.</p>
@@ -924,7 +934,11 @@
 <li>Initialize the session locally</li>
 </ol>
 <p>Complete the rest of the tutorial as described in the code comments.</p>
-<p>Good Luck!</p>
+<h3 id="delivery">Delivery</h3>
+<p>Please send your completed project to <code>apiglobaltraining@vonage.com</code> - a link to a repo on Github is preferable. Please also provide a brief <code>README</code> to describe how to run your project.</p>
+<blockquote>
+<p><strong>Note</strong>: There is no deadline for these certification projects, but please be aware that your coupon credit will expire after a set period. Your instructor will tell you when that is.</p>
+</blockquote>
 
 
 <footer class=" footline" >
@@ -1466,19 +1480,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1587024865"></script>
-    <script src="/js/perfect-scrollbar.min.js?1587024865"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1587024865"></script>
-    <script src="/js/jquery.sticky.js?1587024865"></script>
-    <script src="/js/featherlight.min.js?1587024865"></script>
-    <script src="/js/highlight.pack.js?1587024865"></script>
+    <script src="/js/clipboard.min.js?1588763730"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588763730"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588763730"></script>
+    <script src="/js/jquery.sticky.js?1588763730"></script>
+    <script src="/js/featherlight.min.js?1588763730"></script>
+    <script src="/js/highlight.pack.js?1588763730"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1587024865"></script>
-    <script src="/js/learn.js?1587024865"></script>
-    <script src="/js/hugo-learn.js?1587024865"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588763730"></script>
+    <script src="/js/learn.js?1588763730"></script>
+    <script src="/js/hugo-learn.js?1588763730"></script>
 
-    <link href="/mermaid/mermaid.css?1587024865" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1587024865"></script>
+    <link href="/mermaid/mermaid.css?1588763730" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588763730"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

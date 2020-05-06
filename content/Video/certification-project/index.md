@@ -3,14 +3,18 @@ title: "Certification Project"
 weight : 1
 ---
 
+## Video API Certification
+
+### Objective
+
 This is a guided activity that provides you with some initial starting code and relies on you to complete it. The solution is in two parts - the server (written in Node.js using the Express framework) and the client, which uses vanilla JavaScript.
 
 After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.
 
-If you haven't already, create an account at [Tokbox](https://tokbox.com) and receive your $10 free credit.
+> If you haven't already, create an account at [Tokbox](https://tokbox.com) and receive your $10 free credit.
 
 
-## Get started
+### Get started
 We have created an incomplete project for you. This is available in a [GitHub repository](https://github.com/nexmo-se/cst-training-emea/tree/master/video).
 
 If you completed the activity for the Conversation API, you already have the files you need and they are located in the `cst-training-emea/video/` directory.
@@ -31,7 +35,7 @@ If not, then clone the GitHub repository as follows:
 
 Or, if you are unable to use `git` for this, click the green "Clone or download" button to download the source code as a zip file and extract it on your local machine.
 
-## The Server
+### The Server
 
 You'll need to complete 4 steps to build the server. Once completed, your server will be able to:
 
@@ -62,7 +66,7 @@ You can test your server using Postman or cURL.
 
 To expose your server to the outside world, we recommend using [ngrok](basic-concepts/ngrok).
 
-## The Client
+### The Client
 
 The skeleton for the tutorial is in the `web_client` directory.
 
@@ -80,4 +84,8 @@ The flow should be as follows:
 
 Complete the rest of the tutorial as described in the code comments. 
 
-Good Luck!
+### Delivery
+
+Please send your completed project to `apiglobaltraining@vonage.com` - a link to a repo on Github is preferable. Please also provide a brief `README` to describe how to run your project.
+
+> **Note**: There is no deadline for these certification projects, but please be aware that your coupon credit will expire after a set period. Your instructor will tell you when that is.
