@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Vonage CLI :: Vonage Workshop</title>
+    <title>Certification Project :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1590665158" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/basic-concepts/vonage-cli/">
+  <body class="" data-url="/verify/certification/">
     <nav id="sidebar" class="">
 
 
@@ -75,7 +75,7 @@
   
     
     <li data-nav-id="/basic-concepts/" title="Basic Concepts" class="dd-item 
-        parent
+        
         
         
         ">
@@ -102,8 +102,8 @@
   
     
     <li data-nav-id="/basic-concepts/vonage-cli/" title="Vonage CLI" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/basic-concepts/vonage-cli/">
@@ -314,7 +314,7 @@
   
     
     <li data-nav-id="/verify/" title="Verify API" class="dd-item 
-        
+        parent
         
         
         ">
@@ -394,7 +394,7 @@
  
   
     
-      <li data-nav-id="/verify/certification/" title="Certification Project" class="dd-item ">
+      <li data-nav-id="/verify/certification/" title="Certification Project" class="dd-item active">
         <a href="/verify/certification/">
         Certification Project
         
@@ -856,7 +856,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/basic-concepts/'>Basic Concepts</a> > Vonage CLI
+            <a href='/'>Welcome</a> > <a href='/verify/'>Verify API</a> > Certification Project
           
          
           
@@ -869,7 +869,17 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#sms-and-verify-api-certification">SMS and Verify API Certification</a>
+      <ul>
+        <li><a href="#use-case">Use case</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -885,7 +895,7 @@
           
             <h1>
               
-              Vonage CLI
+              Certification Project
             </h1>
           
 
@@ -893,22 +903,31 @@
 
 
 
-
-	<p>The Nexmo CLI is a Node.js application, so you need to have <code>node.js</code> and <code>npm</code> installed to run it. If you don&rsquo;t already have these, follow the steps <a href="https://www.npmjs.com/get-npm">here</a>.</p>
-<p>Once you have <code>node.js</code> and <code>npm</code>, you can install Nexmo CLI by performing the following steps:</p>
-<p>First, install the CLI globally:</p>
-<pre><code>npm install nexmo-cli -g
-</code></pre><p>Then, configure the CLI with your API key and secret:</p>
-<pre><code>nexmo setup API_KEY API_SECRET
-</code></pre><p><a href="https://github.com/Nexmo/nexmo-cli">Find out more about Nexmo CLI</a>.</p>
-
-
-
+<h2 id="sms-and-verify-api-certification">SMS and Verify API Certification</h2>
+<h3 id="use-case">Use case</h3>
+<p>You&rsquo;re building a ride sharing service. You want your users to register with the service with their mobile phone number and you will use the Verify API to ensure that they own the number that they are registering with.</p>
+<p>Once they are registered, you want your users to send SMS to each other using the SMS API, without revealing their private mobile numbers, so you will use a virtual number to mask those numbers.</p>
+<p>Use <a href="https://developer.nexmo.com/tools">any supported SDK</a> to achieve this.</p>
+<p>If you feel you need to create a simple user interface to collect users&rsquo; details, go ahead. Alternatively, you might want to create endpoints in your application to collect things like their number, verification codes, etc and call those using a utility like <code>curl</code>.</p>
+<h3 id="delivery">Delivery</h3>
+<p>Please see <a href="/basic-concepts/certification/">here</a> for details of how to submit your completed project.</p>
+<h3 id="resources">Resources</h3>
+<p>The following resources will help you:</p>
+<ul>
+<li><a href="https://developer.nexmo.com/use-cases/passwordless-authentication">Passwordless authentication use case</a></li>
+<li><a href="https://developer.nexmo.com/use-cases/private-sms-communication">Private SMS communication</a></li>
+<li><a href="https://developer.nexmo.com/messaging/sms/overview">SMS API documentation</a></li>
+<li><a href="https://developer.nexmo.com/verify/overview">Verify API documentation</a></li>
+</ul>
+<blockquote>
+<p><strong>Good luck!</strong>: Feel free to reach out at <code>apiglobaltraining@vonage.com</code> with any questions and we will do our best to help.</p>
+</blockquote>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -941,92 +960,8 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1089,6 +1024,17 @@
                         
             
             
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
         
                     
             
@@ -1144,10 +1090,59 @@
                         
             
             
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
         
                     
                         
             
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -1167,6 +1162,13 @@
             
         
                     
+                        
+            
+            
+        
+                    
+                        
+            
             
         
                     
@@ -1174,6 +1176,29 @@
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1444,10 +1469,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/basic-concepts/" title="Basic Concepts"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/verify/check-verify-request/" title="Check Verify Request"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/basic-concepts/ngrok/" title="Testing with ngrok" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/voice/" title="Voice API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1477,3 +1502,4 @@
 
   </body>
 </html>
+

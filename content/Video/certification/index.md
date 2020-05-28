@@ -86,6 +86,4 @@ Complete the rest of the tutorial as described in the code comments.
 
 ### Delivery
 
-Please send your completed project to `apiglobaltraining@vonage.com` - a link to a repo on Github is preferable. Please also provide a brief `README` to describe how to run your project.
-
-> **Note**: There is no deadline for these certification projects, but please be aware that your coupon credit will expire after a set period. Your instructor will tell you when that is.
+Please see [here](/basic-concepts/certification/) for details of how to submit your completed project.

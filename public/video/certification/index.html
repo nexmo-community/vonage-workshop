@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Vonage CLI :: Vonage Workshop</title>
+    <title>Certification Project :: Vonage Workshop</title>
 
     
     <link href="/css/nucleus.css?1590665158" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/basic-concepts/vonage-cli/">
+  <body class="" data-url="/video/certification/">
     <nav id="sidebar" class="">
 
 
@@ -75,7 +75,7 @@
   
     
     <li data-nav-id="/basic-concepts/" title="Basic Concepts" class="dd-item 
-        parent
+        
         
         
         ">
@@ -102,8 +102,8 @@
   
     
     <li data-nav-id="/basic-concepts/vonage-cli/" title="Vonage CLI" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/basic-concepts/vonage-cli/">
@@ -712,7 +712,7 @@
   
     
     <li data-nav-id="/video/" title="Video" class="dd-item 
-        
+        parent
         
         
         ">
@@ -736,7 +736,7 @@
  
   
     
-      <li data-nav-id="/video/certification/" title="Certification Project" class="dd-item ">
+      <li data-nav-id="/video/certification/" title="Certification Project" class="dd-item active">
         <a href="/video/certification/">
         Certification Project
         
@@ -856,7 +856,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/basic-concepts/'>Basic Concepts</a> > Vonage CLI
+            <a href='/'>Welcome</a> > <a href='/video/'>Video</a> > Certification Project
           
          
           
@@ -869,7 +869,19 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#video-api-certification">Video API Certification</a>
+      <ul>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#get-started">Get started</a></li>
+        <li><a href="#the-server">The Server</a></li>
+        <li><a href="#the-client">The Client</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -885,7 +897,7 @@
           
             <h1>
               
-              Vonage CLI
+              Certification Project
             </h1>
           
 
@@ -893,22 +905,67 @@
 
 
 
-
-	<p>The Nexmo CLI is a Node.js application, so you need to have <code>node.js</code> and <code>npm</code> installed to run it. If you don&rsquo;t already have these, follow the steps <a href="https://www.npmjs.com/get-npm">here</a>.</p>
-<p>Once you have <code>node.js</code> and <code>npm</code>, you can install Nexmo CLI by performing the following steps:</p>
-<p>First, install the CLI globally:</p>
-<pre><code>npm install nexmo-cli -g
-</code></pre><p>Then, configure the CLI with your API key and secret:</p>
-<pre><code>nexmo setup API_KEY API_SECRET
-</code></pre><p><a href="https://github.com/Nexmo/nexmo-cli">Find out more about Nexmo CLI</a>.</p>
-
-
-
+<h2 id="video-api-certification">Video API Certification</h2>
+<h3 id="objective">Objective</h3>
+<p>This is a guided activity that provides you with some initial starting code and relies on you to complete it. The solution is in two parts - the server (written in Node.js using the Express framework) and the client, which uses vanilla JavaScript.</p>
+<p>After successfully completing the activity, you will be able to create a single participant video session and see yourself in your web cam. You can spin up multiple client instances and all will connect to the same session and therefore see the same video.</p>
+<blockquote>
+<p>If you haven&rsquo;t already, create an account at <a href="https://tokbox.com">Tokbox</a> and receive your $10 free credit.</p>
+</blockquote>
+<h3 id="get-started">Get started</h3>
+<p>We have created an incomplete project for you. This is available in a <a href="https://github.com/nexmo-se/cst-training-emea/tree/master/video">GitHub repository</a>.</p>
+<p>If you completed the activity for the Conversation API, you already have the files you need and they are located in the <code>cst-training-emea/video/</code> directory.</p>
+<p>If not, then clone the GitHub repository as follows:</p>
+<ul>
+<li>
+<p>Using SSH:</p>
+<pre><code>git clone git@github.com:nexmo-se/cst-training-emea.git
+</code></pre></li>
+<li>
+<p>Using HTTPS:</p>
+<pre><code>https://github.com/nexmo-se/cst-training-emea.git
+</code></pre></li>
+</ul>
+<p>Or, if you are unable to use <code>git</code> for this, click the green &ldquo;Clone or download&rdquo; button to download the source code as a zip file and extract it on your local machine.</p>
+<h3 id="the-server">The Server</h3>
+<p>You&rsquo;ll need to complete 4 steps to build the server. Once completed, your server will be able to:</p>
+<ol>
+<li>Generate a session</li>
+<li>Generate tokens for the session</li>
+<li>Receive the session events</li>
+<li>Whatever else you decide to enable it to do!</li>
+</ol>
+<p>The server skeleton is located in <code>./application_server</code> and the steps you need to complete are described in the comments of the <code>routes/tkbx.js</code> and <code>routes/events.js</code> files</p>
+<p>To begin, install the server:</p>
+<pre><code>npm install
+</code></pre><p>To run the server, execute:</p>
+<pre><code>npm run start
+</code></pre><p>By default the server uses port 3000.</p>
+<blockquote>
+<p>NOTE: The server will only create one session per run, which means that all clients that fetch the session will be connected to the same one. This will enable you see yourself from two different clients.</p>
+</blockquote>
+<p>You can test your server using Postman or cURL.</p>
+<p>To expose your server to the outside world, we recommend using <a href="basic-concepts/ngrok">ngrok</a>.</p>
+<h3 id="the-client">The Client</h3>
+<p>The skeleton for the tutorial is in the <code>web_client</code> directory.</p>
+<p>Please follow <a href="https://tokbox.com/developer/tutorials/web/basic-video-chat/">this tutorial</a> to flesh out the skeleton, but with the following changes:</p>
+<p>Your <code>API_KEY</code> should be hardcoded. You can retrieve this from the <a href="https://dashboard.nexmo.com">Developer Dashboard</a>.</p>
+<p>You should generate the session and token using the server you&rsquo;ve just built. Use <a href="https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/#jquery-methods">this article</a> for a quick explantation on how to perform HTTP requests. The project already contains Ajax support.</p>
+<p>The flow should be as follows:</p>
+<ol>
+<li>Create the session</li>
+<li>Create the token</li>
+<li>Initialize the session locally</li>
+</ol>
+<p>Complete the rest of the tutorial as described in the code comments.</p>
+<h3 id="delivery">Delivery</h3>
+<p>Please see <a href="/basic-concepts/certification/">here</a> for details of how to submit your completed project.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -941,92 +998,8 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1083,71 +1056,6 @@
                     
 
                     
-            
-        
-                    
-                        
-            
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-        
-                    
-                        
-            
             
         
                     
@@ -1236,6 +1144,29 @@
                         
             
             
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
                 
                     
                 
@@ -1262,6 +1193,11 @@
                     
 
                     
+            
+        
+                    
+                        
+            
             
         
                     
@@ -1368,22 +1304,6 @@
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
             
             
@@ -1400,6 +1320,8 @@
             
         
                     
+                        
+            
             
         
                     
@@ -1407,6 +1329,144 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1444,10 +1504,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/basic-concepts/" title="Basic Concepts"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/video/" title="Video"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/basic-concepts/ngrok/" title="Testing with ngrok" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/conversation/" title="Conversation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1477,3 +1537,4 @@
 
   </body>
 </html>
+
