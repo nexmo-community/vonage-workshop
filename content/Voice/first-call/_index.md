@@ -47,6 +47,7 @@ Copy the `private.key` file you downloaded from the Developer Dashboard into the
 Create a new file called `outbound-call.js` and add the following code:
 
 ```js
+const Nexmo = require('nexmo');
 require('dotenv').config();
 const nexmo = new Nexmo({
   apiKey: process.env.API_KEY,
